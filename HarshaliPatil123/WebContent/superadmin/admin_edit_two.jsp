@@ -87,7 +87,7 @@ Connection connection = null;
 PreparedStatement ps = null;
 
 %>
-<%if (adminephonenumber!= null) {
+<%
 try{
 connection = DriverManager.getConnection(Url,Username,password);
 
@@ -121,12 +121,7 @@ else
 catch (Exception e) {
 e.printStackTrace();
 }
-}
-else
-{
-	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
-	rd.forward(request, response);
-}
+
 
 	
 

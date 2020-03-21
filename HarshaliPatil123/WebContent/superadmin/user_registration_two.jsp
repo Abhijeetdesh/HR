@@ -84,7 +84,7 @@ String uemail=request.getParameter("user_email");
 String uphone=request.getParameter("user_phone");
 
 String upassword=request.getParameter("user_password");
-String dpid[]= request.getParameterValues("langOpt2[]");
+String dpid[]= request.getParameterValues("id[]");
 String aphone=request.getParameter("admin_phone");
 
 //int personID = Integer.parseInt(adminephonenumber);
@@ -100,16 +100,11 @@ final String secretKey = "ssshhhhhhhhhhh!!!!";
 String originalString = upassword;
 String encryptedString = AES.encrypt(originalString, secretKey) ;
 String decryptedString = AES.decrypt(encryptedString, secretKey) ;
-if (dpid==null) {
- 	 
- 	   request.setAttribute("alertmsg", "Select atleast one dpid");
-   	RequestDispatcher rd=request.getRequestDispatcher("user_registration.jsp");  
-   	rd.include(request, response);
-   	
-   } 
-else{
-if (aphone!= null) {
+
 try {
+	
+	
+	
 	
 	 con=DriverManager.getConnection(Url,Username,password);
 
@@ -159,7 +154,7 @@ try {
     			 if(i>0) 
     		     {  
     			  System.out.println("user added successfully");
-    			  RequestDispatcher rd=request.getRequestDispatcher("user_info.jsp");
+    			  RequestDispatcher rd=request.getRequestDispatcher("admin_info.jsp");
     			 rd.forward(request, response);
     			 }
 	     }
@@ -169,13 +164,8 @@ catch (Exception e) {
 						
 	e.printStackTrace();
 }
-}
-else
-{
-	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
-	rd.forward(request, response);
-}
-}
+
+
 
 %>
 </body>

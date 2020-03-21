@@ -39,6 +39,7 @@
 	font-weight: bold;
 	color: red;
 	}
+	
 	</style>	
  </head>
 
@@ -95,13 +96,19 @@
            
           </div>
         </nav>
-		
-	   <div class="table " style="overflow:scroll; height: 540px;width:50%; margin-left: 25%; ">
+	 <div class=" pull-right" style="margin-top:5px;">
+   			<label>Search</label>
+		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
+		          <input class="btn btn-outline-primary" type=button onClick="location.href='dptable.jsp'" value='Back'>
+	</div>	
+	   <div class="table " style="overflow:scroll; height: 540px;width:70%; margin-left: 15%; ">
 		 	<table id="example"  class="display" style="table-layout: auto;width:100%;">
 	        <thead>
 		            <tr>
 		               <th>DPID</th>
+		               <th>DP_NO</th>
 		               <th>Phase</th> 
+		               <th>Set</th>
 		            </tr>
 		    </thead>
        <%@include file="db.jsp" %>
@@ -120,8 +127,10 @@
 		       				int count=Integer.parseInt(phase);   
 		                %>
 				     <tr>
-		                 <td><a href="onoffdetail.jsp?dpid=<%=rs.getString("dpid")%>" class="btn btn-outline-primary b1">Device-<%=rs.getString("dpid")%></a></td>
-		                <td><a class="btn btn-outline-primary b2" ><%=rs.getString("phase") %></a></td>
+		                 <td><a class="btn btn-outline-primary b1"><%=rs.getString("dpid")%></a></td>
+		                <td><a class="btn btn-outline-primary b2" ><%=rs.getString("dp_number") %></a></td>
+ 		               <td><a class="btn btn-outline-primary b2" ><%=rs.getString("phase") %></a></td>
+ 		              <td><a href="onofflight.jsp?dpid=<%=rs.getString("dpid") %>" class="btn btn-outline-primary b2" >set</a></td>
  		               
 		            </tr>
 		               </tbody>

@@ -68,21 +68,16 @@
 	              <i class="fa fa-bars"></i>
 	              <span class="sr-only">Toggle Menu</span>
 	            </button>
-	            
-	           
-	          </div>
+	      </div>
 	          
         	</nav>
+	        <div class=" pull-right" style="margin-top:5px;">
+   			
+		          <input class="btn btn-outline-primary" type=button onClick="location.href='onoff.jsp'" value='Back'>
+		      </div>        	
       <%@include file="db.jsp" %>
     <%
 	String dpid = request.getParameter("dpid");
-    if(dpid == null)
-    {
-    	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
-    	rd.forward(request, response);
-    }
-    else
-    {
     Connection connection = null;
     Statement statement = null;
     ResultSet resultSet = null;
@@ -118,7 +113,9 @@
        <div class="card-body">
          <h5 class="card-title">R</h5>
          <%  String onoff=resultSet1.getString("onoff");
-             if(onoff.equals("#R1"))
+             String r_current=resultSet1.getString("r_current");
+             int curr=Integer.parseInt(r_current);
+             if(curr>=8 && curr<=12)
              {
          %>
             <img class="card-img-top" src="../images/ONbulb.jpg" alt="Card image cap"><br><br>
@@ -380,13 +377,12 @@ if(count==3)
    
    <%
    }
-	
  }
 catch (Exception e) 
  {
    e.printStackTrace();
    }  
-    }
+   
    %>     	
         	
    </div>

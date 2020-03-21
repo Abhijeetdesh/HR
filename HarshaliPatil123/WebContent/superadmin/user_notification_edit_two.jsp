@@ -121,11 +121,6 @@ request.setAttribute("error", sql);
 out.println(sql);
 }
 }
-else
-{
-	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
-	rd.forward(request, response);
-}
 %>    
             
     </main>

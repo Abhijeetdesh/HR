@@ -145,7 +145,7 @@ Connection connection = null;
 Statement statement = null;
 ResultSet resultSet = null;
 %>
-<%if (admin_phone!= null) {
+<%
 try{
 connection = DriverManager.getConnection(Url,Username,password);
 statement=connection.createStatement();
@@ -200,13 +200,7 @@ while(resultSet.next()){
 connection.close();
 } catch (Exception e) {
 e.printStackTrace();
-}
-}
-else
-{
-	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
-	rd.forward(request, response);
-}
+}			
 %>
        </div>
    </div>

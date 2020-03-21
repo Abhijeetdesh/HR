@@ -72,7 +72,9 @@
 		           
 		          </div>
 		        </nav>
-    
+  <div class=" pull-right" style="margin-top:5px;">
+    <input class="btn btn-outline-primary" type=button onClick="location.href='user_notification_info.jsp'" value='Back'>
+    </div>   
 <%
  DateTimeFormatter dtf = DateTimeFormatter.ofPattern(" HH:mm:ss");
  LocalDateTime now = LocalDateTime.now();
@@ -81,15 +83,15 @@
            			
 				<form name="form1" method="post" action="user_notification_db.jsp">
 						
-				   <!-- <div class="form-group">
+				   <div class="form-group">
                     <label for="exampleInputPassword1">Sr_no::</label>
                     <input class="form-control" name="sr_no" type="text" required />
                    
-                   </div> -->
+                   </div>
              
                  <div class="form-group">
                     <label for="exampleInputPassword1">Notification::</label>
-                    <textarea class="form-control" name="notification" type="text" cols="30" rows="5" ></textarea>
+                    <textarea class="form-control" name="notification" type="text" cols="30" rows="5"></textarea>
                   </div>
                   
                    <div class="form-group">
@@ -112,19 +114,7 @@
          </div>
     </div>
 </div>
-     
-       <% String message = (String)request.getAttribute("alertMsg");
-     
-       if(message !=null ){
-    %>
-     
-     <script type="text/javascript">
-    var msg = "<%=message%>";
-    alert(msg);
-   
-</script>
-   <%}
-   %> 
+      
     
      <script>
          function functionAlert(msg, myYes) 

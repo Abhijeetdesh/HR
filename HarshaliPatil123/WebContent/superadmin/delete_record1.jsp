@@ -77,7 +77,6 @@ Statement statement = null;
 ResultSet resultSet = null;
 %>
 <%
-if (dpid!= null) {
 try{
 connection = DriverManager.getConnection(Url,Username,password);
 statement=connection.createStatement();
@@ -95,7 +94,7 @@ while(resultSet.next()){
   <div class="form-group">
     <label for="exampleInputPassword1">DP ID</label>
     <input type="text" class="form-control" id="exampleInputPassword1" name="dpid1" value="<%=resultSet.getString("dpid") %>" disabled="disabled">
-     <input type="hidden" class="form-control" id="exampleInputPassword1" name="dpid" value="<%=resultSet.getString("dpid") %>" >  
+    <input type="hidden" class="form-control" id="exampleInputPassword1" name="dpid" value="<%=resultSet.getString("dpid") %>" >
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">DP Number</label>
@@ -130,12 +129,7 @@ connection.close();
 } catch (Exception e) {
 e.printStackTrace();
 }
-}
-else
-{
-	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
-	rd.forward(request, response);
-}			
+			
 %>      
 
  </div>      

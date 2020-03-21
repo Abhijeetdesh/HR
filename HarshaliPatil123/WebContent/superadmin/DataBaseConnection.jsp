@@ -87,7 +87,6 @@
    String phone=request.getParameter("phone");
    String aphone=request.getParameter("admin_phone");
    int phase=Integer.parseInt(request.getParameter("phase"));
-   if (aphone!= null && dpid!=null) {
    try
    {
 	
@@ -163,12 +162,6 @@ PreparedStatement ps=null;
    {
 	System.out.print(e);
 	e.printStackTrace();
-   }
-   }
-   else
-   {
-   	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
-   	rd.forward(request, response);
    }
 %>
 <br><br>

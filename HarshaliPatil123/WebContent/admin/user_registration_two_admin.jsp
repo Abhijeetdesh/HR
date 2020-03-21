@@ -165,7 +165,7 @@ private static SecretKeySpec secretKey;
 	String uemail=request.getParameter("user_email");
 	String uphone=request.getParameter("user_phone");
 	String upassword=request.getParameter("user_password");
-	String dpid[]= request.getParameterValues("langOpt2[]");
+	String dpid[]= request.getParameterValues("id[]");
 	String aphone=request.getParameter("admin_phone");
 
 %>

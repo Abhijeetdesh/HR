@@ -68,13 +68,17 @@
 	          </div>
 	          
         	</nav>
+        	<div class=" pull-right" style="margin-top:5px;">
+   			
+		          <input class="btn btn-outline-primary" type=button onClick="location.href='dptable.jsp'" value='Back'>
+		      </div>
+        	
       <%@include file="db.jsp" %>
     <%
 	String dpid = request.getParameter("dpid");
     Connection connection = null;
     Statement statement = null;
     ResultSet resultSet = null;
-    if (dpid!= null) {
 	try
 	{ 
 	 connection = DriverManager.getConnection(Url,Username,password);
@@ -310,12 +314,6 @@ catch (Exception e)
  {
    e.printStackTrace();
    }  
-    }
-	else
-	{
-		RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
-    	rd.forward(request, response);
-	}
    
    %>     	
         	

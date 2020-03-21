@@ -73,7 +73,9 @@
 		          </div>
 		        </nav>
     
-    
+    <div class=" pull-right" style="margin-top:5px;">
+   			     <input class="btn btn-outline-primary" type=button onClick="location.href='admin_notification_info.jsp'" value='Back'>
+		      </div>  
      
 <%
  DateTimeFormatter dtf = DateTimeFormatter.ofPattern(" HH:mm:ss");
@@ -83,10 +85,10 @@
            			
 				<form name="form1" method="post" action="notification_db.jsp">
 						
-				   <!-- <div class="form-group">
+				   <div class="form-group">
                     <label for="exampleInputPassword1">Sr_no::</label>
                     <input class="form-control" name="sr_no" type="text" required/>
-                   </div> -->
+                   </div>
              
                  <div class="form-group">
                     <label for="exampleInputPassword1"">Notification::</label>
@@ -98,7 +100,7 @@
                     <input class="form-control" name="time" type="text" value="<%=dtf.format(now)%>">
                   </div>
                   
-              <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 30%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
+              <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 25%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
 		   <div id = "confirm">
 	         <div class = "message">Do you Want To Register</div>
 	         <button type="submit"  class = "yes">OK</button>
@@ -107,7 +109,7 @@
 		              
 		  
             <div class="tile-footer">
-		<button class="btn btn-secondary" onClick="location.href='notification_form.jsp' " ><i class="fa fa-fw fa-lg fa-times-circle"></i>Reset</button>
+		<button class="btn btn-secondary" onClick="location.href='notification_form.jsp'" style="margin-left: 26%; margin-top: 10px;"><i class="fa fa-fw fa-lg fa-times-circle"></i>Reset</button>
             </div>
             
             </form>
@@ -115,18 +117,7 @@
 	</div>
 </div>
      
-    <% String message = (String)request.getAttribute("alertMsg");
-     
-       if(message !=null ){
-    %>
-     
-     <script type="text/javascript">
-    var msg = "<%=message%>";
-    alert(msg);
-   
-</script>
-   <%}
-   %>
+    
    <script>
          function functionAlert(msg, myYes) 
          {

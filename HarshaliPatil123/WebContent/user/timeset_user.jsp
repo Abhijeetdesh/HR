@@ -145,8 +145,6 @@ idlist.retainAll(itemList);
               <th>Address</th>
               <th>Mobile</th>
               <th>Phase</th>  
-              <th>On Time</th>
-              <th>Off Time</th>
              <th>Set Time</th>     
             </tr>
         </thead>
@@ -166,9 +164,7 @@ idlist.retainAll(itemList);
                   <td><%= rs.getString("address") %></td>
                   <td><%= rs.getString("phone") %></td>
                   <td><%= rs.getString("phase") %></td>
-                  <td><%= rs.getString("on_time") %></td>
-                  <td><%= rs.getString("off_time") %></td>
-                   <td><a href="SetTimeOne_user.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>">Set</a></td>
+                <td><a href="settimeoneuse123.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>">Set</a></td>
              </tr>
           
         </tbody>

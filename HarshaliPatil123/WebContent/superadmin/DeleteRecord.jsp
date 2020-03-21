@@ -67,17 +67,17 @@
 			String dpid = request.getParameter("dpid");
 			String phase1=request.getParameter("phase");
 		
-			if(dpid!= null && phase1!=null)
+			if(dpid!= null)
 			{
 				int phase=Integer.parseInt(phase1);
 			Connection con = null;
 			PreparedStatement ps = null;
-			//int personID = Integer.parseInt(dpid);
+			int personID = Integer.parseInt(dpid);
 			try
 			{
 			
 			con = DriverManager.getConnection(Url,Username,password);
-			String sql="delete from dp_info where dpid="+dpid;
+			String sql="delete from dp_info where dpid="+personID;
 			ps = con.prepareStatement(sql);
 			
 			 
@@ -94,7 +94,7 @@
 
 			if(phase==1)
 			{
-				String sql1="delete from onephase where dpid="+dpid;
+				String sql1="delete from onephase where dpid="+personID;
 			  PreparedStatement	ps1 = con.prepareStatement(sql1);
 				
 				 
@@ -111,7 +111,7 @@
 			}
 			if(phase==2)
 			{
-				String sql2="delete from twophase where dpid="+dpid;
+				String sql2="delete from twophase where dpid="+personID;
 			  PreparedStatement	ps2 = con.prepareStatement(sql2);
 				
 				 
@@ -128,7 +128,7 @@
 			}
 			if(phase==3)
 			{
-				String sql3="delete from threephase where dpid="+dpid;
+				String sql3="delete from threephase where dpid="+personID;
 			  PreparedStatement	ps3 = con.prepareStatement(sql3);
 				
 				 
@@ -149,11 +149,6 @@
 			request.setAttribute("error", sql);
 			out.println(sql);
 			}
-			}
-			else
-			{
-				RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
-		    	rd.forward(request, response);
 			}
 			%>
       </div>

@@ -24,52 +24,7 @@
     
 </head>
 <body class="app sidebar-mini">
-	html {
- 				 overflow-y: scroll;
-				}
-    <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="index.html">Aderate Solution</a>
-     
-    </header>
-    <!-- Sidebar menu-->
-    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-    <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="images\profoundlogo.png" alt="User Image">
-        <div>
-          <p class="app-sidebar__user-name">Super Admin</p>
-        </div>
-      </div>
-        <div class="vertical-menu">
-      	
-      <ul class="app-menu">
-      
-        <li><a class="app-menu__item" href="DashBoard.html"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Dashboard</span></a>
-        </li>
-        
-        
-        <li><a class="app-menu__item" href="dptable.jsp"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">DP_List</span></a>
-        </li>
-         
-         <li ><a class="app-menu__item" href="timeset.jsp" ><i class="app-menu__icon fa fa-history" ></i><span class="app-menu__label">Time_Manager</span></a>
-        </li>
-         
-         <li ><a class="app-menu__item" href="admin_info.jsp" ><i class="app-menu__icon fa fa-history" ></i><span class="app-menu__label">Admin_Manager</span></a>
-        </li>
-        
-         <li ><a class="app-menu__item" href="user_info.jsp" ><i class="app-menu__icon fa fa-history" ></i><span class="app-menu__label">User_Manager</span></a>
-        </li>
-        
-         <li ><a class="app-menu__item" href="notification_info.jsp" ><i class="app-menu__icon fa fa-history" ></i><span class="app-menu__label">Notifications</span></a>
-        </li>
-        
-        <li ><a class="app-menu__item" href="onoff.jsp" ><i class="app-menu__icon fa fa-history" ></i><span class="app-menu__label">ON/OFF</span></a>
-        </li>
-        
-          <li ><a class="app-menu__item" href="../homepage.jsp" ><i class="app-menu__icon fa fa-history" ></i><span class="app-menu__label">Logout</span></a>
-        </li>
-      </ul>
-      </div>
-    </aside>
+	
     <main class="app-content">
       <div class="app-title">
        
@@ -82,7 +37,7 @@
      <div class="row">
         <div class="col-lg-5">
            			
-	    <form name="form1" method="post" action="addstring">
+	    <form name="form1" method="get" action="addstring">
 						
 	      <div class="form-group">
           <label class="col-form-label col-form-label-sm" for="inputSmall">Enter String::</label>

@@ -81,7 +81,6 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 		{
 	        resp.setContentType("text/html");
 	        PrintWriter out = resp.getWriter();
-	        out.print("Record updated in onephase...");
 			System.out.println("Record id added successfully");
 			
 		}
@@ -93,9 +92,9 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 		   {
 		        String onoff=resultSet1.getString("onoff");
 		        System.out.println("onoff info::"+onoff);
-		        resp.setContentType("text/html");
-		        PrintWriter out = resp.getWriter();
-		        out.print(onoff);
+		        req.setAttribute("onoff",onoff);
+		        RequestDispatcher rd=req.getRequestDispatcher("showresult.jsp");
+		        rd.forward(req, resp);
 		        
 		    }	 			
 	}

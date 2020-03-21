@@ -67,9 +67,7 @@
         </ul>
       </nav>
 
-        
-    	
-<div id="content" >
+ <div id="content" >
 	        <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	          <div class="container-fluid">
 	
@@ -79,7 +77,10 @@
 	            </button>
              </div>
          </nav>
-     
+<div class=" pull-right" style="margin-top:5px;">
+   <input class="btn btn-outline-primary" type=button onClick="location.href='userdplist.jsp'" value='Back'>
+</div>
+             
     <%
 	String dpid = request.getParameter("dpid");
     Connection connection = null;

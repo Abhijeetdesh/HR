@@ -119,13 +119,44 @@ request.setAttribute("error", sql);
 out.println(sql);
 }
 }
-else
-{
-	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
-	rd.forward(request, response);
-}
 %>    
 
+<%-- <%
+String ontime2 = request.getParameter("on_time2");
+String offtime2=request.getParameter("off_time2");
+
+String dpid2=request.getParameter("dpid");
+if(ontime2!= null && offtime2!=null)
+{
+Connection con = null;
+PreparedStatement ps = null;
+
+try
+{
+Class.forName(driverName);
+con = DriverManager.getConnection(url,user,psw);
+String sql="Update twophase set on_time2=?,off_time2=? where dpid="+dpid2;
+ps = con.prepareStatement(sql);
+ps.setString(1,ontime2);
+ps.setString(2,offtime2);
+int i = ps.executeUpdate();
+if(i > 0)
+{
+	RequestDispatcher rd=request.getRequestDispatcher("timeset.jsp");
+	rd.forward(request,response);
+}
+else
+{
+out.print("There is a problem in updating Record.");
+}
+}
+catch(SQLException sql)
+{
+request.setAttribute("error", sql);
+out.println(sql);
+}
+}
+%>     --%>
             
     </main>
     
