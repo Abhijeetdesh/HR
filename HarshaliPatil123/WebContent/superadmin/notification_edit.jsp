@@ -65,11 +65,9 @@
               <span class="sr-only">Toggle Menu</span>
             </button>
             
-        </div>
+           
+          </div>
         </nav>
-	<div class=" pull-right" style="margin-top:5px;">
-    <input class="btn btn-outline-primary" type=button onClick="location.href='admin_notification_info.jsp'" value='Back'>
-    </div>        
 <%
    DateTimeFormatter dtf = DateTimeFormatter.ofPattern(" HH:mm:ss");
    LocalDateTime now = LocalDateTime.now();
@@ -78,13 +76,15 @@
 <%
 String sr_no = request.getParameter("sr_no");
 
-int personID=Integer.parseInt(sr_no);
+
 
 Connection connection = null;
 Statement statement = null;
 ResultSet resultSet = null;
 %>
 <%
+if (sr_no!= null) {
+	int personID=Integer.parseInt(sr_no);
 try{
 connection = DriverManager.getConnection(Url,Username,password);
 statement=connection.createStatement();
@@ -133,7 +133,12 @@ while(resultSet.next()){
 catch (Exception e) {
 e.printStackTrace();
 }
-			
+}
+else
+{
+	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	rd.forward(request, response);
+}			
 %>
     
     

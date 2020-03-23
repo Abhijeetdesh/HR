@@ -111,6 +111,8 @@ tr:hover {background-color:#f5f5f5;}
 
  %>
  <%
+ if(dpid1!= null)
+	{
  try{
  connection = DriverManager.getConnection(Url,Username,password);
  statement=connection.createStatement();
@@ -183,6 +185,12 @@ connection.close();
 } 
 catch (Exception e) {
 e.printStackTrace();
+}
+}
+else
+{
+	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	rd.forward(request, response);
 }
 %>
         

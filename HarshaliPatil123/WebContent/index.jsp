@@ -1,129 +1,118 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="java.net.URL"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	    
-    <title>Delete Dp Recored</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-    
 </head>
-<body class="app sidebar-mini">
-	
-    <main class="app-content">
-      <div class="app-title">
-       
-      </div>
-
-<br><br><br><br>           
-<div class="row">
-  <div class="col-md-12">
-   <div class="tile">
-     <div class="row">
-        <div class="col-lg-5">
-           			
-	    <form name="form1" method="get" action="addstring">
+<body>
+		  <!--   <form name="form1" method="get" action="controller.jsp">
 						
-	      <div class="form-group">
+	      
           <label class="col-form-label col-form-label-sm" for="inputSmall">Enter String::</label>
           <input class="form-control form-control-sm" name="EnterString" type="text"  required/>
-         </div>
+         
              
-         <div class="tile-footer">
+     
 		<button class="btn btn-primary" type="submit" value='submit' ><i class="fa fa-fw fa-lg fa-check-circle"></i>submit</button>
-		 </div>             
+		             
 		  
-       </form>
-      </div>
-     </div>
-   </div>
- </div>
-</div>
+       </form> -->
+       
+           
+<%@include file="db.jsp" %>
+<%
+Connection con=null;
+String str = request.getParameter("string");
+System.out.println(str);
+if(str != null)
+{
+System.out.println(str);
+String var=null;
+
+String[] words=str.split(":");//splits the string based on whitespace  
+ List<String> itemList = new ArrayList<String>();
+ for (String w : words) 
+ {
+    itemList.add(w);
+ }
+ System.out.println(itemList);
+int phase=itemList.size();
+	
+
+ for(int j=0;j<itemList.size();j++) 
+ {
+	 var=itemList.get(1);
+	 
+ }
+try
+{
+	 con = DriverManager.getConnection(Url,Username,password);
+        String sql1="Update onephase set r_voltage=?,r_current=?,y_voltage=?,y_current=?,b_voltage=?,b_current=? where dpid='"+var+"'";
         
-</main>
-    
-    
-    <!-- Essential javascripts for application to work-->
-    <script src="/resources/js/jquery-3.3.1.min.js"></script>
-    <script src="/resources/js/popper.min.js"></script>
-    <script src="/resources/js/bootstrap.min.js"></script>
-    <script src="/resources/js/main.js"></script>
-    <!-- The javascript plugin to display page loading on top-->
-    <script src="/resources/js/plugins/pace.min.js"></script>
-    <!-- Page specific javascripts-->
-    <script type="text/javascript" src="/resources/js/plugins/chart.js"></script>
-    <script type="text/javascript">
-      var data = {
-      	labels: ["January", "February", "March", "April", "May"],
-      	datasets: [
-      		{
-      			label: "My First dataset",
-      			fillColor: "rgba(220,220,220,0.2)",
-      			strokeColor: "rgba(220,220,220,1)",
-      			pointColor: "rgba(220,220,220,1)",
-      			pointStrokeColor: "#fff",
-      			pointHighlightFill: "#fff",
-      			pointHighlightStroke: "rgba(220,220,220,1)",
-      			data: [65, 59, 80, 81, 56]
-      		},
-      		{
-      			label: "My Second dataset",
-      			fillColor: "rgba(151,187,205,0.2)",
-      			strokeColor: "rgba(151,187,205,1)",
-      			pointColor: "rgba(151,187,205,1)",
-      			pointStrokeColor: "#fff",
-      			pointHighlightFill: "#fff",
-      			pointHighlightStroke: "rgba(151,187,205,1)",
-      			data: [28, 48, 40, 19, 86]
-      		}
-      	]
-      };
-      var pdata = [
-      	{
-      		value: 300,
-      		color: "#46BFBD",
-      		highlight: "#5AD3D1",
-      		label: "Complete"
-      	},
-      	{
-      		value: 50,
-      		color:"#F7464A",
-      		highlight: "#FF5A5E",
-      		label: "In-Progress"
-      	}
-      ]
-      
-      var ctxl = $("#lineChartDemo").get(0).getContext("2d");
-      var lineChart = new Chart(ctxl).Line(data);
-      
-      var ctxp = $("#pieChartDemo").get(0).getContext("2d");
-      var pieChart = new Chart(ctxp).Pie(pdata);
-    </script>
-    <!-- Google analytics script-->
-    <script type="text/javascript">
-      if(document.location.hostname == 'pratikborsadiya.in') {
-      	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      	ga('create', 'UA-72504830-1', 'auto');
-      	ga('send', 'pageview');
-      }
-    </script>
+        PreparedStatement ps1 = con.prepareStatement(sql1);
+        
+      for(int i=0;i<itemList.size();i++)
+	  {
+		if(itemList.get(0).equals("@"))
+		{
+	     switch(i)
+	      {
+	           
+	          case 2:ps1.setString(1,itemList.get(i));
+	          case 3:ps1.setString(2,itemList.get(i));
+	          case 4:ps1.setString(3,itemList.get(i));
+	          case 5:ps1.setString(4,itemList.get(i));
+	          case 6:ps1.setString(5,itemList.get(i));
+	          case 7:ps1.setString(6,itemList.get(i));
+					
+	       }
+	    }
+		else
+		{
+			RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+		    rd.forward(request, response);
+	    }
+	  }
+	int count=ps1.executeUpdate();
+		
+		  if(count>0) 
+		  {
+			  System.out.println("updated");
+			response.sendRedirect( "index.jsp?dpid="+var ); 
+		 }
+}
+catch (Exception e) {
+	System.out.println(e);
+}
+}
+%>
+
+<%
+String dpid = request.getParameter( "dpid" );
+
+System.out.println("here dpid"+dpid);
+if(dpid != null)
+{
+try{
+	
+     con = DriverManager.getConnection(Url,Username,password);
+PreparedStatement ps=con.prepareStatement("select * from onephase where dpid="+dpid);
+ResultSet rs=ps.executeQuery();
+while(rs.next()){
+	String str1=rs.getString("r_onoff");
+	String str2=rs.getString("y_onoff");
+	String str3=rs.getString("b_onoff");
+	out.println(str1+":"+str2+":"+str3);
+}
+}
+catch (Exception e) {
+	System.out.println(e);
+}
+}
+%>
   </body>
 </html>

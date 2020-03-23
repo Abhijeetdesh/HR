@@ -77,7 +77,7 @@
       		<div class=" pull-right" style="margin-top:5px;">
    			<label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
-		          <input class="btn btn-outline-primary" type=button onClick="location.href='onoff.jsp'" value='Back'>
+		          <input class="btn btn-outline-primary" type=button onClick="location.href='dashboard.jsp'" value='Back'>
 		    </div>
        		
      	 	<div class="table" style="overflow:scroll; height: 350px;width:98%; margin-left: 10px; margin-top: 100px; ">

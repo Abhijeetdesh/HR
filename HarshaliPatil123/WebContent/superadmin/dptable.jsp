@@ -114,8 +114,8 @@
                   <td><%= rs.getString("address") %></td>
                   <td><%= rs.getString("phase") %></td>
                  <td><%= rs.getString("admin_phone") %></td>
-                  <td><a href="editOne.jsp?dpid=<%=rs.getString("dpid")%>">Edit</a></td>                
-                  <td><a href="delete_record1.jsp?dpid=<%=rs.getString("dpid")%>"><span class="fa fa-trash"></span></a></td>           
+                  <td><a href="editOne.jsp?dpid=<%=rs.getString("dpid")%>>">Edit</a></td>                
+                  <td><a href="delete_record1.jsp?dpid=<%=rs.getString("dpid")%>>">Delete</a></td>           
                   <td><a href="dpdetails.jsp?dpid=<%=rs.getString("dpid")%>">Details</a></td>
                
                   

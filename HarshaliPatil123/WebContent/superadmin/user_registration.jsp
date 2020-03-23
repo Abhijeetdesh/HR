@@ -45,10 +45,10 @@
           </li>
           <li>
           <li>
-            <a class="active" href="admin_info.jsp"><span class="fa fa-users"></span> Admin Manager</a>
+            <a href="admin_info.jsp"><span class="fa fa-users"></span> Admin Manager</a>
           </li>
           <li>
-            <a  href="user_info.jsp"><span class="fa fa-users"></span> User Manager</a>
+            <a class="active" href="user_info.jsp"><span class="fa fa-users"></span> User Manager</a>
           </li>
           <li>
             <a href="admin_notification_info.jsp"><span class="fa fa-bell"></span> Admin Notifications</a>
@@ -76,10 +76,6 @@
 		          </div>
 		        </nav>
     
-    <div class=" pull-right" style="margin-top:5px;">
-   			
-		          <input class="btn btn-outline-primary" type=button onClick="location.href='admin_info.jsp'" value='Back'>
-		      </div>
     
     <div class="my" style="margin-top: -32px;">
           <form  name="form1" action="user_registration_two.jsp" method="post" onsubmit="return validation()">
@@ -92,7 +88,6 @@
 					<div class="form-group">
                     <label for="exampleInputPassword1">Email::</label>
                     <input class="form-control" id="e_mail" name="user_email" type="text" onkeyup="checkExist5()" required/>
-                   
                     <span id=isE4></span>
                 	</div>
                 	
@@ -115,42 +110,47 @@
 		           <input type="checkbox" onclick="myFunction()"><b>Show Password</b>
 		           </div>
 		            <%@include file="db.jsp" %>
-                 <%
-                   ResultSet rs=null;
-                   try
-                   {
-                   Connection con=DriverManager.getConnection(Url,Username,password);
-		           PreparedStatement ps=con.prepareStatement("select dpid from dp_info");
-			       rs=ps.executeQuery();
-                 %>
+<%
+ResultSet rs=null;
+   try{
+	  
+			Connection con=DriverManager.getConnection(Url,Username,password);
+			
+			PreparedStatement ps=con.prepareStatement("select dpid from dp_info");
+			 rs=ps.executeQuery();
+%>
 
-                  <select  name="langOpt2[]" multiple id="langOpt2">
-                  <% while(rs.next())
-                 {
-                 %>
-                <option   value="<%=rs.getString("dpid")%>"><%=rs.getString("dpid") %></option>
-                  <% 
-                 }
-                  %>
-                  </select>
+<select  name="langOpt2[]" multiple id="langOpt2">
+<% while(rs.next())
+{
+%>
+<option   value="<%=rs.getString("dpid")%>"><%=rs.getString("dpid") %></option>
+<% 
+}
+%>
+</select>
 
-                  <script src="js/jquery.min.js"></script>
-                  <script src="../js/jquery.multiselect.js"></script>
-                  <script>
-                   $('#langOpt2').multiselect({
-                  columns: 1,
-                  placeholder: 'Select DPID',
-                  search: true
-                  });
+<script src="js/jquery.min.js"></script>
 
-                </script>
-               <%
-                }
-                catch(Exception e)
-                {
-                 out.println("wrong entry"+e);
-                }
-               %> 
+<script src="../js/jquery.multiselect.js"></script>
+<script>
+
+
+$('#langOpt2').multiselect({
+    columns: 1,
+    placeholder: 'Select DPID',
+    search: true
+});
+
+</script>
+
+<%
+}
+catch(Exception e)
+{
+out.println("wrong entry"+e);
+}
+%> 
   <br>         
            <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 30%;margin-top: -30px;"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
 		   <div id = "confirm">
@@ -164,14 +164,27 @@
 </div>
 
      <% String message = (String)request.getAttribute("alertMsg");
-       if(message !=null){
+     String message1 = (String)request.getAttribute("alertmsg");
+       if(message !=null ){
     %>
      
      <script type="text/javascript">
     var msg = "<%=message%>";
     alert(msg);
+   
 </script>
-   <%} %>
+   <%}
+       if(message1 !=null ){
+    	    %>
+    	     
+    	     <script type="text/javascript">
+    	   
+    	    var msg1 = "<%=message1%>";
+    	    alert(msg1);
+    	</script>
+    	   <%}
+    	       %>
+       
     
    
      <script> 

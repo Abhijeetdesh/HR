@@ -100,7 +100,15 @@ final String secretKey = "ssshhhhhhhhhhh!!!!";
 String originalString = upassword;
 String encryptedString = AES.encrypt(originalString, secretKey) ;
 String decryptedString = AES.decrypt(encryptedString, secretKey) ;
-
+if (dpid==null) {
+	 
+	   request.setAttribute("alertMsg", "Atleast select previous dpid");
+	RequestDispatcher rd=request.getRequestDispatcher("user_edit.jsp");  
+	rd.include(request, response);
+	
+} 
+else{
+if (uphone!= null) {
 try {
 	
 	 con=DriverManager.getConnection(Url,Username,password);
@@ -147,7 +155,13 @@ try {
 catch (Exception e) {
 	e.printStackTrace();
 }
-
+}
+else
+{
+	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	rd.forward(request, response);
+}
+}
 
 %>
 </body>

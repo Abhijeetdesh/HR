@@ -97,7 +97,6 @@
               <th>Active/Block</th>
               <th>Add DP</th>
               <th>Add User</th>
-              
            </tr>
         </thead>
          <tbody>  
@@ -122,8 +121,7 @@
 		          <td><a href="admin_delete.jsp?admin_phone=<%=rs.getString("admin_phone")%>">Delete</a></td>
 		          <td><a href="active_block.jsp?admin_phone=<%=rs.getString("admin_phone")%>">Active/Block</a></td>
 		          <td><a href="regdpsuperadmin.jsp?admin_phone=<%=rs.getString("admin_phone")%>">Add DP</a></td>
-                 <td><a href="user_registration.jsp?admin_phone=<%=rs.getString("admin_phone")%>">Add User</a></td>
-             
+                  <td><a href="user_registration.jsp?admin_phone=<%=rs.getString("admin_phone")%>">Add User</a></td>
                </tr>
 			           <%
 			               }

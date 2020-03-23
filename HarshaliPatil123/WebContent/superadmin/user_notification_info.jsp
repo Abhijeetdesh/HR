@@ -79,7 +79,6 @@
    			<label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
 		          <input class="btn btn-outline-primary p-1 mr-5" type=button onClick="location.href='user_notification_form.jsp'" value='+ Add Notification'>
-                  <input class="btn btn-outline-primary" type=button onClick="location.href='admin_notification_info.jsp'" value='Back'>
 		      </div>
       
       

@@ -74,14 +74,13 @@
           </div>
         </nav>
 	
-  
-         <div class=" pull-right" style="margin-top:5px;">
+         
+           
+           <div class=" pull-right" style="margin-top:5px;">
    			<label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
 		          <input class="btn btn-outline-primary p-1 mr-5" type=button onClick="location.href='notification_form.jsp'" value='+ Add Notification'>
-		          <input class="btn btn-outline-primary" type=button onClick="location.href='user_info.jsp'" value='Back'>
-		          
-		</div>
+		      </div>
       
       
       <div class="table" style="overflow:scroll; height: 350px;width:98%; margin-left: 10px; margin-top: 100px; ">

@@ -76,6 +76,7 @@ ResultSet resultSet = null;
 %>
   <%@include file="db.jsp" %>
 <%
+if (user_phone!= null) {
 try{
 connection = DriverManager.getConnection(Url,Username,password);
 statement=connection.createStatement();
@@ -135,7 +136,12 @@ connection.close();
 } catch (Exception e) {
 e.printStackTrace();
 }
-			
+}
+else
+{
+	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	rd.forward(request, response);
+}			
 %>
     
     

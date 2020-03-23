@@ -91,22 +91,19 @@
          admin_phone=rs1.getString("admin_phone");
          System.out.println(admin_phone);
    %>
-          <%--  <li>
-              <a href="admin_login.jsp?admin_phone=<%=rs1.getString("admin_phone")%>&dpid=<%=rs1.getString("dpid")%>"><span class="fa fa-sliders"></span>Dashboard</a>
-          </li>
-          --%>
+          
           <li>
               <a href="dptable_admin.jsp?admin_phone=<%=rs1.getString("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
           </li>
-          <li>
-            <a href="onoff_admin.jsp?admin_phone=<%=rs1.getString("admin_phone") %>" ><span class="fa fa-toggle-on"></span> ON/OFF</a>
-          </li>
-          <li>
+           <li>
               <a href="timeset_admin.jsp?admin_phone=<%=rs1.getString("admin_phone")%>"><span class="fa fa-clock-o"></span> Time Manager</a>
           </li>
           <li>
           <li>
             <a href="admin_user_info1.jsp?admin_phone=<%=rs1.getString("admin_phone")%>"><span class="fa fa-users"></span> User Manager</a>
+          </li>
+          <li>
+            <a href="onoff_admin.jsp?admin_phone=<%=rs1.getString("admin_phone") %>" ><span class="fa fa-toggle-on"></span> ON/OFF</a>
           </li>
           <li>
             <a href="show_admin_notification.jsp?admin_phone=<%=rs1.getString("admin_phone") %>" ><span class="fa fa-bell"></span> Show Notifications</a>

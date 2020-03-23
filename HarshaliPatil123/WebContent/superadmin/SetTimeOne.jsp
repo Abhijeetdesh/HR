@@ -68,14 +68,15 @@
    					<input class="btn btn-outline-primary" type=button onClick="location.href='timeset.jsp'" value='Back'>
 		      </div>
          
-    <div class="my" style=" line-height: 5px;overflow: scroll;height: 550px;width:80%; margin-left: 50px;">                           
+    <div class="my" style=" line-height: 5px;overflow: scroll;height: 550px;width:80%; margin-left: 50px; margin-top: 10%;">                           
  <%
  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
  LocalDateTime now = LocalDateTime.now();
 %>
         <%@include file="db.jsp" %>       
- <%
+             <%
 String dpid = request.getParameter("dpid");
+
 Connection connection = null;
 Statement statement = null;ResultSet resultSet = null;
 Statement statement1 = null;ResultSet resultSet1 = null;
@@ -84,6 +85,7 @@ Statement statement3 = null;ResultSet resultSet3 = null;
 
 %>
 <%
+if (dpid!= null) {
 try{
 connection = DriverManager.getConnection(Url,Username,password);
 statement=connection.createStatement();
@@ -337,17 +339,22 @@ if(count==3)
 		    	 <input type="hidden" name="dpid" value="<%=dpid%>">
 		    	        
 		    </form>	     
-          <%
-         }
-          %>
-         <% 
-      }
-   }
+ <%
+}
+%>
+<% 
+}
+}
+
 connection.close();
-} 
-catch (Exception e) 
-{
+} catch (Exception e) {
 e.printStackTrace();
+}
+}
+else
+{
+	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	rd.forward(request, response);
 }
 			
 %>
