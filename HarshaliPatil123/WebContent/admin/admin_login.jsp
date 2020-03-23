@@ -128,11 +128,11 @@ private static SecretKeySpec secretKey;
      {
     	 String status=rs.getString("status");
     	 System.out.println(status);
+    	 String aphone=rs.getString("admin_phone");
     	 String check="active";
     	 if(check.equals(status))
     	 {		 
-    		
-    		 RequestDispatcher rd=request.getRequestDispatcher("dashboard_admin.jsp");
+    	     RequestDispatcher rd=request.getRequestDispatcher("dashboard_admin.jsp?admin_phone="+aphone);
     		 rd.forward(request, response);
          }
     	 else

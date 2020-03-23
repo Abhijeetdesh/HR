@@ -46,26 +46,24 @@ import="java.util.List"  %>
 			<nav id="sidebar" class="active" >
 					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
         <ul class="list-unstyled components mb-5">
-        
-          
-        <li ><a  href="userdplist_user.jsp?dpid=<%=request.getParameter("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-info-circle"></span>User Details</a>
+          <li ><a  class="active" class="app-menu__item" href="userdplist_user.jsp?dpid=<%=request.getParameter("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-info-circle"></span> User Details</a>
            </li>
            
-          <li ><a  href="timeset_user.jsp?dpid=<%=request.getParameter("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-clock-o"></span>Time Manager</a>
+          <li ><a class="app-menu__item" href="timeset_user.jsp?dpid=<%=request.getParameter("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-clock-o"></span>Time Manager</a>
         </li>
         
-        <li ><a  class="active"  href="onoff_user.jsp?dpid=<%=request.getParameter("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-toggle-on"></span>ON/OFF</a>
+        <li ><a class="app-menu__item" href="onoff_user.jsp?dpid=<%=request.getParameter("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-toggle-on"></span>ON/OFF</a>
         </li>
-        
-        <li ><a  href="show_user_notification.jsp?admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-bell"></span>Show Notifications</a>
+       
+        <li ><a class="app-menu__item" href="show_user_notification.jsp?admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-bell"></span>Show Notifications</a>
         </li> 
         
-       <li ><a  href="show_myuser_notification.jsp?admin_phone=<%=request.getParameter("admin_phone") %>" ><span class="fa fa-bell"></span>Show My Notifications</a>
-        </li>      
-            
-        <li ><a  href="../homepage.jsp" ><span class="fa fa-power-off"></span>Logout</a>
+       <li ><a class="app-menu__item" href="show_myuser_notification.jsp?admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-bell"></span>Show My Notifications</a>
+        </li>  
+         
+         <li ><a class="app-menu__item" href="../homepage.jsp" ><span class="fa fa-power-off"></span>Logout</a>
         </li>
-        
+       
       </ul>
       </nav>
        <!-- Page Content  -->
@@ -149,13 +147,15 @@ idlist.retainAll(itemList);
 		         
 	</div>
        		
-     <div class="table " style="overflow:scroll; height: 540px;width:50%; margin-left: 25%; ">
+     <div class="table " style="overflow:scroll; height: 540px;width:95%; margin-left: 1%; ">
 	  <table id="example"  class="display" style="table-layout: auto;width:100%;">
         <thead>
             <tr>
               
               <th>DPID</th>
+              <th>DP_NO</th>
               <th>Phase</th>  
+              <th>ON/OFF</th>   
             </tr>
         </thead>
         <%for (String n : idlist)
@@ -167,17 +167,139 @@ idlist.retainAll(itemList);
           {
 	     %>
          <tbody>
-             
-               <tr>
-               
-                 <td><a href="onoffdetail_user.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" class="btn btn-outline-primary b1">Device-<%=rs.getString("dpid")%></a></td>
-		         <td><a class="btn btn-outline-primary b2" ><%=rs.getString("phase") %></a></td>
- 		     </tr>
+          <tr>
+           <td><a class="btn btn-outline-primary b1"><%=rs.getString("dpid")%></a></td>
+           <td><a class="btn btn-outline-primary b1"><%=rs.getString("dp_number")%></a></td>
+           <td><a class="btn btn-outline-primary b2" ><%=rs.getString("phase") %></a></td>
+ 		   <td>
+    <%
+ 	Statement statement3 = null;
+    ResultSet resultSet3 =null;
+    String aphone=request.getParameter("admin_phone");
+    try
+    {
+ 		con =DriverManager.getConnection(Url,Username,password);
+        statement3=con.createStatement();
+ 		String sql3="SELECT * FROM onephase where dpid="+n;
+ 		resultSet3=statement3.executeQuery(sql3);
+ 		while(resultSet3.next())
+ 		{
+ 		   String r_current=resultSet3.getString("r_current");
+ 		   int r_curr=Integer.parseInt(r_current);
+ 		   if(r_curr>=8 && r_curr<=12)
+ 		    {			 
+    %>  
+ 		 <div class="im">
+ 		 <img class="card-img-top a" src="../images/ONbulb.jpg" alt="Card image cap"><br>
+ 		 </div>
+ 		   <form action="onoffdata_user_onephase_r.jsp" method="post">
+ 		   <button type="submit"class="btn btn-primary f">TURN OFF</button>
+ 		   <input type="hidden" name="dpid" value="<%=resultSet3.getString("dpid")%>">
+           <input type="hidden" name="data" value="#R0" >
+           <input type="hidden" name="admin_phone" value="<%=aphone%>">
+           <input type="hidden" name="dpid1" value="<%=dpid1%>">
+           
+         </form>
+    <%
+ 		    }
+ 		    else
+ 		     {
+ 	%>
+ 		 <div class="im">
+ 		 <img class="card-img-top a" src="../images/OFFbulb.jpg" alt="Card image cap"><br>
+ 		 </div>
+           <form action="onoffdata_user_onephase_r.jsp" method="post">
+ 		   <button type="submit"class="btn btn-primary f">TURN ON</button>
+ 		   <input type="hidden" name="dpid" value="<%=resultSet3.getString("dpid")%>">
+           <input type="hidden" name="data" value="#R1" >
+           <input type="hidden" name="admin_phone" value="<%=aphone%>">
+            <input type="hidden" name="dpid1" value="<%=dpid1%>">
+          </form>
+   <%
+ 		     }
+   %>
+   <% 
+ 		    String y_current=resultSet3.getString("y_current");
+ 		    int y_curr=Integer.parseInt(y_current);
+ 		    if(y_curr>=8 && y_curr<=12)
+  		    {             
+    %>
+ 		    <div class="im">
+ 		    <img class="card-img-top a" src="../images/ONbulb.jpg" alt="Card image cap"><br>
+ 		    </div>
+ 		    <form action="onoffdata_user_onephase_y.jsp" method="post">
+ 		    <button type="submit"class="btn btn-primary f">TURN OFF</button>
+ 		    <input type="hidden" name="dpid" value="<%=resultSet3.getString("dpid")%>">
+            <input type="hidden" name="data" value="Y0" >
+            <input type="hidden" name="admin_phone" value="<%=aphone%>">
+            <input type="hidden" name="dpid1" value="<%=dpid1%>">
+            </form>
+     <%
+ 		      }
+ 		     else
+ 		     {
+      %>
+ 		     <div class="im">
+ 		     <img class="card-img-top a" src="../images/OFFbulb.jpg" alt="Card image cap"><br>
+ 		     </div>
+ 		     <form action="onoffdata_user_onephase_y.jsp" method="post">
+ 		     <button type="submit"class="btn btn-primary f">TURN ON</button>
+ 		      <input type="hidden" name="dpid" value="<%=resultSet3.getString("dpid")%>">
+             <input type="hidden" name="data" value="Y1" >
+              <input type="hidden" name="admin_phone" value="<%=aphone%>">
+            <input type="hidden" name="dpid1" value="<%=dpid1%>">
+             </form>
+ 	 <%
+ 		      }
+ 	 %>
+ 	 <%
+ 		     String b_current=resultSet3.getString("b_current");
+		     int b_curr=Integer.parseInt(b_current);
+		     if(b_curr>=8 && b_curr<=12)
+		     { 
+      %>
+ 		      <div class="im">
+ 		      <img class="card-img-top a" src="../images/ONbulb.jpg" alt="Card image cap"><br>
+ 		      </div>
+ 		      <form action="onoffdata_user_onephase_b.jsp" method="post">
+ 		      <button type="submit"class="btn btn-primary f">TURN OFF</button>
+ 		      <input type="hidden" name="dpid" value="<%=resultSet3.getString("dpid")%>">
+             <input type="hidden" name="data" value="B0" >
+              <input type="hidden" name="admin_phone" value="<%=aphone%>">
+             <input type="hidden" name="dpid1" value="<%=dpid1%>">
+             </form>
+      <%
+ 		      }
+ 		      else
+ 		      {
+ 	   %>
+ 		      <div class="im">
+ 		      <img class="card-img-top a" src="../images/OFFbulb.jpg" alt="Card image cap"><br>
+ 		      </div>
+ 		      <form action="onoffdata_user_onephase_b.jsp" method="post">
+ 		      <button type="submit"class="btn btn-primary f">TURN ON</button>
+ 		      <input type="hidden" name="dpid" value="<%=resultSet3.getString("dpid")%>">
+               <input type="hidden" name="data" value="B1" >
+             <input type="hidden" name="admin_phone" value="<%=aphone%>">
+             <input type="hidden" name="dpid1" value="<%=dpid1%>">
+             </form>
+ 		<%
+ 		       }
+ 		%>
+ 		      </td>
+ 		 
+ 		 </tr>
           
         </tbody>
-        
-        <%
-    }
+      <%
+		    }
+ 		   }
+ 		  catch (Exception e) 
+ 		   {
+ 		      e.printStackTrace();
+ 		   }
+ 		    
+ 	   }
   }
 }
 connection.close();
@@ -189,9 +311,7 @@ e.printStackTrace();
 
  
 %>
-        
-      
-      		</table>
+          </table>
       	</div>
 	</div>
 </div>    

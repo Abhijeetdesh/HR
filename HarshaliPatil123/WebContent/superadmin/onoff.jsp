@@ -23,22 +23,54 @@
 		
 			<link rel="stylesheet" href="../css/style2.css">
 <style type="text/css">
-	th,td{
-	width: 20%;
-	text-align: center;
 	
+	
+	
+	.bb{
+	width: 5%;
 	}
 	
 	.b1{
-	width: 9rem;
+	
 	font-weight: bold;
 	}
 	
 	.b2{
-	width: 9rem;
+	
 	font-weight: bold;
 	color: red;
 	}
+	 
+	.a{
+	width: 5rem;
+	float: left;
+
+	
+	}
+	.b{
+	width: 5rem;
+	margin-left: 30px;
+	}
+	.c{
+	width: 5rem;
+	margin-left: 30px;
+	}
+.f{
+ margin-left: 45px; 
+
+}
+.d{
+margin-left: 66px;
+}
+	.e{
+	margin-left: 70px;
+	}
+	.im{
+	display: flex;
+	margin-left: -3rem;
+
+	}
+	
 	
 	</style>	
  </head>
@@ -48,7 +80,7 @@
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar" class="active" >
 					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
-       <ul class="list-unstyled components mb-5">
+          <ul class="list-unstyled components mb-5">
           <li >
             <a  href="dashboard.jsp"><span class="fa fa-home"></span>DashBoard</a>
           </li>
@@ -101,41 +133,152 @@
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
 		          <input class="btn btn-outline-primary" type=button onClick="location.href='dptable.jsp'" value='Back'>
 	</div>	
-	   <div class="table " style="overflow:scroll; height: 540px;width:70%; margin-left: 15%; ">
+	   <div class="table " style="overflow:scroll; height: 540px;width:80%; margin-left: 10%; ">
 		 	<table id="example"  class="display" style="table-layout: auto;width:100%;">
 	        <thead>
 		            <tr>
 		               <th>DPID</th>
 		               <th>DP_NO</th>
 		               <th>Phase</th> 
-		               <th>Set</th>
+		              <th class="bb"> Bulb</th>
+		              
 		            </tr>
 		    </thead>
        <%@include file="db.jsp" %>
 		        <tbody>
-		                  <%
-		                  
-		                   String query="SELECT * FROM dp_info";
-		                 
-		                   Connection con=DriverManager.getConnection(Url,Username,password);
-		                    			
-		                   PreparedStatement ps=con.prepareStatement(query);
-		                   ResultSet rs=ps.executeQuery();
-		                   while(rs.next()){
-		                	 String dpid=rs.getString("dpid");  
-		                	 String phase=rs.getString("phase");
-		       				int count=Integer.parseInt(phase);   
-		                %>
+		         <%
+		            String query="SELECT * FROM dp_info";
+		            Connection con=DriverManager.getConnection(Url,Username,password);
+		            PreparedStatement ps=con.prepareStatement(query);
+		            ResultSet rs=ps.executeQuery();
+		            while(rs.next())
+		            {
+		            String dpid=rs.getString("dpid");  
+		          %>
 				     <tr>
 		                 <td><a class="btn btn-outline-primary b1"><%=rs.getString("dpid")%></a></td>
 		                <td><a class="btn btn-outline-primary b2" ><%=rs.getString("dp_number") %></a></td>
  		               <td><a class="btn btn-outline-primary b2" ><%=rs.getString("phase") %></a></td>
- 		              <td><a href="onofflight.jsp?dpid=<%=rs.getString("dpid") %>" class="btn btn-outline-primary b2" >set</a></td>
+ 		               <td>
+ 		                <%
+ 		                Statement statement1 = null;
+ 		                ResultSet resultSet1 =null;
+ 		               try
+ 		      	       {
+ 		                 con =DriverManager.getConnection(Url,Username,password);
+ 		      			 statement1=con.createStatement();
+ 		      		     String sql1="SELECT * FROM onephase where dpid="+dpid;
+ 		      		     resultSet1=statement1.executeQuery(sql1);
+ 		      			 while(resultSet1.next())
+ 		      			{
+ 		                   String r_current=resultSet1.getString("r_current");
+ 		                   int r_curr=Integer.parseInt(r_current);
+ 		                   
+ 		                   if(r_curr>=8 && r_curr<=12)
+ 		                   {			 
+ 		      			%>  
+ 		      			<div class="im">
+ 		                <img class="card-img-top a" src="../images/ONbulb.jpg" alt="Card image cap"><br>
+ 		                </div>
+ 		                <form action="onoffdata_onephase_r.jsp" method="post">
+ 		               <button type="submit"class="btn btn-primary f">OFF</button>
+ 		                <input type="hidden" name="dpid" value="<%=resultSet1.getString("dpid")%>">
+                        <input type="hidden" name="data" value="#R0" >
+                      </form>
+ 		                  <%
+ 		                   }
+ 		                   else
+ 		                   {
+ 		                  %>
+ 		                    <div class="im">
+ 		                    <img class="card-img-top a" src="../images/OFFbulb.jpg" alt="Card image cap"><br>
+ 		               		</div>
+ 		                   <form action="onoffdata_onephase_r.jsp" method="post">
+ 		                   <button type="submit"class="btn btn-primary f">ON</button>
+ 		                   <input type="hidden" name="dpid" value="<%=resultSet1.getString("dpid")%>">
+                           <input type="hidden" name="data" value="#R1" >
+                          </form>
+ 		                   <%
+ 		                    }
+ 		                   %>
+ 		                   <% 
+ 		                     String y_current=resultSet1.getString("y_current");
+ 		                     int y_curr=Integer.parseInt(y_current);
+ 		                     if(y_curr>=8 && y_curr<=12)
+  		                     {             
+ 		                   %>
+ 		                  	<div class="im">
+ 		                    <img class="card-img-top a" src="../images/ONbulb.jpg" alt="Card image cap"><br>
+ 		               		</div>
+ 		                    <form action="onoffdata_onephase_y.jsp" method="post">
+ 		                    <button type="submit"class="btn btn-primary f">OFF</button>
+ 		                    <input type="hidden" name="dpid" value="<%=resultSet1.getString("dpid")%>">
+                            <input type="hidden" name="data" value="Y0" >
+                                    
+ 		                    </form>
+ 		                   <%
+ 		                   }
+ 		                   else
+ 		                   {
+ 		                   %>
+ 		                    <div class="im">
+ 		                    <img class="card-img-top a" src="../images/OFFbulb.jpg" alt="Card image cap"><br>
+ 		               		</div>
+ 		                   <form action="onoffdata_onephase_y.jsp" method="post">
+ 		                   <button type="submit"class="btn btn-primary f">ON</button>
+ 		                   <input type="hidden" name="dpid" value="<%=resultSet1.getString("dpid")%>">
+                           <input type="hidden" name="data" value="Y1" >
+                            
+ 		                   </form>
+ 		                   <%
+ 		                    }
+ 		                   %>
+ 		                   <%
+ 		                    String b_current=resultSet1.getString("b_current");
+		                    int b_curr=Integer.parseInt(b_current);
+		                    if(b_curr>=8 && b_curr<=12)
+		                    { 
+ 		                   %>
+ 		                  <div class="im">
+ 		                    <img class="card-img-top a" src="../images/ONbulb.jpg" alt="Card image cap"><br>
+ 		               		</div>
+ 		                    <form action="onoffdata_onephase_b.jsp" method="post">
+ 		                    <button type="submit"class="btn btn-primary f">OFF</button>
+ 		                    <input type="hidden" name="dpid" value="<%=resultSet1.getString("dpid")%>">
+                            <input type="hidden" name="data" value="B0" >
+                         
+ 		                    </form>
+ 		                   <%
+ 		                   }
+ 		                   else
+ 		                   {
+ 		                   %>
+ 		                    <div class="im">
+ 		                    <img class="card-img-top a" src="../images/OFFbulb.jpg" alt="Card image cap"><br>
+ 		               		</div>
+ 		                   <form action="onoffdata_onephase_b.jsp" method="post">
+ 		                   <button type="submit"class="btn btn-primary f">ON</button>
+ 		                   <input type="hidden" name="dpid" value="<%=resultSet1.getString("dpid")%>">
+                           <input type="hidden" name="data" value="B1" >
+                   
+ 		                   </form>
+ 		                   <%
+ 		                    }
+ 		                   %>
+ 		               </td>
  		               
 		            </tr>
 		               </tbody>
 		          <%
-		          }%>     		     
+		          }
+ 		      	}
+ 		        catch (Exception e) 
+ 		        {
+ 		              e.printStackTrace();
+ 		       	}
+ 		       	  
+		       }      
+ 		         %>     		     
 		</table>
 		
       </div> 

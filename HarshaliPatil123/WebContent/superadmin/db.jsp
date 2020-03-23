@@ -9,7 +9,7 @@
  <%
  String Url="jdbc:mysql://localhost/myproject";
               String Username="root";
-              String password="root";
+              String password="";
               Class.forName("com.mysql.jdbc.Driver");
               %>
 </body>

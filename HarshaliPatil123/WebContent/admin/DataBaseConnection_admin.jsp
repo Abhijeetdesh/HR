@@ -18,7 +18,7 @@
 				<a href="index.html" class="logo" >AdeRate Solution</a>
                 <ul class="list-unstyled components mb-5">
       
-  
+     
           <li>
               <a href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
           </li>

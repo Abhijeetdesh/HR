@@ -14,9 +14,12 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/style2.css">
     <style type="text/css">
-    .a,.b{
-    margin-left: 20%;
+    .form-control{
+    width: 30%
+    
     }
+ 
+    
     </style>
 </head>
 <body>
@@ -72,138 +75,87 @@
         	  <div class=" pull-right" style="margin-top:5px;">
    					<input class="btn btn-outline-primary" type=button onClick="location.href='timeset.jsp'" value='Back'>
 		      </div>
-		      <%
- DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
- LocalDateTime now = LocalDateTime.now();
-%>
-        <%@include file="db.jsp" %>       
- <%
-String dpid = request.getParameter("dpid");
-Connection connection = null;
-Statement statement = null;ResultSet resultSet = null;
-Statement statement1 = null;ResultSet resultSet1 = null;
-Statement statement2 = null;ResultSet resultSet2 = null;
-Statement statement3 = null;ResultSet resultSet3 = null;
 
-%>
-<%
-try{
-connection = DriverManager.getConnection(Url,Username,password);
-statement=connection.createStatement();
-statement1=connection.createStatement();
-statement2=connection.createStatement();
-statement3=connection.createStatement();
+<h5><center>Slot 1</center></h5>
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <form action="" method="post">
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label for="inputFirstname"></label>
+                        <input type="text" class="form-control" id="inputFirstname" placeholder="First name">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="inputLastname"></label>
+                        <input type="text" class="form-control" id="inputLastname" placeholder="Last name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label for="inputAddressLine1"></label>
+                        <input type="text" class="form-control" id="inputAddressLine1" placeholder="Street Address">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="inputAddressLine2"></label>
+                        <input type="text" class="form-control" id="inputAddressLine2" placeholder="Line 2">
+                        <br>
+                         <button type="button" class="btn btn-primary px-4" >Save</button>
+                    </div>
+                </div>
+           </form>
+           
+        </div>
+    </div>
+</div>
 
-String sql ="select * from dp_info where dpid="+dpid;
-resultSet = statement.executeQuery(sql);
-while(resultSet.next())
-{
-	/* String phase=resultSet.getString("phase");
-    int count = Integer.parseInt(phase); */
-
-    
-/* if(count==1) */
-    {
-	String sql1 ="select * from onephase where dpid="+dpid;
-	resultSet1 = statement1.executeQuery(sql1);
-	while(resultSet1.next())
-	{
+<h5><center>Slot 2</center></h5>
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+          
+            <form action="" method="post">
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label for="inputFirstname"></label>
+                        <input type="text" class="form-control" id="inputFirstname" placeholder="First name">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="inputLastname"></label>
+                        <input type="text" class="form-control" id="inputLastname" placeholder="Last name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label for="inputAddressLine1"></label>
+                        <input type="text" class="form-control" id="inputAddressLine1" placeholder="Street Address">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="inputAddressLine2"></label>
+                        <input type="text" class="form-control" id="inputAddressLine2" placeholder="Line 2">
+                         <br>
+                         <button type="button" class="btn btn-primary px-4 ">Save</button>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>	      
 	
-	%>
-		      <h2 style="color: red; text-align: center;">Set Time</h2>
-		      <div class="row">
-    <div class="col-sm-6">
-    <form> 
-        <h6  style=" margin-left: 15%; font-weight: bold ;">Current Saved Time</h6>
-        <div class="form-group">
-          <label for="text">On Time</label>
-          <input type="text" class="form-control" value="<%=resultSet1.getString("on_time")%>" id="First" disabled>
-        </div>
-        <div class="form-group">
-          <label for="text">Off Time</label>
-          <input type="text" class="form-control"  value="<%=resultSet1.getString("off_time")%>" id="Last" disabled>
-        </div>
-        <input type="hidden" name="dpid" value="<%=dpid%>">
-        </form>
-    </div>
-    <div class="col-sm-6">
-         <form action="savephase1.jsp" method="post" >
-         <h6 style=" margin-left: 25%;  font-weight: bold ;" >Slot 1</h6>
-         <div class="form-group">
-          <label for="text">On Time</label>
-          <input type="text" class="form-control"  name="on_time" value="<%=dtf.format(now)%>" id="First">
-        </div>
-        <div class="form-group">
-          <label for="text">Off Time</label>
-          <input type="text" class="form-control" name="off_time" value="<%=dtf.format(now)%>" id="Last">
-        </div>
-          <input type="hidden" name="dpid" value="<%=dpid%>">
-            <button class="btn btn-primary a" type="submit" ><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
-        </form>
-    </div>
-</div><br>
- <div class="row">
-    <div class="col-sm-6">
-        <form>
-        <h6 style=" margin-left: 15%;  font-weight: bold ;">Current Saved Time</h6>
-        <div class="form-group">
-          <label for="text">On Time</label>
-          <input type="text" class="form-control"  value="<%=resultSet1.getString("on_time2")%>" id="First" disabled>
-        </div>
-        <div class="form-group">
-          <label for="text">Off Time</label>
-          <input type="text" class="form-control" value="<%=resultSet1.getString("off_time2")%>" id="Last" disabled>
-        </div>
-         <input type="hidden" name="dpid" value="<%=dpid%>">
-        </form>
-    </div>
-    <div class="col-sm-6">
-       <form action=savephase1_slot2.jsp method="post" >
-         <h6 style=" margin-left: 25%;  font-weight: bold ;">Slot 2</h6>
-         <div class="form-group">
-          <label for="text">On Time</label>
-          <input type="text" class="form-control" name="on_time2" value="<%=dtf.format(now)%>" id="First">
-        </div>
-        <div class="form-group">
-          <label for="text">Off Time</label>
-          <input type="text" class="form-control" name="off_time2" value="<%=dtf.format(now)%>" id="Last">
-        </div>
-         <input type="hidden" name="dpid" value="<%=dpid%>">
-            <button class="btn btn-primary b" type="submit" "><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
-        </form>
-    </div>
-</div>
-<%
-	}
-    }
-   }
-connection.close();
-} 
-catch (Exception e) 
-{
-e.printStackTrace();
-}
-			
-%>
-
-</div>
-</div>
-
-
-
-    
-    
-   
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/popper.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/main.js"></script>
-    <footer >
+	<footer >
 	   		<div class="footer-copyright" >
 	        <p class="footer-company">All Rights Reserved. &copy; 2020 <a href="https://wss.mahadiscom.in/wss/wss" target="blank">MAHARASHTRA STATE ELECTRICITY BOARD</a> Design By :
 	            <a  href="https://aderatesolutions.com/" target="blank"> AdeRate Tech Solutions</a></p>
 	    	</div>
 	</footer>     
+	</div>	      
+            <script src="../js/jquery.min.js"></script>
+    <script src="../js/popper.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/main.js"></script>
+  
     
   </body>
 </html>
+         

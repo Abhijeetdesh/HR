@@ -110,7 +110,7 @@
              <td><%= rs.getString("phase") %></td>
           
              
-             <td><a href="settimeone123.jsp?dpid=<%=rs.getString("dpid")%>">Set</a></td>
+             <td><a href="SetTimeOne.jsp?dpid=<%=rs.getString("dpid")%>">Set</a></td>
           </tr>
        <%
          }

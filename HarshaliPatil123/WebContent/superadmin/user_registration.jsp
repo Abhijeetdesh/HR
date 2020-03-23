@@ -23,8 +23,7 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/style2.css">
     <link rel="stylesheet" href="../css/jquery.multiselect.css">
-     <link rel="stylesheet" href="../css1/style.css">
-       <link rel="stylesheet" href="../css1/chosen.css">
+   
 </head>
 <body >
 
@@ -116,8 +115,6 @@
 		           <input type="checkbox" onclick="myFunction()"><b>Show Password</b>
 		           </div>
 		            <%@include file="db.jsp" %>
-		            
-		            <div class="form-group">
                  <%
                    ResultSet rs=null;
                    try
@@ -127,22 +124,26 @@
 			       rs=ps.executeQuery();
                  %>
 
-                 <select data-placeholder="Choose DP ID" class="chosen-select"  multiple tabindex="10"  name="id[]">
-            
-<% while(rs.next())
-{
-%>
-<option   value="<%=rs.getString("dpid")%>"><%=rs.getString("dpid") %></option>
-<% 
-}
-%>
-</select>
+                  <select  name="langOpt2[]" multiple id="langOpt2">
+                  <% while(rs.next())
+                 {
+                 %>
+                <option   value="<%=rs.getString("dpid")%>"><%=rs.getString("dpid") %></option>
+                  <% 
+                 }
+                  %>
+                  </select>
 
-</div>
- <script src="../js1/chosen.jquery.min.js"></script>
-  <script src="../js1/init.js"></script>
-   <script src="../js1/jquery-3.2.1.min.js"></script>
-    <script src="../js1/prism.js"></script>
+                  <script src="js/jquery.min.js"></script>
+                  <script src="../js/jquery.multiselect.js"></script>
+                  <script>
+                   $('#langOpt2').multiselect({
+                  columns: 1,
+                  placeholder: 'Select DPID',
+                  search: true
+                  });
+
+                </script>
                <%
                 }
                 catch(Exception e)

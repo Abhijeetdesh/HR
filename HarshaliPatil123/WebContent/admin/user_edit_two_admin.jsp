@@ -140,7 +140,7 @@ private static SecretKeySpec secretKey;
 	String uphone=request.getParameter("user_phone");
 	String uphone1=request.getParameter("user_phone1");
 	String upassword=request.getParameter("user_password");
-	String dpid[]= request.getParameterValues("id[]");
+	String dpid[]= request.getParameterValues("langOpt2[]");
 	String admin_phone=request.getParameter("admin_phone");
 	final String secretKey = "ssshhhhhhhhhhh!!!!";
 	  System.out.println(uname);

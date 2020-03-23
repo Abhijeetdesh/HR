@@ -85,7 +85,7 @@ String uemail=request.getParameter("user_email");
 String uphone=request.getParameter("user_phone");
 String uphone1=request.getParameter("user_phone1");
 String upassword=request.getParameter("user_password");
-String dpid[]= request.getParameterValues("id[]");
+String dpid[]= request.getParameterValues("langOpt2[]");
 
 //int personID = Integer.parseInt(adminephonenumber);
 Connection con=null;
@@ -113,8 +113,7 @@ try {
            ps.setString(2, uemail);
            ps.setString(3, uphone);
            ps.setString(4, encryptedString);
-           
-            List<String> list=new ArrayList<String>();
+           List<String> list=new ArrayList<String>();
 			for(int loopIndex = 0; loopIndex < dpid.length; loopIndex++){
 	            System.out.println(dpid[loopIndex] + "<BR>");
 	            list.add(dpid[loopIndex]);

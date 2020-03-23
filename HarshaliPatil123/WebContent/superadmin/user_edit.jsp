@@ -23,13 +23,6 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/style2.css">
-  
-       <link rel="stylesheet" href="../css1/style.css">
-       <link rel="stylesheet" href="../css1/chosen.css">
-<!--      
-     <link rel="stylesheet" href="../css1/prism.css"> -->
-     
-     
 </head>
 <body>
 	
@@ -195,7 +188,6 @@ while(resultSet.next()){
 		    <label for="exampleInputPassword1"> Previous DP ID::</label>
 		     <input class="form-control" id="p_assword" name="dpid" type="text" value="<%=resultSet.getString("dpid")%>" disabled>
 		   </div>
-		    <div class="form-group">
  <%
 ResultSet rs=null;
    try{
@@ -206,8 +198,7 @@ ResultSet rs=null;
 			 rs=ps.executeQuery();
 %>
 
- <select data-placeholder="Choose DP ID" class="chosen-select"  multiple tabindex="10"  name="id[]">
-            
+<select  name="langOpt2[]" multiple id="langOpt2" >
 <% while(rs.next())
 {
 %>
@@ -217,17 +208,18 @@ ResultSet rs=null;
 %>
 </select>
 
-</div>
- <script src="../js1/chosen.jquery.min.js"></script>
-  <script src="../js1/init.js"></script>
-   <script src="../js1/jquery-3.2.1.min.js"></script>
-    <script src="../js1/prism.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.multiselect.js"></script>
 <script>
 
 
-</script> 
+$('#langOpt2').multiselect({
+    columns: 1,
+    placeholder: 'Select DPID',
+    search: true
+});
+
+</script>
 
 <%
        }
@@ -236,7 +228,7 @@ ResultSet rs=null;
             out.println("wrong entry"+e);
        }
 %> 
-		   <br><button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 20%"><i class="fa fa-save"></i>Save</button>
+		   <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 20%"><i class="fa fa-save"></i>Save</button>
 				   <div id = "confirm">
 			         <div class = "message">Do you Want To Save</div>
 			         <button type="submit"  class = "yes">OK</button>
