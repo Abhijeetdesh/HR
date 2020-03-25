@@ -32,7 +32,12 @@ public class ScheduledTask extends TimerTask
 		String time1=rs.getString("off_time");
 		String time2= rs.getString("on_time2");
 		String time3=rs.getString("off_time2");
-		
+		if(time0==null && time1==null && time2==null &&time3==null)
+		{
+			System.out.println("it's null value");
+		}
+		else
+		{
 		 LocalTime timeA = LocalTime.parse(time0);
 		 LocalTime timeB = LocalTime.parse(time1);
 		 LocalTime timeC= LocalTime.parse(time2);
@@ -110,7 +115,7 @@ public class ScheduledTask extends TimerTask
 	 		 
 	 		}
 	        }	
-			
+		}
        }
 		 }
 		 catch (Exception e) 
