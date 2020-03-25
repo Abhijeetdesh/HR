@@ -148,7 +148,8 @@ try {
 		 }
            else
            {
-        	   System.out.println("Ooop's Record not Update Successfully");	 	
+        	   RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+		    	rd.forward(request, response);	 	
            }   
      }
 

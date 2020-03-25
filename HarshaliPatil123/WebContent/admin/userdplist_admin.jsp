@@ -88,10 +88,11 @@ Statement statement1 = null;
 ResultSet resultSet = null;
 ResultSet resultSet1 = null;
 String dpid1=request.getParameter("dpid");
+String admin_phone=request.getParameter("admin_phone");
 System.out.println(dpid1);
 
 %>
-<%
+<%if(dpid1!=null){
 try{
 connection = DriverManager.getConnection(Url,Username,password);
 statement=connection.createStatement();
@@ -131,7 +132,7 @@ idlist.retainAll(itemList);
               <th>DPID</th>
               <th>DP_No</th>
               <th>Address</th>
-              <th>Phase</th>  
+                
              <th>Details</th>     
             </tr>
         </thead>
@@ -149,7 +150,7 @@ idlist.retainAll(itemList);
                   <td><%=rs.getString("dpid")%></td>
                   <td><%= rs.getString("dp_number") %></td>
                   <td><%= rs.getString("address") %></td>
-                  <td><%= rs.getString("phase") %></td>
+                 
                   <td><a href="user_dpdetails_admin.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>">Details</a></td>
              </tr>
           
@@ -166,7 +167,11 @@ connection.close();
 catch (Exception e) {
 e.printStackTrace();
 }
-			
+}
+else{
+	RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+admin_phone);
+ 	rd.include(request, response);
+}
 
  
 %>

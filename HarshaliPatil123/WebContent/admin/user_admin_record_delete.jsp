@@ -113,7 +113,9 @@
 			}
 			else
 			{
-			out.print("There is a problem in deleting Record.");
+
+				RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+admin_phone);
+			 	rd.include(request, response);
 			}
 			}
 			catch(SQLException sql)

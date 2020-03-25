@@ -5,22 +5,4 @@
     <welcome-file>homepage.jsp</welcome-file>
   </welcome-file-list>
   
- 
-   <servlet>
-   <servlet-name>test</servlet-name>
-   <servlet-class>com.aderateTech.Controller</servlet-class>
-  </servlet>
-  <servlet-mapping>
-   <servlet-name>test</servlet-name>
-   <url-pattern>/addstring</url-pattern>
-  </servlet-mapping>
-  
-   <servlet>
-   <servlet-name>search</servlet-name>
-   <servlet-class>com.aderateTech.Search_Controller</servlet-class>
-  </servlet>
-  <servlet-mapping>
-   <servlet-name>search</servlet-name>
-   <url-pattern>/searchcontrol</url-pattern>
-  </servlet-mapping>
  </web-app> 

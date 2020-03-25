@@ -18,7 +18,8 @@
 					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
         <ul class="list-unstyled components mb-5">
       
-     
+     <% String admin_phone=request.getParameter("admin_phone"); 
+     if(admin_phone != null){%>
           <li>
               <a class="active" href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
           </li>
@@ -42,6 +43,11 @@
            <li>
             <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
           </li>
+          <%}
+     else{
+     RequestDispatcher rd1=request.getRequestDispatcher("error.jsp");
+     	 	rd1.include(request, response);
+     	 	}%>
       </ul>  
       </nav>
           
@@ -64,7 +70,8 @@
 <%
 String dpid = request.getParameter("dpid");
 
-
+if(dpid!=null){
+	
 Connection connection = null;
 Statement statement = null;
 ResultSet resultSet = null;
@@ -87,7 +94,7 @@ try
                     <label for="exampleInputEmail1">Name::</label>
                     <input class="form-control" name="name" type="text" value="<%=resultSet.getString("name") %>" disabled/>
                    </div>
-             
+             <input class="form-control" name="admin_phone" type="hidden" value="<%=request.getParameter("admin_phone")%>" onkeyup="checkExist()">
                  <div class="form-group">
                     <label for="exampleInputEmail1">DP id::</label>
                     <input class="form-control" name="dpid1" type="text" value="<%=resultSet.getString("dpid") %>" disabled>
@@ -109,12 +116,7 @@ try
                     <input class="form-control" name="phone" type="text" value="<%=resultSet.getString("phone") %>" disabled>
                   </div>
                 
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Phase::</label>
-                    <input class="form-control" name="phase" type="text" value="<%=resultSet.getString("phase") %>" disabled>
-                   <input type="hidden" name="admin_phone" value="<%=resultSet.getString("admin_phone") %>"/>
-                  </div>
-                  
+                 
             
           <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 30%"><i class="fa fa-trash"></i>Delete</button>
 		   <div id = "confirm">
@@ -136,7 +138,11 @@ catch (Exception e)
 {
 e.printStackTrace();
 }
-			
+}
+else{
+	 RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+admin_phone);
+	 	rd.include(request, response);
+}
 %>
 <script>
          function functionAlert(msg, myYes) 

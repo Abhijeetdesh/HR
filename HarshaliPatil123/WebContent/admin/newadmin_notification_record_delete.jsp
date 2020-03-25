@@ -61,7 +61,7 @@
       <%@include file="db.jsp" %>
       <div>
       
-<%
+<%     String admin_phone=request.getParameter("admin_phone");
 	   String sr_no = request.getParameter("sr_no");
 	   if(sr_no!= null)
      	{
@@ -79,12 +79,13 @@
 			int i = ps.executeUpdate();
 			if(i > 0)
 			{
-			  RequestDispatcher rd=request.getRequestDispatcher("newadmin_notification_info.jsp");
+			  RequestDispatcher rd=request.getRequestDispatcher("newadmin_notification_info.jsp?admin_phone="+admin_phone);
 			 rd.forward(request, response);	
 			}
 			else
 			{
-			out.print("There is a problem in deleting Record.");
+				RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+admin_phone);
+			 	rd.include(request, response);
 			}
 	}
 	catch(SQLException sql)
@@ -93,6 +94,10 @@
 	out.println(sql);
      }
 }
+	   else{
+	   RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+admin_phone);
+    	rd.include(request, response);
+	   }
 %>
       </div>
  </div>

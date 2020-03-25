@@ -125,7 +125,10 @@ try {
     			  RequestDispatcher rd=request.getRequestDispatcher("admin_info.jsp");
     			  rd.forward(request, response);
     			 }
-          
+    			 else{
+    				 RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+    			    	rd.forward(request, response);
+    			 }
          
           }
 }

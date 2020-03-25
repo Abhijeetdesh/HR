@@ -101,7 +101,7 @@
 	        <thead>
 		            <tr>
 		               <th>DPID</th>
-		               <th>Phase</th> 
+		               
 		            </tr>
 		    </thead>
        <%@include file="db.jsp" %>
@@ -116,12 +116,11 @@
 		                   ResultSet rs=ps.executeQuery();
 		                   while(rs.next()){
 		                	 String dpid=rs.getString("dpid");  
-		                	 String phase=rs.getString("phase");
-		       				int count=Integer.parseInt(phase);   
+		                	  
 		                %>
 				     <tr>
 		                 <td><a href="onoffdetail.jsp?dpid=<%=rs.getString("dpid")%>" class="btn btn-outline-primary b1">Device-<%=rs.getString("dpid")%></a></td>
-		                <td><a class="btn btn-outline-primary b2" ><%=rs.getString("phase") %></a></td>
+		               
  		               
 		            </tr>
 		               </tbody>

@@ -28,7 +28,8 @@
 			<nav id="sidebar" class="active">
 				<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
         <ul class="list-unstyled components mb-5">
-      
+       <%String aphone=request.getParameter("admin_phone");
+     if(aphone !=null){%>
      
           <li>
               <a href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
@@ -53,6 +54,11 @@
            <li>
             <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
           </li>
+             <%}
+     else{
+    	 RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+    	 	rd.include(request, response);
+     }%>
       </ul>  
       </nav>
           
@@ -131,7 +137,7 @@ private static SecretKeySpec secretKey;
               
              <%
 String user_phone = request.getParameter("user_phone");
-
+             if(user_phone != null){
 Connection connection = null;
 Statement statement = null;
 ResultSet resultSet = null;
@@ -202,7 +208,11 @@ connection.close();
 } catch (Exception e) {
 e.printStackTrace();
 }
-			
+             }
+             else{
+             	RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+aphone);
+              	rd.include(request, response);
+             }			
 %>
 
     <script>

@@ -9,19 +9,7 @@
 <head>
 </head>
 <body>
-		  <!--   <form name="form1" method="get" action="controller.jsp">
-						
-	      
-          <label class="col-form-label col-form-label-sm" for="inputSmall">Enter String::</label>
-          <input class="form-control form-control-sm" name="EnterString" type="text"  required/>
-         
-             
-     
-		<button class="btn btn-primary" type="submit" value='submit' ><i class="fa fa-fw fa-lg fa-check-circle"></i>submit</button>
-		             
-		  
-       </form> -->
-       
+		 
            
 <%@include file="db.jsp" %>
 <%
@@ -40,7 +28,7 @@ String[] words=str.split(":");//splits the string based on whitespace
     itemList.add(w);
  }
  System.out.println(itemList);
-int phase=itemList.size();
+
 	
 
  for(int j=0;j<itemList.size();j++) 

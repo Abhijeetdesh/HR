@@ -63,8 +63,9 @@
         </nav><%@include file="db.jsp" %>
         
  <%
+ String admin_phone=request.getParameter("admin_phone");
 String sr_no = request.getParameter("sr_no");
-
+if(sr_no != null){
 int personID=Integer.parseInt(sr_no);
 
 Connection connection = null;
@@ -87,7 +88,9 @@ try
 						
 				   <div class="form-group">
                     <label for="exampleInputEmail1">Sr No::</label>
-                    <input class="form-control" name="sr_no" type="text" value="<%=resultSet.getString("sr_no") %>" disabled="disabled">
+                    <input class="form-control" name="sr_no1" type="text" value="<%=resultSet.getString("sr_no") %>" disabled="disabled">
+                   <input class="form-control" name="sr_no" type="hidden" value="<%=resultSet.getString("sr_no") %>">
+                   <input class="form-control" name="admin_phone" type="hidden" value="<%=request.getParameter("admin_phone") %>"/>
                    </div>
              
                  <div class="form-group">
@@ -118,6 +121,11 @@ try
 } 
 catch (Exception e) {
 e.printStackTrace();
+}
+}
+else{
+	RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+admin_phone);
+ 	rd.include(request, response);
 }
 			
 %>

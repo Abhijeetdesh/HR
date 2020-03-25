@@ -132,7 +132,8 @@
 			 rd.forward(request, response);	
              }
              else{
-            	 out.print("error while adding admin notification");
+            	 RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+ 		    	rd.forward(request, response);
              }
 			}
 			catch(Exception e)

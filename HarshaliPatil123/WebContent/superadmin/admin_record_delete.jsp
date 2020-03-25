@@ -104,7 +104,8 @@
 	 }
 	else
 	{
-	  out.print("There is a problem in deleting Record.");
+		RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+    	rd.forward(request, response);
     }
    }
   catch(SQLException sql)

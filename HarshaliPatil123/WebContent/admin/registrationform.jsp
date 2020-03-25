@@ -95,11 +95,27 @@
                     <input class="form-control" name="admin_phone" type="hidden" value="<%=request.getParameter("admin_phone")%>">
                    <!-- </div>  -->
                   
-                  <div class="form-group">
-                    <label class="col-form-label col-form-label-sm" for="inputSmall">Phase::</label>
-                    <input class="form-control" name="phase" type="text">
+                    <div class="form-group">
+                    <label for="exampleInputPassword1">R_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">R_Max</label>
+                   <input type="text" class="form-control" name="r_max" required>
+                   <label for="exampleInputPassword1">R_Min</label>
+                    <input type="text" class="form-control" name="r_min" required>
                   </div>
-                  
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Y_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">Y_Max</label>
+                    <input type="text" class="form-control" name="y_max"required >
+                    <label for="exampleInputPassword1">Y_Min</label>
+                    <input type="text" class="form-control" name="y_min" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">B_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">B_Max</label>
+                    <input type="text" class="form-control" name="b_max" required >
+                    <label for="exampleInputPassword1">B_Min</label>
+                   <input type="text" class="form-control" name="b_min" required>
+                  </div>
                   
               
             

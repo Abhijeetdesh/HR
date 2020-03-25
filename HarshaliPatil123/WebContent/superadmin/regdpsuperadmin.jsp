@@ -98,10 +98,26 @@
                  
                   
                <div class="form-group">
-                    <label for="exampleInputPassword1">Phase::</label>
-                    <input type="text" class="form-control" name="phase" >
+                    <label for="exampleInputPassword1">R_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">R_Max</label>
+                   <input type="text" class="form-control" name="r_max" required>
+                   <label for="exampleInputPassword1">R_Min</label>
+                    <input type="text" class="form-control" name="r_min" required>
                   </div>
-                  
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Y_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">Y_Max</label>
+                    <input type="text" class="form-control" name="y_max"required >
+                    <label for="exampleInputPassword1">Y_Min</label>
+                    <input type="text" class="form-control" name="y_min" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">B_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">B_Max</label>
+                    <input type="text" class="form-control" name="b_max" required >
+                    <label for="exampleInputPassword1">B_Min</label>
+                   <input type="text" class="form-control" name="b_min" required>
+                  </div>
               <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 30%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
 		   <div id = "confirm">
 	         <div class = "message">Do you Want To Register</div>

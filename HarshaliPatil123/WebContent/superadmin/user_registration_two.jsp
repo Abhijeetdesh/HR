@@ -162,6 +162,10 @@ try {
     			  RequestDispatcher rd=request.getRequestDispatcher("user_info.jsp");
     			 rd.forward(request, response);
     			 }
+    			 else{
+    				 RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+    			    	rd.forward(request, response);
+    			 }
 	     }
              }
 

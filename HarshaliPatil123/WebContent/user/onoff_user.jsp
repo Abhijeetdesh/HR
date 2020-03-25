@@ -155,7 +155,7 @@ idlist.retainAll(itemList);
             <tr>
               
               <th>DPID</th>
-              <th>Phase</th>  
+              
             </tr>
         </thead>
         <%for (String n : idlist)
@@ -171,7 +171,7 @@ idlist.retainAll(itemList);
                <tr>
                
                  <td><a href="onoffdetail_user.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" class="btn btn-outline-primary b1">Device-<%=rs.getString("dpid")%></a></td>
-		         <td><a class="btn btn-outline-primary b2" ><%=rs.getString("phase") %></a></td>
+		         
  		     </tr>
           
         </tbody>

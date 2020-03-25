@@ -18,7 +18,11 @@
 					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
                 <ul class="list-unstyled components mb-5">
       
+     	  <%String aphone=request.getParameter("admin_phone");
      	  
+     	  if(aphone != null){
+     		  
+     	  %>
           <li>
               <a class="active" href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
           </li>
@@ -64,7 +68,7 @@
 
 String dpid = request.getParameter("dpid");
 
-
+if(dpid != null){
 Connection connection = null;
 Statement statement = null;
 ResultSet resultSet = null;
@@ -88,11 +92,11 @@ while(resultSet.next()){
              
                  <div class="form-group">
                     <label for="exampleInputEmail1">DP id::</label>
-                    <input class="form-control" name="dpid" type="text" onkeyup="checkExist()" value="<%=resultSet.getString("dpid") %>">
+                    <input class="form-control" name="dpid" type="text" onkeyup="checkExist()" value="<%=resultSet.getString("dpid") %>"disabled="disabled">
                     <input class="form-control" name="dpid1" type="hidden" value="<%=resultSet.getString("dpid") %>" onkeyup="checkExist()">
                     <span id="isE"></span>
                   </div>
-                  
+                  <input class="form-control" name="admin_phone" type="hidden" value="<%=request.getParameter("admin_phone")%>" onkeyup="checkExist()">
                    <div class="form-group">
                     <label for="exampleInputEmail1">DP_Number::</label>
                     <input class="form-control" name="dp_number" type="text" value="<%=resultSet.getString("dp_number") %>">
@@ -110,10 +114,26 @@ while(resultSet.next()){
                   </div>
                   
                
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Phase::</label>
-                    <input class="form-control" name="phase" type="text" value="<%=resultSet.getString("phase") %>">
-                    <input type="hidden" name="admin_phone" value="<%=resultSet.getString("admin_phone") %>"  />
+               <div class="form-group">
+                    <label for="exampleInputPassword1">R_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">R_Max</label>
+                   <input type="text" class="form-control" name="r_max" value="<%=resultSet.getString("r_max")%>" required />
+                   <label for="exampleInputPassword1">R_Min</label>
+                    <input type="text" class="form-control" name="r_min" value="<%=resultSet.getString("r_min")%>" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Y_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">Y_Max</label>
+                    <input type="text" class="form-control" name="y_max" value="<%=resultSet.getString("y_max")%>"required >
+                    <label for="exampleInputPassword1">Y_Min</label>
+                    <input type="text" class="form-control" name="y_min" value="<%=resultSet.getString("y_min")%>" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">B_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">B_Max</label>
+                    <input type="text" class="form-control" name="b_max" value="<%=resultSet.getString("b_max")%>" required >
+                    <label for="exampleInputPassword1">B_Min</label>
+                   <input type="text" class="form-control" name="b_min" value="<%=resultSet.getString("b_min")%>"required>
                   </div>
                   
               
@@ -137,7 +157,19 @@ connection.close();
 } catch (Exception e) {
 e.printStackTrace();
 }
-			
+}
+else
+{
+	 RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+aphone);
+ 	rd.include(request, response);
+
+}
+     	  }
+     	  else
+     	  {    
+     		 RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+     	 	rd.include(request, response);
+     	  }
 %>
 
 	 <script>

@@ -46,6 +46,9 @@
 					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
         <ul class="list-unstyled components mb-5">
        <li>
+       <% String aphone=request.getParameter("admin_phone");
+          if(aphone !=null){
+       %>
               <a href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
           </li>
            <li>
@@ -68,7 +71,13 @@
            <li>
             <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
           </li>
-                 		            	
+            <%}
+          else{
+        	  RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+		    	rd.forward(request, response);
+          }
+          %>     		            	
+          
        </ul>
        </nav> 
          <!-- Page Content  -->
@@ -120,30 +129,36 @@
 	        <thead>
 		            <tr>
 		               <th>DPID</th>
-		               <th>Phase</th> 
+		              
 		            </tr>
 		    </thead>
        <%@include file="db.jsp" %>
 		        <tbody>
-		    <%
-		        String aphone=request.getParameter("admin_phone");  
+		    <%   
+		        if(aphone != null)
+		        {
 		       String query="SELECT * FROM dp_info where admin_phone="+aphone;
 		       Connection con=DriverManager.getConnection(Url,Username,password);
 		       PreparedStatement ps=con.prepareStatement(query);
 		       ResultSet rs=ps.executeQuery();
 		       while(rs.next()){
 		       String dpid=rs.getString("dpid");  
-		       String phase=rs.getString("phase");
-		       int count=Integer.parseInt(phase);   
+		      
+		        
 		                %>
 				     <tr>
 		                 <td><a href="onoffdetail_admin.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" class="btn btn-outline-primary b1">Device-<%=rs.getString("dpid")%></a></td>
-		                <td><a class="btn btn-outline-primary b2" ><%=rs.getString("phase") %></a></td>
+		              
  		               
 		            </tr>
 		               </tbody>
 		          <%
 		          }
+		        }
+		        else{
+		        	 RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+				    	rd.forward(request, response);
+		        }
 		          %>     		     
 		</table>
 		

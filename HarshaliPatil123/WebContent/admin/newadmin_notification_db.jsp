@@ -102,31 +102,37 @@
  <%@include file="db.jsp" %>
 	
 		<%
-			int sr_no=Integer.parseInt(request.getParameter("sr_no"));
+			//int sr_no=Integer.parseInt(request.getParameter("sr_no"));
 			String notification=request.getParameter("notification");
 			String time=request.getParameter("time");
-			String aphone=request.getParameter("admin_phone");
+			String admin_phone=request.getParameter("admin_phone");
 
-			
+			if(notification !=null){
 			try
 			{
 			
 			Connection conn = DriverManager.getConnection(Url,Username,password);
 			Statement st=conn.createStatement();
 			
-			int i=st.executeUpdate("insert into admin_notification(sr_no,notification,time,admin_phone)values('"+sr_no+"','"+notification+"','"+time+"','"+aphone+"')");
+			int i=st.executeUpdate("insert into admin_notification(notification,time,admin_phone)values('"+notification+"','"+time+"','"+admin_phone+"')");
              if(i>0){
 			 RequestDispatcher rd=request.getRequestDispatcher("newadmin_notification_info.jsp");
 			 rd.forward(request, response);	
              }
              else{
-            	 out.print("error while adding admin notification");
+            	 RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+admin_phone);
+              	rd.include(request, response);
              }
 			}
 			catch(Exception e)
 			{
 			System.out.print(e);
 			e.printStackTrace();
+			}
+			}
+			else{
+				RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+admin_phone);
+		     	rd.include(request, response);
 			}
 			%>
 			

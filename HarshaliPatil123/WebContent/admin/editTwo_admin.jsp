@@ -49,6 +49,10 @@
       
         <div class="vertical-menu">
        <ul class="app-menu">
+      <%String admin_phone=request.getParameter("admin_phone");
+        if(admin_phone !=null)
+        {
+      %>
         <li><a class="app-menu__item" href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">DP List</span></a>
        </li>
        
@@ -69,7 +73,11 @@
        
        <li ><a class="app-menu__item" href="../homepage.jsp" ><i class="app-menu__icon fa fa-history" ></i><span class="app-menu__label">Logout</span></a>
         </li>
-                 		            	
+           <% }
+        else{
+        	RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+admin_phone);
+        	 	rd.include(request, response);
+        } %>      		            	
       </ul>
       </div>
       
@@ -81,32 +89,43 @@
       
 <% 
 
-String admin_phone=request.getParameter("admin_phone");
+
 String name = request.getParameter("name");
-String dpid=request.getParameter("dpid");
+//String dpid=request.getParameter("dpid");
 String dpid1=request.getParameter("dpid1");
 String dp_number=request.getParameter("dp_number");
 String address=request.getParameter("address");
 String phone=request.getParameter("phone");
-String phase=request.getParameter("phase");
 
-if(dpid!= null)
+int r_min=Integer.parseInt(request.getParameter("r_min"));
+int y_min=Integer.parseInt(request.getParameter("y_min"));
+int b_min=Integer.parseInt(request.getParameter("b_min"));
+int r_max=Integer.parseInt(request.getParameter("r_max"));
+int y_max=Integer.parseInt(request.getParameter("y_max"));
+int b_max=Integer.parseInt(request.getParameter("b_max"));
+
+if(dpid1!= null)
 {
 Connection con = null;
 PreparedStatement ps = null;
-int personID = Integer.parseInt(dpid1);
+//int personID = Integer.parseInt(dpid1);
 try
 {
 
 con = DriverManager.getConnection(Url,Username,password);
-String sql="Update dp_info set name=?,dpid=?,dp_number=?,address=?,phone=?,phase=? where dpid="+personID;
+String sql = "Update dp_info set name=?,dpid=?,dp_number=?,address=?,phone=?,r_min=?,r_max=?,y_min=?,y_max=?,b_min=?,b_max=? where dpid="+dpid1 ;
 ps = con.prepareStatement(sql);
-ps.setString(1,name);
-ps.setString(2, dpid);
+ps.setString(1, name);
+ps.setString(2,dpid1);
 ps.setString(3, dp_number);
 ps.setString(4, address);
 ps.setString(5, phone);
-ps.setString(6, phase);
+ps.setInt(6,r_min);
+ps.setInt(7,r_max);
+ps.setInt(8,y_min);
+ps.setInt(9,y_max);
+ps.setInt(10,b_min);
+ps.setInt(11,b_max);
 int i = ps.executeUpdate();
 if(i > 0)
 {
@@ -115,15 +134,37 @@ if(i > 0)
 }
 else
 {
-out.print("There is a problem in updating Record.");
+	RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+admin_phone);
+	 	rd.include(request, response);
 }
+String sql1 = "Update onephase set r_min=?,r_max=?,y_min=?,y_max=?,b_min=?,b_max=? where dpid="+dpid1;
+PreparedStatement	ps1 = con.prepareStatement(sql1);
+	ps1.setInt(1,r_min);
+	ps1.setInt(2,r_max);
+	ps1.setInt(3,y_min);
+	ps1.setInt(4,y_max);
+	ps1.setInt(5,b_min);
+	ps1.setInt(6,b_max);
+	int j = ps1.executeUpdate();
+	
+	if (j > 0) {
+		
+		System.out.println("Record Updated successfully");
+	} else {
+		RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+admin_phone);
+	 	rd.include(request, response);
+	}
 }
 catch(SQLException sql)
 {
 request.setAttribute("error", sql);
 out.println(sql);
 }
+} else{
+	RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+admin_phone);
+	 	rd.include(request, response);
 }
+       
 %>    
             
     </main>

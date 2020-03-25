@@ -88,8 +88,7 @@
              <th>DPID</th>
              <th>DP_No</th>
              <th>Address</th>
-             <th>Phase</th>  
-            
+             
              <th>Set Time</th>
            </tr>
         </thead>
@@ -107,7 +106,7 @@
              <td><%=rs.getString("dpid")%></td>
              <td><%= rs.getString("dp_number") %></td>
              <td><%= rs.getString("address") %></td>
-             <td><%= rs.getString("phase") %></td>
+           
           
              
              <td><a href="SetTimeOne.jsp?dpid=<%=rs.getString("dpid")%>">Set</a></td>

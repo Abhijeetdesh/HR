@@ -65,11 +65,10 @@
 			
 			<%
 			String dpid = request.getParameter("dpid");
-			String phase1=request.getParameter("phase");
-		
-			if(dpid!= null && phase1!=null)
+			
+			if(dpid!= null )
 			{
-				int phase=Integer.parseInt(phase1);
+				
 			Connection con = null;
 			PreparedStatement ps = null;
 			//int personID = Integer.parseInt(dpid);
@@ -77,7 +76,7 @@
 			{
 			
 			con = DriverManager.getConnection(Url,Username,password);
-			String sql="delete from dp_info where dpid="+dpid;
+			String sql="delete from dp_info where dpid='"+dpid+"'";
 			ps = con.prepareStatement(sql);
 			
 			 
@@ -89,11 +88,12 @@
 			}
 			else
 			{
-			out.print("There is a problem in updating Record.");
+				RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+		    	rd.forward(request, response);
 			}
 
 			
-				String sql1="delete from onephase where dpid="+dpid;
+				String sql1="delete from onephase where dpid='"+dpid+"'";
 			  PreparedStatement	ps1 = con.prepareStatement(sql1);
 				
 				 
@@ -104,7 +104,8 @@
 				}
 				else
 				{
-					System.out.println("NOT deleted from onephase");
+					RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+			    	rd.forward(request, response);
 				}
 				
 			

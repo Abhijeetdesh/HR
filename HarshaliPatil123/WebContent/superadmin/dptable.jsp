@@ -90,8 +90,7 @@
               <th>DPID</th>
               <th>DP_No</th>
               <th>Address</th>
-              <th>Phase</th>
-             <th>Admin Phone</th>   
+              <th>Admin Phone</th>   
               <th>Update</th>
               <th>Delete</th>
               <th>Details</th>
@@ -112,7 +111,6 @@
                   <td><%=rs.getString("dpid")%></td>
                   <td><%= rs.getString("dp_number") %></td>
                   <td><%= rs.getString("address") %></td>
-                  <td><%= rs.getString("phase") %></td>
                  <td><%= rs.getString("admin_phone") %></td>
                   <td><a href="editOne.jsp?dpid=<%=rs.getString("dpid")%>>">Edit</a></td>                
                   <td><a href="delete_record1.jsp?dpid=<%=rs.getString("dpid")%>>">Delete</a></td>           

@@ -86,7 +86,13 @@
    String address=request.getParameter("address");
    String phone=request.getParameter("phone");
    String aphone=request.getParameter("admin_phone");
-   int phase=Integer.parseInt(request.getParameter("phase"));
+   int r_min=Integer.parseInt(request.getParameter("r_min"));
+   int y_min=Integer.parseInt(request.getParameter("y_min"));
+   int b_min=Integer.parseInt(request.getParameter("b_min"));
+   int r_max=Integer.parseInt(request.getParameter("r_max"));
+   int y_max=Integer.parseInt(request.getParameter("y_max"));
+   int b_max=Integer.parseInt(request.getParameter("b_max"));
+   
    if (aphone!= null && dpid!=null) {
    try
    {
@@ -107,7 +113,7 @@ PreparedStatement ps=null;
           } 
           else {
 	Statement st=conn.createStatement();
-    int i=st.executeUpdate("insert into dp_info(name,dpid, dp_number,address,phone,phase,admin_phone)values('"+name+"','"+dpid+"','"+dp_number+"','"+address+"','"+ phone+"','"+ phase+"','"+aphone+"')");
+    int i=st.executeUpdate("insert into dp_info(name,dpid, dp_number,address,phone,r_min,r_max,y_min,y_max,b_min,b_max,admin_phone)values('"+name+"','"+dpid+"','"+dp_number+"','"+address+"','"+ phone+"','"+ r_min+"','"+ r_max+"','"+ y_min+"','"+ y_max+"','"+ b_min+"','"+ b_max+"','"+aphone+"')");
 	if(i>0)
 	{
 	   RequestDispatcher rd=request.getRequestDispatcher("dptable.jsp");
@@ -115,11 +121,12 @@ PreparedStatement ps=null;
 	}
 	else
 	{
-		out.print("There is problem in adding record...");
+		RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	   	rd.forward(request, response);
 	}
 	
 	Statement st1=conn.createStatement();
-    int j=st1.executeUpdate("insert into onephase(dpid,r_voltage,r_current,y_voltage,y_current,b_voltage,b_current,r_onoff,y_onoff,b_onoff,on_time,off_time,on_time2,off_time2)values('"+dpid+"',null,null,null,null,null,null,'#R0','Y0','B0',null,null,null,null)");
+    int j=st1.executeUpdate("insert into onephase(dpid,r_voltage,r_current,y_voltage,y_current,b_voltage,b_current,r_onoff,y_onoff,b_onoff,on_time,off_time,on_time2,off_time2,r_min,r_max,y_min,y_max,b_min,b_max)values('"+dpid+"',null,null,null,null,null,null,'@R0','Y0','B0',null,null,null,null,'"+ r_min+"','"+ r_max+"','"+ y_min+"','"+ y_max+"','"+ b_min+"','"+ b_max+"')");
 	if(j>0)
 	{
 	  System.out.println("Record save into onephase");
@@ -127,7 +134,8 @@ PreparedStatement ps=null;
 	}
 	else
 	{
-		out.print("There is problem in adding record ...ONEPHASE");
+		RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	   	rd.forward(request, response);
 	}
 	
    

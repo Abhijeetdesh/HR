@@ -28,6 +28,9 @@
         <ul class="list-unstyled components mb-5">
       
       <li>
+      <%  String aphone=request.getParameter("admin_phone");
+         if(aphone !=null){
+         %>
               <a href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
           </li>
            <li>
@@ -49,7 +52,8 @@
          
            <li>
             <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
-          </li>            	
+          </li> 
+                   	
       </ul>
       </nav>
       
@@ -111,7 +115,7 @@
        %>
        <%@include file="db.jsp" %>
          <%
-         String aphone=request.getParameter("admin_phone");
+        
           
            Connection con=DriverManager.getConnection(Url,Username,password);
            PreparedStatement ps=con.prepareStatement("select * from admin_notification");
@@ -129,6 +133,11 @@
           </tr>
            <%
             }
+         }
+         else{
+        	 RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+		    	rd.forward(request, response);
+         }
             %>
           </tbody>
 

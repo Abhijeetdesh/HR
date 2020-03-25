@@ -87,6 +87,8 @@
     Connection connection = null;
     Statement statement = null;
     ResultSet resultSet = null;
+    if(dpid != null){
+   
 	try
 	{ 
 	 connection = DriverManager.getConnection(Url,Username,password);
@@ -386,7 +388,11 @@ catch (Exception e)
  {
    e.printStackTrace();
    }  
-   
+    }
+    else{
+    	RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+admin_phone);
+     	rd.include(request, response);
+    }  
    %>     	
         	
    </div>

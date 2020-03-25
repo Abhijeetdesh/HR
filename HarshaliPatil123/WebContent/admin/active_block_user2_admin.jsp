@@ -77,8 +77,9 @@
 
 <%
 
- 
+ String aphone=request.getParameter("admin_phone");
 String user_phone=request.getParameter("user_phone");
+if(user_phone !=null){
 String status=request.getParameter("status"); 
 Connection con = null;
 PreparedStatement ps = null;
@@ -114,7 +115,11 @@ ps.setString(1, status);
     request.setAttribute("error", sql);
      out.println(sql);
     }
-
+}
+else{
+	RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+aphone);
+ 	rd.include(request, response);
+}
 %>    
             
     </main>

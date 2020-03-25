@@ -132,10 +132,11 @@ import="java.util.List"
        %>
        <%@include file="db.jsp" %>
        
-       <%
-          
+       <%String aphone=request.getParameter("admin_phone");
+          if(aphone != null)
+          {
           Connection con=DriverManager.getConnection(Url,Username,password);
-          String aphone=request.getParameter("admin_phone");
+          
           PreparedStatement ps=con.prepareStatement("select * from user where admin_phone='" + aphone + "'");
           ResultSet rs=ps.executeQuery();
           while(rs.next())
@@ -155,6 +156,11 @@ import="java.util.List"
          </tr>
      <%
          }
+          }
+          else{
+       	   RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+		    	rd.forward(request, response);
+          }
       %>
         </tbody>
 

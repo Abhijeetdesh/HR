@@ -81,10 +81,10 @@
            			
 				<form name="form1" method="post" action="newadmin_notification_db.jsp">
 						
-				   <div class="form-group">
+				   <!-- <div class="form-group">
                     <label for="exampleInputPassword1">Sr_no::</label>
                     <input class="form-control" name="sr_no" type="text" required/>
-                   </div>
+                   </div> -->
              
                    <div class="form-group">
                     <label for="exampleInputPassword1">NotiFIcation::</label>

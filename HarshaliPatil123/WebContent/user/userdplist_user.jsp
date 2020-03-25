@@ -141,7 +141,7 @@ idlist.retainAll(itemList);
               <th>DP_No</th>
               <th>Address</th>
               <th>Phone</th>
-              <th>Phase</th>
+             
               <th>Details</th>     
             </tr>
         </thead>
@@ -161,7 +161,7 @@ idlist.retainAll(itemList);
                   <td><%= rs.getString("dp_number") %></td>
                   <td><%= rs.getString("address") %></td>
                   <td><%= rs.getString("phone") %></td>
-                  <td><%= rs.getString("phase") %></td>
+                 
                   <td><a href="user_dpdetails_user.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>">Details</a></td>
              </tr>
           

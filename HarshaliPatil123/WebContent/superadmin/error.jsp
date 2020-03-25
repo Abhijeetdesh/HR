@@ -96,7 +96,7 @@
           </div>
         </nav>
 		
-	   <h3>  Ooop's something wrong...Try again please..</h3>   
+	   <center><h3><br>Ooop's something wrong...Try again please..</h3></center>   
 </div>
 </div>
  

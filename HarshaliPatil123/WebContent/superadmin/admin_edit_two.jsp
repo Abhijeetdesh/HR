@@ -113,8 +113,8 @@ if(i > 0)
 	   }
 else
 {
-	   RequestDispatcher rd=request.getRequestDispatcher("problem3.jsp");
-	   rd.forward(request, response);		
+	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	rd.forward(request, response);
 }   
 }
 
