@@ -90,7 +90,7 @@ while(resultSet.next()){
 	             <fieldset disabled="disabled"> 
  			   <div class="form-group">
 				   <label for="exampleInputPassword1">User_Name::</label>
-                    <input class="form-control" name="user_name" type="text"  value="<%=resultSet.getString("user_name") %>" required/>
+                    <input class="form-control" name="user_name" type="text"  value="<%=resultSet.getString("user_name") %>" />
                    </div>
              
                  <div class="form-group">

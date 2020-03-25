@@ -196,6 +196,7 @@ while(resultSet.next()){
 		     <input class="form-control" id="p_assword" name="dpid" type="text" value="<%=resultSet.getString("dpid")%>" disabled>
 		   </div>
 		    <div class="form-group">
+		     <label for="exampleInputPassword1">Dp Id::</label><br>
  <%
 ResultSet rs=null;
    try{

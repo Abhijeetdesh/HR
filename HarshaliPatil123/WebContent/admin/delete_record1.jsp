@@ -43,7 +43,7 @@
             <a href="onoff.jsp"><span class="fa fa-toggle-on"></span>ON/OFF</a>
           </li>
            <li>
-            <a href="../superadmin.jsp"><span class="fa fa-power-off"></span>Logout</a>
+         <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
           </li>
         </ul>
 

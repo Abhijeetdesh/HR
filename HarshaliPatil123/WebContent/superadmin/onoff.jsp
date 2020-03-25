@@ -85,8 +85,8 @@
         <!-- Page Content  -->
       <div id="content" >
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container">
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
 
             <button type="button" id="sidebarCollapse" class="btn btn-primary">
               <i class="fa fa-bars"></i>
@@ -96,7 +96,7 @@
            
           </div>
         </nav>
-	 <div class=" pull-right" style="margin-top:5px;">
+        	 <div class=" pull-right" style="margin-top:5px;">
    			<label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
 		          <input class="btn btn-outline-primary" type=button onClick="location.href='dptable.jsp'" value='Back'>
@@ -130,7 +130,7 @@
 		                 <td><a class="btn btn-outline-primary b1"><%=rs.getString("dpid")%></a></td>
 		                <td><a class="btn btn-outline-primary b2" ><%=rs.getString("dp_number") %></a></td>
  		               <td><a class="btn btn-outline-primary b2" ><%=rs.getString("phase") %></a></td>
- 		              <td><a href="onofflight.jsp?dpid=<%=rs.getString("dpid") %>" class="btn btn-outline-primary b2" >set</a></td>
+ 		              <td><a href="onoffdetail.jsp?dpid=<%=rs.getString("dpid") %>" class="btn btn-outline-primary b2" >set</a></td>
  		               
 		            </tr>
 		               </tbody>
