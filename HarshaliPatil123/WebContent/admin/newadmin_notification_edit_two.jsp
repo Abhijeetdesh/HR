@@ -68,10 +68,10 @@
       <%@include file="db.jsp" %>
       
  
-<%
+<%String admin_phone=request.getParameter("admin_phone");
 String notification = request.getParameter("notification");
 String time=request.getParameter("time");
-String sr_no=request.getParameter("sr_no");
+String sr_no=request.getParameter("sr_no1");
 if(sr_no!= null)
 {
   Connection con = null;
@@ -89,12 +89,13 @@ if(sr_no!= null)
     int i = ps.executeUpdate();
     if(i > 0)
     {
-	RequestDispatcher rd=request.getRequestDispatcher("newadmin_notification_info.jsp");
+	RequestDispatcher rd=request.getRequestDispatcher("newadmin_notification_info.jsp?admin_phone="+admin_phone);
     rd.forward(request, response);	
     }
     else
     {
-      out.print("There is a problem in updating Record.");
+    	RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+admin_phone);
+     	rd.include(request, response);
     }
   }
   catch(SQLException sql)

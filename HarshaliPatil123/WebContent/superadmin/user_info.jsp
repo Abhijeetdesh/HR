@@ -77,8 +77,8 @@
      <div class=" pull-right" style="margin-top:5px;">
    			<label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
-<!-- 		          <input class="btn btn-outline-primary" type=button onClick="location.href='user_registration.jsp'" value='+ Add User'>
- -->		          <input class="btn btn-outline-primary" type=button onClick="location.href='admin_info.jsp'" value='Back'>
+		          
+		          <input class="btn btn-outline-primary" type=button onClick="location.href='user_info.jsp'" value='Back'>
 	 </div>
       
       

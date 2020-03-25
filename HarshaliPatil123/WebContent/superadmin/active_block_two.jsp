@@ -95,8 +95,8 @@ PreparedStatement ps = null;
         }
       else
       {
-      out.print("There is a problem in changing status of an admin.");
-     /*  */ }
+    	  RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	    	rd.forward(request, response); }
    }
    catch(SQLException sql)
    {

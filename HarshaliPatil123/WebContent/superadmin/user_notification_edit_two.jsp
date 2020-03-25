@@ -91,7 +91,8 @@ if(i > 0)
 }
 else
 {
-out.print("There is a problem in updating Record.");
+	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	rd.forward(request, response);
 }
 }
 catch(SQLException sql)
@@ -99,6 +100,11 @@ catch(SQLException sql)
 request.setAttribute("error", sql);
 out.println(sql);
 }
+}
+else
+{
+	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	rd.forward(request, response);
 }
 %>    
             

@@ -94,7 +94,8 @@ if(i > 0)
 }	  
 else
 {
-	   out.print("record not updated");
+	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	rd.forward(request, response);
 }   
 
 }

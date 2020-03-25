@@ -28,7 +28,8 @@
 				<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
         <ul class="list-unstyled components mb-5">
       
-     
+       <% String admin_phone=request.getParameter("admin_phone"); 
+       if(admin_phone !=null){ %>
           <li>
               <a class="active" href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
           </li>
@@ -52,6 +53,12 @@
            <li>
             <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
           </li>
+          <% }
+       else{
+    	   RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	    	rd.forward(request, response); 
+       }
+       %> 
       </ul>  
           </nav>
           
@@ -87,7 +94,7 @@
               <th>DP_No</th>
               <th>Address</th>
               <th>Phone</th>
-              <th>Phase</th>
+              
               <th>Update</th>
               <th>Delete</th>
               <th>Details</th>     
@@ -119,9 +126,9 @@
          
               <%
               
-              String admin_phone=request.getParameter("admin_phone");
-              System.out.println("inadmindptable"+admin_phone);
-              
+             
+             
+              if(admin_phone != null){
               Connection con=DriverManager.getConnection(Url,Username,password);
               PreparedStatement ps=con.prepareStatement("select * from dp_info where admin_phone='" + admin_phone + "'");
               ResultSet rs=ps.executeQuery();
@@ -135,7 +142,7 @@
                   <td><%= rs.getString("dp_number") %></td>
                   <td><%= rs.getString("address") %></td>
                   <td><%= rs.getString("phone") %></td>
-                  <td><%= rs.getString("phase") %></td>
+                  
                  
                   <td><a href="editOne_admin.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=rs.getString("admin_phone")%>">Edit</a></td>                
                   <td><a href="delete_dprecord_admin.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=rs.getString("admin_phone")%>">Delete</a></td>           
@@ -143,6 +150,13 @@
              </tr>
            <%
                }
+              }
+              else
+              {
+            	  RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+			    	rd.forward(request, response);
+				}
+              
           %>
 
            </tbody>

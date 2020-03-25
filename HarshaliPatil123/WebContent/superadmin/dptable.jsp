@@ -93,8 +93,7 @@
               <th>DPID</th>
               <th>DP_No</th>
               <th>Address</th>
-              <th>Phase</th>
-             <th>Admin Phone</th>   
+              <th>Admin Phone</th>   
               <th>Update</th>
               <th>Delete</th>
               <th>Details</th>
@@ -115,13 +114,18 @@
                   <td><%=rs.getString("dpid")%></td>
                   <td><%= rs.getString("dp_number") %></td>
                   <td><%= rs.getString("address") %></td>
-                  <td><%= rs.getString("phase") %></td>
                  <td><%= rs.getString("admin_phone") %></td>
-                  <td><a href="editOne.jsp?dpid=<%=rs.getString("dpid")%>">Ed
+<<<<<<< HEAD
+                  <td><a href="editOne.jsp?dpid=<%=rs.getString("dpid")%>">Edit
 </a></td>                
                   <td><a href="delete_record1.jsp?dpid=<%=rs.getString("dpid")%>"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a></td>           
                   <td><a href="dpdetails.jsp?dpid=<%=rs.getString("dpid")%>"><i class="fa fa-info-circle fa-2x" aria-hidden="true"></i>
 </a></td>
+=======
+                  <td><a href="editOne.jsp?dpid=<%=rs.getString("dpid")%>>">Edit</a></td>                
+                  <td><a href="delete_record1.jsp?dpid=<%=rs.getString("dpid")%>>">Delete</a></td>           
+                  <td><a href="dpdetails.jsp?dpid=<%=rs.getString("dpid")%>">Details</a></td>
+>>>>>>> e3e163372e34fa71e52e63a735d7e7c9cb980f8c
                
                   
              </tr>

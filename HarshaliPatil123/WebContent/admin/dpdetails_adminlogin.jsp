@@ -31,7 +31,8 @@
 				<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
        <ul class="list-unstyled components mb-5">
       
-     
+     <%String aphone=request.getParameter("admin_phone");
+     if(aphone !=null){%>
           <li>
               <a class="active" href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
           </li>
@@ -55,6 +56,11 @@
            <li>
             <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
           </li>
+          <%}
+     else{
+    	 RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+		 	rd.include(request, response);
+     }%>
       </ul>  
       </nav>
       
@@ -72,6 +78,8 @@
         <%@include file="db.jsp" %>
     <%
 	String dpid = request.getParameter("dpid");
+    if(dpid != null)
+    {
     Connection connection = null;
     Statement statement = null;
     ResultSet resultSet = null;
@@ -310,6 +318,11 @@ catch (Exception e)
  {
    e.printStackTrace();
    }  
+    }
+    else{
+    	RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+aphone);
+	 	rd.include(request, response);
+    }
    
    %>     	
         	

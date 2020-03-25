@@ -99,10 +99,31 @@
                  
                   
                <div class="form-group">
+<<<<<<< HEAD
                     <label for="exampleInputPassword1">Phase::</label>
                     <input type="text" class="form-control" name="phase" placeholder="Phase" >
+=======
+                    <label for="exampleInputPassword1">R_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">R_Max</label>
+                   <input type="text" class="form-control" name="r_max" required>
+                   <label for="exampleInputPassword1">R_Min</label>
+                    <input type="text" class="form-control" name="r_min" required>
                   </div>
-                  
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Y_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">Y_Max</label>
+                    <input type="text" class="form-control" name="y_max"required >
+                    <label for="exampleInputPassword1">Y_Min</label>
+                    <input type="text" class="form-control" name="y_min" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">B_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">B_Max</label>
+                    <input type="text" class="form-control" name="b_max" required >
+                    <label for="exampleInputPassword1">B_Min</label>
+                   <input type="text" class="form-control" name="b_min" required>
+>>>>>>> e3e163372e34fa71e52e63a735d7e7c9cb980f8c
+                  </div>
               <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 30%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
 		   <div id = "confirm">
 	         <div class = "message">Do you Want To Register</div>
@@ -117,6 +138,11 @@
     </div>
 </div>
 
+    
+   
+  
+    
+    
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>

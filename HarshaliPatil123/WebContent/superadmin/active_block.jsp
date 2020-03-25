@@ -77,6 +77,7 @@ Connection connection = null;
 
         
 <%
+if (admin_phone!= null) {
 try{
 connection = DriverManager.getConnection(Url,Username,password);
  Statement statement=connection.createStatement();
@@ -140,7 +141,12 @@ connection.close();
 } catch (Exception e) {
 e.printStackTrace();
 }
-			
+}
+else
+{
+	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	rd.forward(request, response);
+}			
 %>
  
 		</div> 

@@ -140,7 +140,7 @@ private static SecretKeySpec secretKey;
 	String uphone=request.getParameter("user_phone");
 	String uphone1=request.getParameter("user_phone1");
 	String upassword=request.getParameter("user_password");
-	String dpid[]= request.getParameterValues("id[]");
+	String dpid[]= request.getParameterValues("langOpt2[]");
 	String admin_phone=request.getParameter("admin_phone");
 	final String secretKey = "ssshhhhhhhhhhh!!!!";
 	  System.out.println(uname);
@@ -154,8 +154,16 @@ private static SecretKeySpec secretKey;
     String originalString = upassword;
     String encryptedString = AES.encrypt(originalString, secretKey) ;
 String decryptedString = AES.decrypt(encryptedString, secretKey) ;
-%>    
-<%
+if (dpid==null) {
+	 
+	   request.setAttribute("alertMsg", "Atleast select previous dpid");
+	RequestDispatcher rd=request.getRequestDispatcher("user_edit_admin.jsp");  
+	rd.include(request, response);
+	
+} 
+
+else
+{
 try {
 	
 	
@@ -200,12 +208,16 @@ try {
 		}
            else
            {
-        	   System.out.println("Ooop's Record not Update Successfully");	 	
+          
+           	RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+admin_phone);
+            	rd.include(request, response);
+            	
            }   
      }
 
 catch (Exception e) {
 	e.printStackTrace();
+}
 }
 %>
 	 </div>       

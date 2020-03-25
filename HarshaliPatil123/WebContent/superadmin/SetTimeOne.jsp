@@ -68,14 +68,15 @@
    					<input class="btn btn-outline-primary" type=button onClick="location.href='timeset.jsp'" value='Back'>
 		      </div>
          
-    <div class="my" style=" line-height: 5px;overflow: scroll;height: 550px;width:80%; margin-left: 50px;">                           
+    <div class="my" style=" line-height: 5px;overflow: scroll;height: 550px;width:80%; margin-left: 50px; margin-top: 10%;">                           
  <%
  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
  LocalDateTime now = LocalDateTime.now();
 %>
         <%@include file="db.jsp" %>       
- <%
+             <%
 String dpid = request.getParameter("dpid");
+
 Connection connection = null;
 Statement statement = null;ResultSet resultSet = null;
 Statement statement1 = null;ResultSet resultSet1 = null;
@@ -84,6 +85,7 @@ Statement statement3 = null;ResultSet resultSet3 = null;
 
 %>
 <%
+if (dpid!= null) {
 try{
 connection = DriverManager.getConnection(Url,Username,password);
 statement=connection.createStatement();
@@ -95,12 +97,12 @@ String sql ="select * from dp_info where dpid="+dpid;
 resultSet = statement.executeQuery(sql);
 while(resultSet.next())
 {
-	/* String phase=resultSet.getString("phase");
+	String phase=resultSet.getString("phase");
     int count = Integer.parseInt(phase);
- */
+
     
-/* if(count==1) */
-  /*   { */
+if(count==1)
+    {
 	String sql1 ="select * from onephase where dpid="+dpid;
 	resultSet1 = statement1.executeQuery(sql1);
 	while(resultSet1.next())
@@ -177,13 +179,182 @@ while(resultSet.next())
 		  </form>	     
 <% 
 	}
-
-   }
-connection.close();
-} 
-catch (Exception e) 
+}
+if(count==2)
 {
+	String sql2 ="select * from twophase where dpid="+dpid;
+	resultSet2 = statement2.executeQuery(sql2);
+	while(resultSet2.next())
+	{
+%>   
+		<form action="savephase2.jsp" method="post" class="myform">
+		     <div>
+		      	<h1 style="color: red;">Two Phase</h1>
+		      	<h4>Slot 1</h4>
+		    	    <div class="form-group">
+		             <label for="exampleInputPassword1">On Time::</label>
+		             <input class="form-control"  name="on_time" value="<%=dtf.format(now)%>" type="text" required/>
+		         </div>
+		    	     
+		    	     <div class="form-group">
+		             <label for="exampleInputPassword1">Off Time::</label>
+		             <input class="form-control" name="off_time" value="<%=dtf.format(now)%>" type="text" required/>
+		         </div>
+		    	      <input type="hidden" name="dpid" value="<%=dpid%>">
+		    	        
+		    	     
+		    	         
+			        <button class="btn btn-primary" type="submit"  style="margin-left: 30%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
+					   <div id = "confirm">
+				        
+		    	  </div>
+		    	<div>
+		      	<h3>Current Saved Time</h3>
+		    	    <div class="form-group">
+		             <label for="exampleInputPassword1">On Time::</label>
+		             <input class="form-control" value="<%=resultSet2.getString("on_time")%>" type="text" disabled/>
+		         </div>
+		    	     
+		    	     <div class="form-group">
+		             <label for="exampleInputPassword1">Off Time::</label>
+		             <input class="form-control"  value="<%=resultSet2.getString("off_time")%>" type="text" disabled/>
+		         </div>
+		    </div>
+		    	 <input type="hidden" name="dpid" value="<%=dpid%>">
+		    	        
+		    	   
+		    	</form>
+		    <form action="savephase2_slot2.jsp" method="post" class="myform" style="margin-top: -5px;">
+		     <div>    
+		    	   <h4>Slot 2</h4>
+		    	    <div class="form-group">
+		             <label for="exampleInputPassword1">On Time::</label>
+		             <input class="form-control"  name="on_time2" value="<%=dtf.format(now)%>" type="text" required/>
+		         </div>
+		    	     
+		    	     <div class="form-group">
+		             <label for="exampleInputPassword1">Off Time::</label>
+		             <input class="form-control" name="off_time2" value="<%=dtf.format(now)%>" type="text" required/>
+		         </div>
+		    	      <input type="hidden" name="dpid" value="<%=dpid%>">
+		    	        
+		    	     
+		    	         
+			        <button class="btn btn-primary" type="submit"  style="margin-left: 30%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
+					   
+		    	<div style="line-height: 5px;">
+		      	<h3>Current Saved Time</h3>
+		    	    <div class="form-group">
+		             <label for="exampleInputPassword1">On Time::</label>
+		             <input class="form-control" value="<%=resultSet2.getString("on_time2")%>" type="text" disabled/>
+		         </div>
+		    	     
+		    	     <div class="form-group">
+		             <label for="exampleInputPassword1">Off Time::</label>
+		             <input class="form-control" value="<%=resultSet2.getString("off_time2")%>" type="text" disabled/>
+		         </div>
+		    </div>
+		    	 <input type="hidden" name="dpid" value="<%=dpid%>">
+		    	        
+		    	   
+		    	</form>	
+		    	
+    	     
+<%
+	}
+}
+if(count==3)
+{
+	
+	String sql3 ="select * from threephase where dpid="+dpid;
+	resultSet3 = statement3.executeQuery(sql3);
+	while(resultSet3.next())
+	{
+		%>    <form action="savephase3.jsp" method="post" class="myform">
+		      	<div>
+		      	<h1 style="color: red;">Three Phase</h1>
+		      	<h4>Slot 1</h4>
+		    	    <div class="form-group">
+		             <label for="exampleInputPassword1">On Time::</label>
+		             <input class="form-control" id="p_assword" name="on_time" value="<%=dtf.format(now)%>" type="text" required/>
+		         </div>
+		    	     
+		    	     <div class="form-group">
+		             <label for="exampleInputPassword1">Off Time::</label>
+		             <input class="form-control" id="p_assword" name="off_time" value="<%=dtf.format(now)%>" type="text" required/>
+		         </div>
+		    	      <input type="hidden" name="dpid" value="<%=dpid%>">
+		    	        
+		    	     
+		    	         
+			        <button class="btn btn-primary" type="submit"  style="margin-left: 30%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
+					   <div id = "confirm">
+				       
+		    	  </div>
+		    	<div>
+		      	<h3>Current Saved Time</h3>
+		    	    <div class="form-group">
+		             <label for="exampleInputPassword1">On Time::</label>
+		             <input class="form-control" id="p_assword" value="<%=resultSet3.getString("on_time")%>" type="text" disabled/>
+		         </div>
+		    	     
+		    	     <div class="form-group">
+		             <label for="exampleInputPassword1">Off Time::</label>
+		             <input class="form-control" id="p_assword" value="<%=resultSet3.getString("off_time")%>" type="text" disabled/>
+		         </div>
+		    </div>
+		    	 <input type="hidden" name="dpid" value="<%=dpid%>">
+		    	        
+		    </form>
+		    <form action="savephase3_slot2.jsp" method="post" class="myform" style="margin-top: -5px;">
+		      	<div>     
+		    	   	<h4>Slot 2</h4>
+		    	    <div class="form-group">
+		             <label for="exampleInputPassword1">On Time::</label>
+		             <input class="form-control"  name="on_time2" value="<%=dtf.format(now)%>" type="text" required/>
+		         </div>
+		    	     
+		    	     <div class="form-group">
+		             <label for="exampleInputPassword1">Off Time::</label>
+		             <input class="form-control"  name="off_time2" value="<%=dtf.format(now)%>" type="text" required/>
+		         </div>
+		    	      <input type="hidden" name="dpid" value="<%=dpid%>">
+		    	        
+		    	     
+		    	         
+			        <button class="btn btn-primary" type="submit"  style="margin-left: 30%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
+					   
+		    	<div style="line-height: 5px;">
+		      	<h3>Current Saved Time</h3>
+		    	    <div class="form-group">
+		             <label for="exampleInputPassword1">On Time::</label>
+		             <input class="form-control"  value="<%=resultSet3.getString("on_time2")%>" type="text" disabled/>
+		         </div>
+		    	     
+		    	     <div class="form-group">
+		             <label for="exampleInputPassword1">Off Time::</label>
+		             <input class="form-control" value="<%=resultSet3.getString("off_time2")%>" type="text" disabled/>
+		         </div> 
+		    </div>
+		    	 <input type="hidden" name="dpid" value="<%=dpid%>">
+		    	        
+		    </form>	     
+ <%
+}
+%>
+<% 
+}
+}
+
+connection.close();
+} catch (Exception e) {
 e.printStackTrace();
+}
+}
+else
+{
+	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	rd.forward(request, response);
 }
 			
 %>

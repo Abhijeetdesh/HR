@@ -112,6 +112,8 @@ tr:hover {background-color:#f5f5f5;}
 
  %>
  <%
+ if(dpid1!= null)
+	{
  try{
  connection = DriverManager.getConnection(Url,Username,password);
  statement=connection.createStatement();
@@ -152,7 +154,7 @@ tr:hover {background-color:#f5f5f5;}
               <th>DPID</th>
               <th>DP_No</th>
               <th>Address</th>
-              <th>Phase</th>  
+              
              <th>Details</th>     
             </tr>
         </thead>
@@ -170,7 +172,7 @@ tr:hover {background-color:#f5f5f5;}
                   <td><%=rs.getString("dpid")%></td>
                   <td><%= rs.getString("dp_number") %></td>
                   <td><%= rs.getString("address") %></td>
-                  <td><%= rs.getString("phase") %></td>
+                 
                   <td><a href="user_dpdetails.jsp?dpid=<%=rs.getString("dpid")%>">Details</a></td>
              </tr>
           
@@ -184,6 +186,12 @@ connection.close();
 } 
 catch (Exception e) {
 e.printStackTrace();
+}
+}
+else
+{
+	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	rd.forward(request, response);
 }
 %>
         

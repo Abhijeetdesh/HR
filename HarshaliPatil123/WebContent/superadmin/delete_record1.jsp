@@ -77,10 +77,11 @@ Statement statement = null;
 ResultSet resultSet = null;
 %>
 <%
+if (dpid!= null) {
 try{
 connection = DriverManager.getConnection(Url,Username,password);
 statement=connection.createStatement();
-String sql ="select * from dp_info where dpid="+dpid;
+String sql ="select * from dp_info where dpid='"+dpid+"'";
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
@@ -94,7 +95,7 @@ while(resultSet.next()){
   <div class="form-group">
     <label for="exampleInputPassword1">DP ID</label>
     <input type="text" class="form-control" id="exampleInputPassword1" name="dpid1" value="<%=resultSet.getString("dpid") %>" disabled="disabled">
-    <input type="hidden" class="form-control" id="exampleInputPassword1" name="dpid" value="<%=resultSet.getString("dpid") %>" >
+     <input type="hidden" class="form-control" id="exampleInputPassword1" name="dpid" value="<%=resultSet.getString("dpid") %>" >  
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">DP Number</label>
@@ -108,13 +109,7 @@ while(resultSet.next()){
     <label for="exampleInputPassword1">Phone</label>
     <input type="text" class="form-control" id="exampleInputPassword1" name="phone" value="<%=resultSet.getString("phone") %>" disabled="disabled">
   </div>
-   <div class="form-group">
-    <label for="exampleInputPassword1">Phase</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" name="phase1" value="<%=resultSet.getString("phase") %>" disabled="disabled">
-        <input type="hidden" class="form-control" id="exampleInputPassword1" name="phase" value="<%=resultSet.getString("phase") %>" >
-    
-  </div>
- 
+   
    <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 30%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Delete</button>
 		   <div id = "confirm">
 	         <div class = "message">Do you Want Delete?</div>
@@ -129,7 +124,12 @@ connection.close();
 } catch (Exception e) {
 e.printStackTrace();
 }
-			
+}
+else
+{
+	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	rd.forward(request, response);
+}			
 %>      
 
  </div>      

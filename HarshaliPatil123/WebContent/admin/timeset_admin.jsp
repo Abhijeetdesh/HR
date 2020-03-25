@@ -31,6 +31,10 @@
       
      
           <li>
+          <% String aphone=request.getParameter("admin_phone");
+          if(aphone!=null){
+        	  %>
+        
               <a href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
           </li>
            <li>
@@ -53,6 +57,11 @@
            <li>
             <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
           </li>
+          <% }
+          else{
+        	  RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+		    	rd.forward(request, response);
+          }%>
       </ul>  
       </nav>
     
@@ -87,7 +96,7 @@
               <th>DP_No</th>
               <th>Address</th>
               <th>Phone</th>
-              <th>Phase</th>
+            
            
               <th>Set Time</th>
           	</tr>
@@ -116,9 +125,11 @@
        %><%@include file="db.jsp" %>
         
         <%
-           
-           Connection con=DriverManager.getConnection(Url,Username,password);
-           String aphone=request.getParameter("admin_phone");
+       
+           if(aphone != null)
+           {
+        Connection con=DriverManager.getConnection(Url,Username,password);
+          
            System.out.println(aphone);
            PreparedStatement ps=con.prepareStatement("select * from dp_info where admin_phone='"+aphone+"'");
            ResultSet rs=ps.executeQuery();
@@ -131,12 +142,17 @@
          <td><%= rs.getString("dp_number") %></td>
          <td><%= rs.getString("address") %></td>
          <td><%= rs.getString("phone") %></td>
-         <td><%= rs.getString("phase") %></td>
+         
        
-        <td><a href="settimeoneadmin123.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=rs.getString("admin_phone")%>">Set</a></td>
+        <td><a href="SetTimeOne_admin.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=rs.getString("admin_phone")%>">Set</a></td>
      </tr>
       <%
           }
+           }
+           else{
+        	   RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+		    	rd.forward(request, response);
+           }
       %>
     </tbody>
 

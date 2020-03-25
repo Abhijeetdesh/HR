@@ -71,7 +71,7 @@
               
              <%
 String sr_no = request.getParameter("sr_no");
-
+String admin_phone=request.getParameter("admin_phone");
 int personID=Integer.parseInt(sr_no);
 
 Connection connection = null;
@@ -84,6 +84,7 @@ connection = DriverManager.getConnection(Url,Username,password);
 statement=connection.createStatement();
 String sql ="select * from admin_notification where sr_no="+personID;
 resultSet = statement.executeQuery(sql);
+if(sr_no !=null){
 while(resultSet.next()){
 %>
 			<div class="my" >		
@@ -92,7 +93,9 @@ while(resultSet.next()){
 						
 				   <div class="form-group">
                     <label for="exampleInputEmail1">Sr No::</label>
-                    <input class="form-control" name="sr_no" type="text" value="<%=resultSet.getString("sr_no") %>" required/>
+                    <input class="form-control" name="sr_no" type="text" value="<%=resultSet.getString("sr_no") %>" required disabled="disabled"/>
+                     <input class="form-control" name="sr_no1" type="hidden" value="<%=resultSet.getString("sr_no") %>" required />
+                    <input class="form-control" name="admin_phone" type="hidden" value="<%=request.getParameter("admin_phone") %>"/>
                    </div>
              
                  <div class="form-group">
@@ -122,6 +125,11 @@ while(resultSet.next()){
  <%
    }
      connection.close();
+}
+else{
+	RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+admin_phone);
+ 	rd.include(request, response);
+} 
 } 
 catch (Exception e) {
 e.printStackTrace();

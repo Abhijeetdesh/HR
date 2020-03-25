@@ -65,9 +65,7 @@
 		           
 		          </div>
 		        </nav>
-   	<div class=" pull-right" style="margin-top:5px;">
-    <input class="btn btn-outline-primary" type=button onClick="location.href='admin_info.jsp'" value='Back'>
-    </div> 
+    
     
       <div class="my" >
           <form  name="form1" action="admin_registration_two.jsp" method="post" onsubmit="return validation()">

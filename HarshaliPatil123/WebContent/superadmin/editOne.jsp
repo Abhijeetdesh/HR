@@ -79,10 +79,11 @@ ResultSet resultSet = null;
 %>
   <%@include file="db.jsp" %>
 <%
+if (dpid!= null) {
 try{
 connection = DriverManager.getConnection(Url,Username,password);
 statement=connection.createStatement();
-String sql ="select * from dp_info where dpid="+dpid;
+String sql ="select * from dp_info where dpid='"+dpid+"'";
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
@@ -96,7 +97,7 @@ while(resultSet.next()){
   <div class="form-group">
     <label for="exampleInputPassword1">DP ID</label>
     <input type="text" class="form-control" id="exampleInputPassword1" name="dpid" onkeyup="checkExist()" value="<%=resultSet.getString("dpid") %>" disabled="disabled" >
-    <input type="hidden" class="form-control" id="exampleInputPassword1" name="dpid1" value="<%=resultSet.getString("dpid") %>" >
+     <input type="hidden" class="form-control" id="exampleInputPassword1" name="dpid1" value="<%=resultSet.getString("dpid") %>" > 
     <span id=isE></span>
   </div>
   <div class="form-group">
@@ -112,10 +113,28 @@ while(resultSet.next()){
     <input type="text" class="form-control" id="exampleInputPassword1" name="phone" onkeyup="checkExist1()" value="<%=resultSet.getString("phone") %>">
     <span id=isEF></span>
   </div>
-   <div class="form-group">
-    <label for="exampleInputPassword1">Phase</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" name="phase" value="<%=resultSet.getString("phase") %>" >
-  </div>
+  
+    <div class="form-group">
+                    <label for="exampleInputPassword1">R_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">R_Max</label>
+                   <input type="text" class="form-control" name="r_max" value="<%=resultSet.getString("r_max")%>" required />
+                   <label for="exampleInputPassword1">R_Min</label>
+                    <input type="text" class="form-control" name="r_min" value="<%=resultSet.getString("r_min")%>" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Y_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">Y_Max</label>
+                    <input type="text" class="form-control" name="y_max" value="<%=resultSet.getString("y_max")%>"required >
+                    <label for="exampleInputPassword1">Y_Min</label>
+                    <input type="text" class="form-control" name="y_min" value="<%=resultSet.getString("y_min")%>" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">B_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">B_Max</label>
+                    <input type="text" class="form-control" name="b_max" value="<%=resultSet.getString("b_max")%>" required >
+                    <label for="exampleInputPassword1">B_Min</label>
+                   <input type="text" class="form-control" name="b_min" value="<%=resultSet.getString("b_min")%>"required>
+                  </div>
  
    <button class="btn btn-primary" type="button"  onclick = "functionAlert();" style="margin-left: 30%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
 		   <div id = "confirm">
@@ -131,7 +150,12 @@ connection.close();
 } catch (Exception e) {
 e.printStackTrace();
 }
-			
+}
+else
+{
+	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	rd.forward(request, response);
+}
 %>      
 
  		</div>      

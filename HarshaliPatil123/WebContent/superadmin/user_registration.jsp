@@ -23,8 +23,7 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/style2.css">
     <link rel="stylesheet" href="../css/jquery.multiselect.css">
-     <link rel="stylesheet" href="../css1/style.css">
-       <link rel="stylesheet" href="../css1/chosen.css">
+   
 </head>
 <body >
 
@@ -46,10 +45,10 @@
           </li>
           <li>
           <li>
-            <a class="active" href="admin_info.jsp"><span class="fa fa-users"></span> Admin Manager</a>
+            <a href="admin_info.jsp"><span class="fa fa-users"></span> Admin Manager</a>
           </li>
           <li>
-            <a  href="user_info.jsp"><span class="fa fa-users"></span> User Manager</a>
+            <a class="active" href="user_info.jsp"><span class="fa fa-users"></span> User Manager</a>
           </li>
           <li>
             <a href="admin_notification_info.jsp"><span class="fa fa-bell"></span> Admin Notifications</a>
@@ -77,10 +76,6 @@
 		          </div>
 		        </nav>
     
-    <div class=" pull-right" style="margin-top:5px;">
-   			
-		          <input class="btn btn-outline-primary" type=button onClick="location.href='admin_info.jsp'" value='Back'>
-		      </div>
     
     <div class="my" style="margin-top: -32px;">
           <form  name="form1" action="user_registration_two.jsp" method="post" onsubmit="return validation()">
@@ -92,8 +87,12 @@
 					
 					<div class="form-group">
                     <label for="exampleInputPassword1">Email::</label>
+<<<<<<< HEAD
                     <input class="form-control" id="e_mail" name="user_email" type="text" onkeyup="checkExist5()" required placeholder="Email"/>
                    
+=======
+                    <input class="form-control" id="e_mail" name="user_email" type="text" onkeyup="checkExist5()" required/>
+>>>>>>> e3e163372e34fa71e52e63a735d7e7c9cb980f8c
                     <span id=isE4></span>
                 	</div>
                 	
@@ -116,6 +115,7 @@
 		           <input type="checkbox" onclick="myFunction()"><b>Show Password</b>
 		           </div>
 		            <%@include file="db.jsp" %>
+<<<<<<< HEAD
 		            
 		            <div class="form-group">
 		              <label for="exampleInputPassword1">Dp Id::</label><br>
@@ -127,9 +127,19 @@
 		           PreparedStatement ps=con.prepareStatement("select dpid from dp_info");
 			       rs=ps.executeQuery();
                  %>
+=======
+<%
+ResultSet rs=null;
+   try{
+	  
+			Connection con=DriverManager.getConnection(Url,Username,password);
+			
+			PreparedStatement ps=con.prepareStatement("select dpid from dp_info");
+			 rs=ps.executeQuery();
+%>
+>>>>>>> e3e163372e34fa71e52e63a735d7e7c9cb980f8c
 
-                 <select data-placeholder="Choose DP ID" class="chosen-select"  multiple tabindex="10"  name="id[]">
-            
+<select  name="langOpt2[]" multiple id="langOpt2">
 <% while(rs.next())
 {
 %>
@@ -139,18 +149,27 @@
 %>
 </select>
 
-</div>
- <script src="../js1/chosen.jquery.min.js"></script>
-  <script src="../js1/init.js"></script>
-   <script src="../js1/jquery-3.2.1.min.js"></script>
-    <script src="../js1/prism.js"></script>
-               <%
-                }
-                catch(Exception e)
-                {
-                 out.println("wrong entry"+e);
-                }
-               %> 
+<script src="js/jquery.min.js"></script>
+
+<script src="../js/jquery.multiselect.js"></script>
+<script>
+
+
+$('#langOpt2').multiselect({
+    columns: 1,
+    placeholder: 'Select DPID',
+    search: true
+});
+
+</script>
+
+<%
+}
+catch(Exception e)
+{
+out.println("wrong entry"+e);
+}
+%> 
   <br>         
            <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 30%;margin-top: -30px;"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
 		   <div id = "confirm">
@@ -164,14 +183,27 @@
 </div>
 
      <% String message = (String)request.getAttribute("alertMsg");
-       if(message !=null){
+     String message1 = (String)request.getAttribute("alertmsg");
+       if(message !=null ){
     %>
      
      <script type="text/javascript">
     var msg = "<%=message%>";
     alert(msg);
+   
 </script>
-   <%} %>
+   <%}
+       if(message1 !=null ){
+    	    %>
+    	     
+    	     <script type="text/javascript">
+    	   
+    	    var msg1 = "<%=message1%>";
+    	    alert(msg1);
+    	</script>
+    	   <%}
+    	       %>
+       
     
    
      <script> 

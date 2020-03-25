@@ -69,31 +69,52 @@
       
 			 
 			<%
-			String dpid = request.getParameter("dpid");
-			String admin_phone=request.getParameter("admin_phone");
+			String dpid  = request.getParameter("dpid"); 
+			
+		String aphone=request.getParameter("admin_phone");
 			if(dpid!= null)
 			{
+				
 			Connection con = null;
 			PreparedStatement ps = null;
-			int personID = Integer.parseInt(dpid);
+			
 			try
 			{
 			
 			con = DriverManager.getConnection(Url,Username,password);
-			String sql="delete from dp_info where dpid="+personID;
+			String sql="delete from dp_info where dpid='"+dpid+"'";
 			ps = con.prepareStatement(sql);
 			
 			 
 			int i = ps.executeUpdate();
 			if(i > 0)
 			{
-			 RequestDispatcher rd=request.getRequestDispatcher("dptable_admin.jsp");
+				RequestDispatcher rd=request.getRequestDispatcher("dptable_admin.jsp?admin_phone="+aphone);
    			 rd.forward(request, response);
 			}
 			else
 			{
-			out.print("There is a problem in updating Record.");
+				 RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+aphone);
+				 	rd.include(request, response);
 			}
+
+			String sql1="delete from onephase where dpid='"+dpid+"'";
+			PreparedStatement ps1 = con.prepareStatement(sql1);
+			
+				
+				 
+				int j = ps1.executeUpdate();
+				if(j > 0)
+				{
+					System.out.println("Record deleted from onephase");
+				}
+				else
+				{
+					 RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+aphone);
+					 	rd.include(request, response);
+				}
+				
+			
 			}
 			catch(SQLException sql)
 			{
@@ -101,6 +122,12 @@
 			out.println(sql);
 			}
 			}
+			else
+			{
+				 RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+aphone);
+				 	rd.include(request, response);
+			}
+			
 			%>
     </div>
     </div>

@@ -80,30 +80,39 @@
  <div>
 	
 		<%
-			int sr_no=Integer.parseInt(request.getParameter("sr_no"));
+			//int sr_no=Integer.parseInt(request.getParameter("sr_no"));
 			String notification=request.getParameter("notification");
 			String time=request.getParameter("time");
 			
-			
+			if(notification==null)
+			{
+				   request.setAttribute("alertMsg", "Add Notification");
+				   	RequestDispatcher rd=request.getRequestDispatcher("user_notification_form.jsp");  
+				   	rd.include(request, response);
+			}
+			else
+			{
 			try
 			{
 			
 			Connection conn = DriverManager.getConnection(Url,Username,password);
 			Statement st=conn.createStatement();
 			
-			int i=st.executeUpdate("insert into user_notification(sr_no,notification,time)values('"+sr_no+"','"+notification+"','"+time+"')");
+			int i=st.executeUpdate("insert into user_notification(notification,time)values('"+notification+"','"+time+"')");
              if(i>0){
 			 RequestDispatcher rd=request.getRequestDispatcher("user_notification_info.jsp");
 			 rd.forward(request, response);	
              }
              else{
-            	 out.print("error while adding user notification...");
+            	 RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+ 		    	rd.forward(request, response);
              }
 			}
 			catch(Exception e)
 			{
 			System.out.print(e);
 			e.printStackTrace();
+			}
 			}
 			%>
 			

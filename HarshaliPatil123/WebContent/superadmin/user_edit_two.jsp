@@ -85,7 +85,7 @@ String uemail=request.getParameter("user_email");
 String uphone=request.getParameter("user_phone");
 String uphone1=request.getParameter("user_phone1");
 String upassword=request.getParameter("user_password");
-String dpid[]= request.getParameterValues("id[]");
+String dpid[]= request.getParameterValues("langOpt2[]");
 
 //int personID = Integer.parseInt(adminephonenumber);
 Connection con=null;
@@ -100,7 +100,15 @@ final String secretKey = "ssshhhhhhhhhhh!!!!";
 String originalString = upassword;
 String encryptedString = AES.encrypt(originalString, secretKey) ;
 String decryptedString = AES.decrypt(encryptedString, secretKey) ;
-
+if (dpid==null) {
+	 
+	   request.setAttribute("alertMsg", "Atleast select previous dpid");
+	RequestDispatcher rd=request.getRequestDispatcher("user_edit.jsp");  
+	rd.include(request, response);
+	
+} 
+else{
+if (uphone!= null) {
 try {
 	
 	 con=DriverManager.getConnection(Url,Username,password);
@@ -113,8 +121,7 @@ try {
            ps.setString(2, uemail);
            ps.setString(3, uphone);
            ps.setString(4, encryptedString);
-           
-            List<String> list=new ArrayList<String>();
+           List<String> list=new ArrayList<String>();
 			for(int loopIndex = 0; loopIndex < dpid.length; loopIndex++){
 	            System.out.println(dpid[loopIndex] + "<BR>");
 	            list.add(dpid[loopIndex]);
@@ -141,14 +148,21 @@ try {
 		 }
            else
            {
-        	   System.out.println("Ooop's Record not Update Successfully");	 	
+        	   RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+		    	rd.forward(request, response);	 	
            }   
      }
 
 catch (Exception e) {
 	e.printStackTrace();
 }
-
+}
+else
+{
+	RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+	rd.forward(request, response);
+}
+}
 
 %>
 </body>

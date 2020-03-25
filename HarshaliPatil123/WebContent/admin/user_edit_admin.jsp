@@ -23,9 +23,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/style2.css">
-
-     <link rel="stylesheet" href="../css1/style.css">
-       <link rel="stylesheet" href="../css1/chosen.css">
+    <link rel="stylesheet" href="../css/jquery.multiselect.css">
     
 </head>
 <body >
@@ -34,7 +32,8 @@
 					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
                 <ul class="list-unstyled components mb-5">
       
-     
+     <%String aphone=request.getParameter("admin_phone");
+     if(aphone !=null){%>
           <li>
               <a href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
           </li>
@@ -58,6 +57,11 @@
            <li>
             <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
           </li>
+          <%}
+     else{
+    	 RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+    	 	rd.include(request, response);
+     }%>
       </ul>  
       </nav>
       
@@ -142,6 +146,7 @@ Statement statement = null;
 ResultSet resultSet = null;
 %>
 <%
+if(user_phone != null){
 try{
 connection = DriverManager.getConnection(Url,Username,password);
 statement=connection.createStatement();
@@ -192,8 +197,12 @@ while(resultSet.next()){
      <input class="form-control"  type="text" value="<%=resultSet.getString("dpid") %>" disabled>
   </div>
   
+<<<<<<< HEAD
   <div class="form-group">
    <label for="exampleInputEmail1"> Dp-Id::</label><br>
+=======
+  
+>>>>>>> e3e163372e34fa71e52e63a735d7e7c9cb980f8c
      <%
 ResultSet rs=null;
    try{
@@ -203,8 +212,8 @@ ResultSet rs=null;
 			PreparedStatement ps=con.prepareStatement("select dpid from dp_info");
 			 rs=ps.executeQuery();
 %>
- <select data-placeholder="Choose DP ID" class="chosen-select"  multiple tabindex="10"  name="id[]">
-            
+
+<select  name="langOpt2[]" multiple id="langOpt2" >
 <% while(rs.next())
 {
 %>
@@ -213,15 +222,6 @@ ResultSet rs=null;
 }
 %>
 </select>
-
-</div>
- <script src="../js1/chosen.jquery.min.js"></script>
-  <script src="../js1/init.js"></script>
-   <script src="../js1/jquery-3.2.1.min.js"></script>
-    <script src="../js1/prism.js"></script>
-
-
-
 
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.multiselect.js"></script>
@@ -232,7 +232,16 @@ ResultSet rs=null;
 	         <button type="submit"  class = "yes">OK</button>
 	         <button type="button" class="yes"  style="background: red">Cancel</button>
 	       </div>
+<script>
 
+
+$('#langOpt2').multiselect({
+    columns: 1,
+    placeholder: 'Select DPID',
+    search: true
+});
+
+</script>
 
 <%
        }
@@ -255,13 +264,28 @@ connection.close();
 } catch (Exception e) {
 e.printStackTrace();
 }
-			
+}
+else{
+	RequestDispatcher rd=request.getRequestDispatcher("error2.jsp?admin_phone="+aphone);
+ 	rd.include(request, response);
+}
 %>
        
       </div>       
   </div> 
 </div> 
-    
+  <% String message = (String)request.getAttribute("alertMsg");
+     
+       if(message !=null ){
+    %>
+     
+     <script type="text/javascript">
+    var msg = "<%=message%>";
+    alert(msg);
+   
+</script>
+   <%}
+   %>   
    <script>
          function functionAlert(msg, myYes) 
          {
