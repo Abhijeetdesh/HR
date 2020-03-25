@@ -9,6 +9,8 @@
 		<project>jstl-1.2</project>
 		<project>jsp-api</project>
 	</projects>
+	
+	
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
