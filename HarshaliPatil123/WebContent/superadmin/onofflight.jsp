@@ -23,22 +23,55 @@
 		
 			<link rel="stylesheet" href="../css/style2.css">
 <style type="text/css">
-	th,td{
-	width: 20%;
-	text-align: center;
 	
+	
+	
+	.bb{
+	width: 1%;
 	}
 	
 	.b1{
-	width: 9rem;
+	
 	font-weight: bold;
 	}
 	
 	.b2{
-	width: 9rem;
+	
 	font-weight: bold;
 	color: red;
 	}
+	
+	.a{
+	width: 5rem;
+	float: left;
+
+	
+	}
+	.b{
+	width: 5rem;
+	margin-left: 30px;
+	}
+	.c{
+	width: 5rem;
+	margin-left: 30px;
+	}
+.f{
+ margin-left: 45px; 
+
+}
+.d{
+margin-left: 66px;
+}
+	.e{
+	margin-left: 70px;
+	}
+	.im{
+	display: flex;
+	margin-left: -3rem;
+
+	}
+	
+	
 	</style>	
  </head>
 
@@ -84,7 +117,7 @@
         <!-- Page Content  -->
       <div id="content" >
 
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+       <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container-fluid">
 
             <button type="button" id="sidebarCollapse" class="btn btn-primary">
@@ -95,53 +128,83 @@
            
           </div>
         </nav>
-<<<<<<< HEAD
-        	 <div class=" pull-right" style="margin-top:5px;">
+	 <div class=" pull-right" style="margin-top:5px;">
    			<label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
 		          <input class="btn btn-outline-primary" type=button onClick="location.href='dptable.jsp'" value='Back'>
 	</div>	
-	   <div class="table " style="overflow:scroll; height: 540px;width:70%; margin-left: 15%; ">
-=======
-		
-	   <div class="table " style="overflow:scroll; height: 540px;width:50%; margin-left: 25%; ">
->>>>>>> e3e163372e34fa71e52e63a735d7e7c9cb980f8c
+	   <div class="table " style="overflow:scroll; height: 540px;width:80%; margin-left: 10%; ">
 		 	<table id="example"  class="display" style="table-layout: auto;width:100%;">
 	        <thead>
 		            <tr>
 		               <th>DPID</th>
-		               
+		               <th>DP_NO</th>
+		               <th>Phase</th> 
+		              
+		               <th class="bb">Light</th>
 		            </tr>
 		    </thead>
        <%@include file="db.jsp" %>
 		        <tbody>
-		                  <%
-		                  
-		                   String query="SELECT * FROM dp_info";
-		                 
-		                   Connection con=DriverManager.getConnection(Url,Username,password);
-		                    			
-		                   PreparedStatement ps=con.prepareStatement(query);
-		                   ResultSet rs=ps.executeQuery();
-		                   while(rs.next()){
-		                	 String dpid=rs.getString("dpid");  
-		                	  
+		         <%
+		            String query="SELECT * FROM dp_info";
+		            Connection con=DriverManager.getConnection(Url,Username,password);
+		            PreparedStatement ps=con.prepareStatement(query);
+		            ResultSet rs=ps.executeQuery();
+		            while(rs.next())
+		            {
+		            String dpid=rs.getString("dpid");  
+		            String phase=rs.getString("phase");
+		       	    int count=Integer.parseInt(phase);   
 		                %>
 				     <tr>
-<<<<<<< HEAD
 		                 <td><a class="btn btn-outline-primary b1"><%=rs.getString("dpid")%></a></td>
 		                <td><a class="btn btn-outline-primary b2" ><%=rs.getString("dp_number") %></a></td>
  		               <td><a class="btn btn-outline-primary b2" ><%=rs.getString("phase") %></a></td>
- 		              <td><a href="onoffdetail.jsp?dpid=<%=rs.getString("dpid") %>" class="btn btn-outline-primary b2" >set</a></td>
-=======
-		                 <td><a href="onoffdetail.jsp?dpid=<%=rs.getString("dpid")%>" class="btn btn-outline-primary b1">Device-<%=rs.getString("dpid")%></a></td>
-		               
->>>>>>> e3e163372e34fa71e52e63a735d7e7c9cb980f8c
+ 		               <td>
+ 		                <div class="im">
+ 		                 <img class="card-img-top a" src="../images/OFFbulb.jpg" alt="Card image cap"><br>
+ 		                 <img class="card-img-top b" src="../images/OFFbulb.jpg" alt="Card image cap">
+ 		                 <img class="card-img-top c" src="../images/OFFbulb.jpg" alt="Card image cap">
+ 		                </div>
+ 		                <%
+ 		               if(count==1)
+ 		      	       {
+ 		      	        Statement statement1 = null;
+ 		                ResultSet resultSet1 =null;
+ 		               try
+ 		      	       {
+ 		                 connection =DriverManager.getConnection(Url,Username,password);
+ 		      			 statement1=connection.createStatement();
+ 		      		     String sql1="SELECT * FROM onephase where dpid="+dpid;
+ 		      		     resultSet1=statement1.executeQuery(sql1);
+ 		      			 while(resultSet1.next())
+ 		      			{
+ 		      		       String onoff=resultSet1.getString("onoff");
+ 		                   String r_current=resultSet1.getString("r_current");
+ 		                   int curr=Integer.parseInt(r_current);
+ 		                   if(curr>=8 && curr<=12)
+ 		                   {			 
+ 		      			%>
+ 		                 <form action="" method="post">
+ 		                 <button type="submit"class="btn btn-primary f">R</button>
+ 		                 </form>
+ 		               
+ 		                  <form action="" method="post">
+ 		                  <button type="submit"class="btn btn-primary d">Y</button>
+ 		                  </form>
+ 		                
+ 		                <form action="" method="post">
+ 		                <button type="submit"class="btn btn-primary e">B</button>
+ 		               </form>
+ 		             </td>
  		               
 		            </tr>
 		               </tbody>
 		          <%
-		          }%>     		     
+		          }
+ 		      			
+		          %>     		     
 		</table>
 		
       </div> 

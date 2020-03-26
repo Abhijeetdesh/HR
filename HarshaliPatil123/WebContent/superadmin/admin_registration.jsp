@@ -72,29 +72,29 @@
           
               <div class="form-group">
               <label for="exampleInputPassword1">Name::</label>
-              <input class="form-control" id="u_name" name="admin_name" type="text" required/>
+              <input class="form-control" id="u_name" name="admin_name" type="text" placeholder="Name" required/>
               </div>
               
              <div class="form-group">
              <label for="exampleInputPassword1">Email::</label>
-             <input class="form-control" id="e_mail" name="admin_email" type="text" onkeyup="checkExist3()" required/>
+             <input class="form-control" id="e_mail" name="admin_email" type="text" placeholder="Email" onkeyup="checkExist3()" required/>
              <span id=isE2></span>
              </div>
               
              <div class="form-group">
              <label for="exampleInputPassword1">Mobile::</label>
-             <input class="form-control" id="p_phone" name="admin_phone" type="text" onkeyup="checkExist2()" required/>
+             <input class="form-control" id="p_phone" name="admin_phone" type="text" onkeyup="checkExist2()" placeholder="Mobile" required/>
              <span id=isE1></span>
              </div>
              
             <div class="form-group">
            <label for="exampleInputPassword1">Password::</label>
-           <input class="form-control" id="p_assword" name="admin_password" type="password" required/>
+           <input class="form-control" id="p_assword" name="admin_password" type="password" placeholder="Password" required/>
            </div>
        
            <div class="form-group">
            <label for="exampleInputPassword1"> Confirm Password::</label>
-           <input class="form-control" id="c_password" name="admin_password" type="password" required/>
+           <input class="form-control" id="c_password" name="admin_password" type="password" required placeholder="Confirm Password"/>
            <input type="checkbox" onclick="myFunction()"><b>Show Password</b>
           </div>
         

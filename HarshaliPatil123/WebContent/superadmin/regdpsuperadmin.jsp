@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,27 +70,27 @@
 						
 				   <div class="form-group">
                     <label for="exampleInputPassword1">Name::</label>
-                    <input type="text" class="form-control" name="name"  required/>
+                    <input type="text" class="form-control" name="name"  required placeholder="Name"/>
                    </div>
              
                  <div class="form-group">
                     <label for="exampleInputPassword1">DP id::</label>
-                    <input type="text" class="form-control" onkeyup="checkExist()" name="dpid">
+                    <input type="text" class="form-control" onkeyup="checkExist()" placeholder="Dp Id" name="dpid">
                     <span id=isE></span>
                   </div>
                   
                    <div class="form-group">
-                    <label for="exampleInputPassword1">DP_Number::</label>
-                    <input  type="text" class="form-control" name="dp_number">
+                    <label for="exampleInputPassword1">DP-Number::</label>
+                    <input  type="text" class="form-control" name="dp_number" placeholder="Dp Number">
                   </div>
                   
                    <div class="form-group">
                     <label for="exampleInputPassword1">Address::</label>
-                    <input type="text" class="form-control" name="address" >
+                    <input type="text" class="form-control" name="address" placeholder="Address" >
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Phone Number::</label>
-                    <input  type="text" class="form-control" onkeyup="checkExist1()" name="phone">
+                    <input  type="text" class="form-control" onkeyup="checkExist1()" name="phone" placeholder="Phone Number">
                     <span id=isEF></span>
                   </div>
                   
@@ -98,6 +99,10 @@
                  
                   
                <div class="form-group">
+<<<<<<< HEAD
+                    <label for="exampleInputPassword1">Phase::</label>
+                    <input type="text" class="form-control" name="phase" placeholder="Phase" >
+=======
                     <label for="exampleInputPassword1">R_Current Tolerance::</label><br>
                     <label for="exampleInputPassword1">R_Max</label>
                    <input type="text" class="form-control" name="r_max" required>
@@ -117,6 +122,7 @@
                     <input type="text" class="form-control" name="b_max" required >
                     <label for="exampleInputPassword1">B_Min</label>
                    <input type="text" class="form-control" name="b_min" required>
+>>>>>>> e3e163372e34fa71e52e63a735d7e7c9cb980f8c
                   </div>
               <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 30%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
 		   <div id = "confirm">

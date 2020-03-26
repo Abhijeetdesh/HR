@@ -3,11 +3,6 @@
 	<name>HarshaliPatil123</name>
 	<comment></comment>
 	<projects>
-		<project>servlet-api-6.0.36</project>
-		<project>javascript</project>
-		<project>mysql-connector-java-5.1.47</project>
-		<project>jstl-1.2</project>
-		<project>jsp-api</project>
 	</projects>
 	
 	

@@ -89,7 +89,7 @@
                    </div> -->
              
                  <div class="form-group">
-                    <label for="exampleInputPassword1"">Notification::</label>
+                    <label for="exampleInputPassword1">Notification::</label>
                     <textarea class="form-control" name="notification" type="text" cols="30" rows="5"></textarea>
                   </div>
                   

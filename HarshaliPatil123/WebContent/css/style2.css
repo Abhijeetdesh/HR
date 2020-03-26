@@ -8252,6 +8252,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', end
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
+  text-align: left;
  
  }
   #sidebar.active {
@@ -8364,10 +8365,10 @@ background: #400000;
 border-color: black;
 } */
 
-.btn.btn-primary:hover, .btn.btn-primary:focus {
+/* .btn.btn-primary:hover, .btn.btn-primary:focus {
     background: black !important;
     border-color: black !important; 
-}
+} */
 
 
  .footer-copyright{
@@ -8386,7 +8387,7 @@ border-color: black;
  .footer-copyright p a:hover{
      color: #004080;
 } 
-.table{
+/* .table{
 
 table-layout: auto;
 width:100%;
@@ -8411,7 +8412,7 @@ th, td {
   padding: 8px;
   text-align: left;
   color: black;
-/*   border-bottom: 1px solid #ddd; */
+  border-bottom: 1px solid #ddd;
 }
 th{
 
@@ -8421,7 +8422,7 @@ color: white;
 tr:hover {
 	background-color:#f5f5f5;
 }
-.myform{
+ */.myform{
 	
 	margin-top: 130px;
   margin-left:1%;

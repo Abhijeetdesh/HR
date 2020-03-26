@@ -66,27 +66,27 @@
 				<form name="form1" method="post" action="DataBaseConnection_admin.jsp">
 				  <div class="form-group">
                     <label class="col-form-label col-form-label-sm" for="inputSmall">Name::</label>
-                    <input class="form-control" name="name" type="text" required/>
+                    <input class="form-control" name="name" type="text" required placeholder="Name"/>
                    </div>
              
                  <div class="form-group">
-                    <label class="col-form-label col-form-label-sm" for="inputSmall">DP id::</label>
-                    <input class="form-control" name="dpid" type="text" onkeyup="checkExist()">
+                    <label class="col-form-label col-form-label-sm" for="inputSmall">DP Id::</label>
+                    <input class="form-control" name="dpid" type="text" onkeyup="checkExist()" placeholder="Dp-Id">
                      <span id="isE"></span>
                   </div>
                   
                    <div class="form-group">
-                    <label class="col-form-label col-form-label-sm" for="inputSmall">DP_Number::</label>
-                    <input class="form-control" name="dp_number" type="text">
+                    <label class="col-form-label col-form-label-sm" for="inputSmall">DP-Number::</label>
+                    <input class="form-control" name="dp_number" type="text" placeholder="Dp-Number">
                   </div>
                   
                    <div class="form-group">
                     <label class="col-form-label col-form-label-sm" for="inputSmall">Address::</label>
-                    <input class="form-control" name="address" type="text">
+                    <input class="form-control" name="address" type="text" placeholder="Address">
                   </div>
                   <div class="form-group">
                     <label class="col-form-label col-form-label-sm" for="inputSmall">Phone Number::</label>
-                    <input class="form-control" name="phone" type="text" onkeyup="checkExist1()">
+                    <input class="form-control" name="phone" type="text" onkeyup="checkExist1()" placeholder="Phone Number">
                     <span id="isEF"></span>
                   </div>
                   
@@ -103,6 +103,10 @@
                     <input type="text" class="form-control" name="r_min" required>
                   </div>
                   <div class="form-group">
+<<<<<<< HEAD
+                    <label class="col-form-label col-form-label-sm" for="inputSmall">Phase::</label>
+                    <input class="form-control" name="phase" type="text" placeholder="Phase">
+=======
                     <label for="exampleInputPassword1">Y_Current Tolerance::</label><br>
                     <label for="exampleInputPassword1">Y_Max</label>
                     <input type="text" class="form-control" name="y_max"required >
@@ -115,6 +119,7 @@
                     <input type="text" class="form-control" name="b_max" required >
                     <label for="exampleInputPassword1">B_Min</label>
                    <input type="text" class="form-control" name="b_min" required>
+>>>>>>> e3e163372e34fa71e52e63a735d7e7c9cb980f8c
                   </div>
                   
               

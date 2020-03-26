@@ -3,6 +3,8 @@
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes/" source-path="/ImportedClasses"/>
+<<<<<<< HEAD
+=======
         <dependent-module archiveName="servlet-api-6.0.36.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/servlet-api-6.0.36/servlet-api-6.0.36">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -18,6 +20,7 @@
         <dependent-module archiveName="jsp-api.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/jsp-api/jsp-api">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+>>>>>>> e3e163372e34fa71e52e63a735d7e7c9cb980f8c
         <property name="context-root" value="HarshaliPatil123"/>
         <property name="java-output-path" value="/HarshaliPatil123/build/classes"/>
     </wb-module>

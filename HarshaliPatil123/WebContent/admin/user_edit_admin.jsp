@@ -197,7 +197,12 @@ while(resultSet.next()){
      <input class="form-control"  type="text" value="<%=resultSet.getString("dpid") %>" disabled>
   </div>
   
+<<<<<<< HEAD
+  <div class="form-group">
+   <label for="exampleInputEmail1"> Dp-Id::</label><br>
+=======
   
+>>>>>>> e3e163372e34fa71e52e63a735d7e7c9cb980f8c
      <%
 ResultSet rs=null;
    try{

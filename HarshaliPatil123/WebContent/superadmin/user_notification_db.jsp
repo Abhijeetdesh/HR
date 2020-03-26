@@ -10,66 +10,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	    
-    <title>Resistration form by Aderate</title>
-    <meta charset="utf-8">
+	<title>Admin Manager</title>
+   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" type="text/css" href="../css/main.css">
+	<script src=https://code.jquery.com/jquery-3.3.1.js></script> 
+   
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		
+			<link rel="stylesheet" href="../css/style2.css">
 	
-    <style type="text/css">
-     table,th,td,tr
-     {
-     border:1px solid #777;
-     }
-     
-     #first-tr
-     {
-        background-color:black;
-        color: white;
-     }
-     
-       #second-tr
-     {
-        background-color:#ffece5;
-        color: black;
-     }
-    </style>
 </head>
 
-<body class="app sidebar-mini">
-<!-- 	only topdown scroll-->
- 			html {
- 				 overflow-y: scroll;
-				}
-   
-    <header class="app-header"><a class="app-header__logo" href="index.html">Aderate Solution</a>
-   
-    </header>
-    
-   
-    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-    <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="images\profoundlogo.png" alt="User Image">
-        <div>
-          <p class="app-sidebar__user-name">Super Admin</p>
-        </div>
-      </div>
-      
-       <div class="vertical-menu">
-      	
-     <ul class="list-unstyled components mb-5">
+<body>
+	<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar" class="active" >
+					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
+      <ul class="list-unstyled components mb-5">
           <li >
-            <a class="active" href="dashboard.jsp"><span class="fa fa-home"></span>DashBoard</a>
+            <a  href="dashboard.jsp"><span class="fa fa-home"></span>DashBoard</a>
           </li>
           <li>
               <a href="dptable.jsp"><span class="fa fa-sliders"></span>DP List</a>
@@ -85,7 +45,7 @@
             <a href="admin_info.jsp"><span class="fa fa-users"></span> Admin Manager</a>
           </li>
           <li>
-            <a href="user_info.jsp"><span class="fa fa-users"></span> User Manager</a>
+            <a class="active" href="user_info.jsp"><span class="fa fa-users"></span> User Manager</a>
           </li>
           <li>
             <a href="admin_notification_info.jsp"><span class="fa fa-bell"></span> Admin Notifications</a>
@@ -97,12 +57,24 @@
             <a href="logout.jsp"><span class="fa fa-power-off"></span>Logout</a>
           </li>
         </ul>
-      </div>
-    </aside>
-    <main class="app-content">
-      <div class="app-title">
        
-      </div>
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" >
+
+         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+              <i class="fa fa-bars"></i>
+              <span class="sr-only">Toggle Menu</span>
+            </button>
+            
+           
+          </div>
+        </nav>
+      
      <%@include file="db.jsp" %>
        <br><br><br><br>
  <div>
@@ -145,20 +117,8 @@
 			%>
 			
  </div>
-     
-           
-           </main>
-    
-    <!-- Essential javascripts for application to work-->
-    <script src="/resources/js/jquery-3.3.1.min.js"></script>
-    <script src="/resources/js/popper.min.js"></script>
-    <script src="/resources/js/bootstrap.min.js"></script>
-    <script src="/resources/js/main.js"></script>
-    <!-- The javascript plugin to display page loading on top-->
-    <script src="/resources/js/plugins/pace.min.js"></script>
-    <!-- Page specific javascripts-->
-    <script type="text/javascript" src="/resources/js/plugins/chart.js"></script>
- 
-    
+ </div>
+ </div>
+   
   </body>
 </html>

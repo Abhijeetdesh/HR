@@ -77,8 +77,8 @@ tr:hover {background-color:#f5f5f5;}
           <!-- Page Content  -->
       <div id="content" >
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
 
             <button type="button" id="sidebarCollapse" class="btn btn-primary">
               <i class="fa fa-bars"></i>
@@ -87,8 +87,7 @@ tr:hover {background-color:#f5f5f5;}
             
            
           </div>
-        </nav>
-      
+        </nav>      
       		<div class="pull-right" style="margin-right: 20px; margin-top: 20px;">
              <br>
              Unit :

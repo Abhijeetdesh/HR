@@ -57,8 +57,8 @@
         <!-- Page Content  -->
       <div id="content" >
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container">
+         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
 
             <button type="button" id="sidebarCollapse" class="btn btn-primary">
               <i class="fa fa-bars"></i>
@@ -67,7 +67,14 @@
             
            
           </div>
+<<<<<<< HEAD
+        </nav>
+ <div class=" pull-right" style="margin-top:5px;">
+    <input class="btn btn-outline-primary" type=button onClick="location.href='admin_notification_info.jsp'" value='Back'>
+    </div>        
+=======
         </nav> 
+>>>>>>> e3e163372e34fa71e52e63a735d7e7c9cb980f8c
         <%@include file="db.jsp" %>
  <%
 String sr_no = request.getParameter("sr_no");

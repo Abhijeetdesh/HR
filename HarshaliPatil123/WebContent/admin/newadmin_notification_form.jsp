@@ -81,14 +81,21 @@
            			
 				<form name="form1" method="post" action="newadmin_notification_db.jsp">
 						
+<<<<<<< HEAD
+				   <div class="form-group">
+                    <label for="exampleInputPassword1">Sr No::</label>
+                    <input class="form-control" name="sr_no" type="text" required placeholder="Sr-No"/>
+                   </div>
+=======
 				   <!-- <div class="form-group">
                     <label for="exampleInputPassword1">Sr_no::</label>
                     <input class="form-control" name="sr_no" type="text" required/>
                    </div> -->
+>>>>>>> e3e163372e34fa71e52e63a735d7e7c9cb980f8c
              
                    <div class="form-group">
-                    <label for="exampleInputPassword1">NotiFIcation::</label>
-                    <textarea class="form-control" name="notification" type="text" cols="30" rows="5"></textarea>
+                    <label for="exampleInputPassword1">Notification::</label>
+                    <textarea class="form-control" name="notification" type="text" cols="30" rows="5" placeholder="Notification"></textarea>
                   </div>
                   
                    <div class="form-group">

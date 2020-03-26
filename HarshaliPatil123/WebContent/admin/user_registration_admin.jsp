@@ -72,37 +72,42 @@
           
               		<div class="form-group">
                     <label for="exampleInputPassword1">Name::</label>
-                    <input class="form-control" id="u_name" name="user_name" type="text" required/>
+                    <input class="form-control" id="u_name" name="user_name" type="text" required placeholder="Name"/>
                		</div>
                		
                		<div class="form-group">
                     <label for="exampleInputPassword1">Email::</label>
-                    <input class="form-control" id="e_mail" name="user_email" type="text" onkeyup="checkExist5()" required/>
+                    <input class="form-control" id="e_mail" name="user_email" type="text" onkeyup="checkExist5()" required placeholder="Email"/>
                  	<span id=isE4></span>
                  	</div>
                  	
                  	<div class="form-group"> 
                     <label for="exampleInputPassword1">Mobile::</label>
-                    <input class="form-control" id="p_phone" name="user_phone" type="text"  onkeyup="checkExist4()" required/>
+                    <input class="form-control" id="p_phone" name="user_phone" type="text"  onkeyup="checkExist4()" required placeholder="Mobile"/>
             		 <span id=isE3></span>
             		</div>
             		
-            		<input class="form-control" id="p_phone" name="admin_phone" type="hidden" value="<%=request.getParameter("admin_phone")%>" required/>
+            		<input class="form-control" id="p_phone" name="admin_phone" type="hidden" value="<%=request.getParameter("admin_phone")%>" required placeholder=""/ >
                		
                		<div class="form-group">
 		           	<label for="exampleInputPassword1">Password::</label>
-		            <input class="form-control" id="p_assword" name="user_password" type="password" required/>
+		            <input class="form-control" id="p_assword" name="user_password" type="password" required placeholder="Password"/>
 		       		</div>
 		       		
 		        	<div class="form-group">
 		            <label for="exampleInputPassword1"> Confirm Password::</label>
-		            <input class="form-control" id="c_password" name="user_password" type="password" required/>
+		            <input class="form-control" id="c_password" name="user_password" type="password" required placeholder="Confirm-Password"/>
 		            
 		            
 		            <input type="checkbox" onclick="myFunction()"><b>Show Password</b>
 		            </div>
 		           <%@include file="db.jsp" %> 
+<<<<<<< HEAD
+		            <div class="form-group">
+		             <label for="exampleInputPassword1">Dp-Id</label><br>
+=======
 		            
+>>>>>>> e3e163372e34fa71e52e63a735d7e7c9cb980f8c
 <%
 ResultSet rs=null;
    try{

@@ -55,7 +55,7 @@ import="java.util.List"  %>
       <div id="content" >
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container">
+          <div class="container-fluid">
 
             <button type="button" id="sidebarCollapse" class="btn btn-primary">
               <i class="fa fa-bars"></i>
@@ -65,6 +65,7 @@ import="java.util.List"  %>
            
           </div>
         </nav>
+        
       
  			<div class=" pull-right" style="margin-top:5px;">
    			<label>Search</label>

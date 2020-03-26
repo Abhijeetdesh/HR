@@ -12,93 +12,62 @@
 <meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	    
-    <title>Resistration form by Aderate</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" type="text/css" href="../css/main.css">
-
+    <title>Edit DP Recored</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-    <style type="text/css">
-     table,th,td,tr
-     {
-     border:1px solid #777;
-     }
-     
-     #first-tr
-     {
-        background-color:black;
-        color: white;
-     }
-     
-       #second-tr
-     {
-        background-color:#ffece5;
-        color: black;
-     }
-    </style>
+    <link rel="stylesheet" href="../css/style2.css">
 </head>
 
-<body class="app sidebar-mini">
-<!-- 	only topdown scroll-->
- 			html {
- 				 overflow-y: scroll;
-				}
-    <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="index.html">Aderate Solution</a>
-      <!-- Navbar Right Menu-->
-    
-    </header>
-    
-       <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-    <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="images\profoundlogo.png" alt="User Image">
-        <div>
-          <p class="app-sidebar__user-name">Admin</p>
-        </div>
-      </div>
-      
-       <div class="vertical-menu">
-      	
-      <ul class="app-menu">
-      <li><a class="app-menu__item" href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">DP List</span></a>
-       </li>
-       
-        <li><a class="app-menu__item" href="timeset_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Time Manager</span></a>
-        </li>
-      
-         <li><a class="app-menu__item" href="admin_user_info1.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">User Manager</span></a>
-       </li>
-       
-       <li ><a class="app-menu__item" href="onoff_admin.jsp?admin_phone=<%=request.getParameter("admin_phone") %>" ><i class="app-menu__icon fa fa-history" ></i><span class="app-menu__label">ON/OFF</span></a>
-        </li>
-        
-        <li ><a class="app-menu__item" href="show_admin_notification.jsp?admin_phone=<%=request.getParameter("admin_phone")%>" ><i class="app-menu__icon fa fa-history" ></i><span class="app-menu__label">Show Notifications</span></a>
-         </li>
-        
-         <li ><a class="app-menu__item" href="newadmin_notification_info.jsp?admin_phone=<%=request.getParameter("admin_phone") %>" ><i class="app-menu__icon fa fa-history" ></i><span class="app-menu__label">Notifications</span></a>
-       </li>
-       
-       <li ><a class="app-menu__item" href="../homepage.jsp" ><i class="app-menu__icon fa fa-history" ></i><span class="app-menu__label">Logout</span></a>
-        </li>
-                 		            	
-       </ul>
-      </div>
-    </aside>
-    <main class="app-content">
-      <div class="app-title">
-       
-      </div>
-    
-       <br><br><br><br>
- <div>
+<body>
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar" class="active">
+					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="#"><span class="fa fa-home"></span> DashBoard</a>
+          </li>
+          <li>
+              <a href="dptable.jsp"><span class="fa fa-sliders"></span> DP List</a>
+          </li>
+           <li>
+              <a href="timeset.jsp"><span class="fa fa-clock-o"></span> Time Manager</a>
+          </li>
+          <li>
+          <li>
+            <a href="admin_info.jsp"><span class="fa fa-users"></span> Admin Manager</a>
+          </li>
+          <li>
+            <a href="user_info.jsp"><span class="fa fa-users"></span> User Manager</a>
+          </li>
+          <li>
+            <a href="admin_notification_info.jsp"><span class="fa fa-bell"></span> Admin Notifications</a>
+          </li>
+           <li>
+            <a href="user_notification_info.jsp"><span class="fa fa-bell"></span> User Notifications</a>
+          </li>
+           <li>
+            <a href="onoff.jsp"><span class="fa fa-toggle-on"></span>ON/OFF</a>
+          </li>
+           <li>
+         <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
+          </li>
+        </ul>
+		</nav>
+    	
+    	<div id="content" >
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+              <i class="fa fa-bars"></i>
+              <span class="sr-only">Toggle Menu</span>
+            </button>
+            
+           
+          </div>
+        </nav>
+		
  <%@include file="db.jsp" %>
 	
 		<%
@@ -139,7 +108,7 @@
  </div>
      
            
-           </main>
+         </div>
     
     
   </body>

@@ -18,6 +18,9 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		
 			<link rel="stylesheet" href="../css/style2.css">
+			<style type="text/css">
+			
+			</style>
 	
  </head>
 
@@ -62,7 +65,7 @@
       <div id="content" >
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container">
+          <div class="container-fluid">
 
             <button type="button" id="sidebarCollapse" class="btn btn-primary">
               <i class="fa fa-bars"></i>
@@ -112,9 +115,17 @@
                   <td><%= rs.getString("dp_number") %></td>
                   <td><%= rs.getString("address") %></td>
                  <td><%= rs.getString("admin_phone") %></td>
+<<<<<<< HEAD
+                  <td><a href="editOne.jsp?dpid=<%=rs.getString("dpid")%>">Edit
+</a></td>                
+                  <td><a href="delete_record1.jsp?dpid=<%=rs.getString("dpid")%>"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a></td>           
+                  <td><a href="dpdetails.jsp?dpid=<%=rs.getString("dpid")%>"><i class="fa fa-info-circle fa-2x" aria-hidden="true"></i>
+</a></td>
+=======
                   <td><a href="editOne.jsp?dpid=<%=rs.getString("dpid")%>>">Edit</a></td>                
                   <td><a href="delete_record1.jsp?dpid=<%=rs.getString("dpid")%>>">Delete</a></td>           
                   <td><a href="dpdetails.jsp?dpid=<%=rs.getString("dpid")%>">Details</a></td>
+>>>>>>> e3e163372e34fa71e52e63a735d7e7c9cb980f8c
                
                   
              </tr>

@@ -188,6 +188,11 @@ while(resultSet.next()){
 		    <label for="exampleInputPassword1"> Previous DP ID::</label>
 		     <input class="form-control" id="p_assword" name="dpid" type="text" value="<%=resultSet.getString("dpid")%>" disabled>
 		   </div>
+<<<<<<< HEAD
+		    <div class="form-group">
+		     <label for="exampleInputPassword1">Dp Id::</label><br>
+=======
+>>>>>>> e3e163372e34fa71e52e63a735d7e7c9cb980f8c
  <%
 ResultSet rs=null;
    try{
