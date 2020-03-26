@@ -105,6 +105,8 @@ System.out.println(dpid1);
 
 %>
 <%
+if(dpid1 != null)
+{
 try{
 connection = DriverManager.getConnection(Url,Username,password);
 statement=connection.createStatement();
@@ -175,6 +177,11 @@ idlist.retainAll(itemList);
 } 
 catch (Exception e) {
 e.printStackTrace();
+}
+}
+else{
+	RequestDispatcher rd =request.getRequestDispatcher("error.jsp");
+	rd.forward(request, response);
 }
 %>
         

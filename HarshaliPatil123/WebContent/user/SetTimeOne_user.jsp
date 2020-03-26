@@ -73,7 +73,7 @@ tr:hover {background-color:#f5f5f5;}
       rs1 = ps1.executeQuery(sql);
       if(rs1.next())
       {
-        
+       
 %>
       <li ><a  href="userdplist_user.jsp?dpid=<%=rs1.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-info-circle"></span>User Details</a>
            </li>
@@ -128,6 +128,8 @@ Statement statement = null;
 ResultSet resultSet = null;
 %>
 <%
+if(dpid != null)
+{
 try{
 connection = DriverManager.getConnection(Url,Username,password);
 statement=connection.createStatement();
@@ -350,7 +352,11 @@ connection.close();
 } catch (Exception e) {
 e.printStackTrace();
 }
-			
+}
+else{
+	RequestDispatcher rd =request.getRequestDispatcher("error.jsp");
+	rd.forward(request, response);
+}
 %>
 </div>
 </div>
