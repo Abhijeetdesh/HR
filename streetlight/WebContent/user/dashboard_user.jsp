@@ -16,24 +16,9 @@
          import="com.grocery.AES"
          import="com.grocery.Admin_RegisterController"
          %>
-            <%
- 
-response.setHeader("Cache-Control", "no-cache");
-    response.setHeader("Cache-Control", "no-store");
-    response.setHeader("Pragma", "no-cache");
-    response.setDateHeader("Expires",300);
-    int timeout = session.getMaxInactiveInterval();
-    response.setHeader("Reload", timeout + "; URL = ../user.jsp");%>
-
-<%String nme=(String) session.getAttribute("user_email");
-    if (nme != null ) {
-    	 
-    }else{
-    	response.sendRedirect("../user.jsp"); 
-    }%>
     <%@include file="db.jsp" %>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
   	<title>User DashBoard</title>
     <meta charset="utf-8">
@@ -44,54 +29,50 @@ response.setHeader("Cache-Control", "no-cache");
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="../css/style2.css">
 	   <link rel="stylesheet" href="../css/chart.css">
-		 <SCRIPT type="text/javascript">
-	window.history.forward();
-	browser.cache.offline.enable = false;
-	function noBack() { window.history.forward(); }
-</SCRIPT>
+		
   </head>
 
 
-<body onload="noBack();" 
-	onpageshow="if (event.persisted) noBack();" onunload="" >
- 
-		<div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar" class="active">
-					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
+<body >
+<div class="wrapper d-flex align-items-stretch">
+<nav id="sidebar" class="active">
+ <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
      			<ul class="list-unstyled components mb-5">
+    <%!String admin_phone=null; %> 			
    <%
    String dpid=null;
-    String admin_phone=request.getParameter("admin_phone");
-    System.out.println("***"+admin_phone);
+    String user_phone=request.getParameter("user_phone");
+    System.out.println("***"+user_phone);
     Connection con1= DriverManager.getConnection(Url, Username, password);
     Statement statement=null;ResultSet resultSet=null;
     PreparedStatement ps=null;
     ps=con1.prepareStatement("SELECT * FROM user");
-    String sql="Select * FROM user WHERE admin_phone="+admin_phone;
+    String sql="Select * FROM user WHERE user_phone="+user_phone;
     resultSet=ps.executeQuery(sql);
     while(resultSet.next())
     {
+    	admin_phone=resultSet.getString("admin_phone");
     	dpid=resultSet.getString("dpid");
     } 
 	System.out.println("###"+dpid);
 
     %>
-        <li ><a  class="active" class="app-menu__item" href="dashboard_user.jsp?admin_phone=<%=admin_phone%>"><span class="fa fa-info-circle"></span>Dashboard</a>
+        <li ><a  class="active" class="app-menu__item" href="dashboard_user.jsp?user_phone=<%=user_phone%>"><span class="fa fa-home"></span>Dashboard</a>
         </li>
        
-        <li ><a class="app-menu__item" href="userdplist_user.jsp?admin_phone=<%=admin_phone%>&dpid=<%=dpid%>"><span class="fa fa-info-circle"></span> User Details</a>
+        <li ><a class="app-menu__item" href="userdplist_user.jsp?admin_phone=<%=admin_phone%>&dpid=<%=dpid%>&user_phone=<%=user_phone%>"><span class="fa fa-info-circle"></span> User Details</a>
         </li>
          
-        <li><a class="app-menu__item" href="onoff_user.jsp?admin_phone=<%=admin_phone%>&dpid=<%=dpid%>"><span class="fa fa-toggle-on"></span>ON/OFF</a>
+        <li><a class="app-menu__item" href="onoff_user.jsp?admin_phone=<%=admin_phone%>&dpid=<%=dpid%>&user_phone=<%=user_phone%>"><span class="fa fa-toggle-on"></span>ON/OFF</a>
         </li>
          
-        <li ><a class="app-menu__item" href="timeset_user.jsp?admin_phone=<%=admin_phone%>&dpid=<%=dpid%>"><span class="fa fa-clock-o"></span>Time Manager</a>
+        <li ><a class="app-menu__item" href="timeset_user.jsp?admin_phone=<%=admin_phone%>&dpid=<%=dpid%>&user_phone=<%=user_phone%>"><span class="fa fa-clock-o"></span>Time Manager</a>
         </li>
         
-        <li ><a class="app-menu__item" href="show_user_notification.jsp?admin_phone=<%=admin_phone%>" ><span class="fa fa-bell"></span>Show Notifications</a>
+        <li ><a class="app-menu__item" href="show_user_notification.jsp?admin_phone=<%=admin_phone%>&user_phone=<%=user_phone%>" ><span class="fa fa-bell"></span>Show Notifications</a>
         </li> 
         
-       <li ><a class="app-menu__item" href="show_myuser_notification.jsp?admin_phone=<%=admin_phone%>" ><span class="fa fa-bell"></span>Show My Notifications</a>
+       <li ><a class="app-menu__item" href="show_myuser_notification.jsp?admin_phone=<%=admin_phone%>&user_phone=<%=user_phone%>" ><span class="fa fa-bell"></span>Show My Notifications</a>
         </li>  
          
          <li ><a class="app-menu__item" href="logout.jsp" ><span class="fa fa-power-off"></span>Logout</a>
@@ -108,11 +89,10 @@ response.setHeader("Cache-Control", "no-cache");
               <i class="fa fa-bars"></i>
               <span class="sr-only">Toggle Menu</span>
             </button>
-            
-           
-          </div>
+              <h5>Street Light Controller </h5>
+           </div>
         </nav>
-        
+   <div class="pad">     
  <%! String c1=null;%>
 <%! int v1=0; %>
 <% 
@@ -181,7 +161,7 @@ for(String n : idlist)
 </div>
 <p class="p-3">
 </p>
-
+</div>
 </div>
  </div>
          

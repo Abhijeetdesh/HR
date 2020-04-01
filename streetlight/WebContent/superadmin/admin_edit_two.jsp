@@ -13,13 +13,12 @@
          import="com.grocery.Admin_RegisterController"
          %>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
- <%@include file="sessioncache.jsp" %>
 <%!
 private static SecretKeySpec secretKey;
  private static byte[] key;
@@ -199,7 +198,6 @@ else
 String decryptedString = AES.decrypt(encryptedString, secretKey) ;
 	
 %>
- <script src="../js/main.js"></script>
      <%@include file="footer.jsp" %>
 
 </body>

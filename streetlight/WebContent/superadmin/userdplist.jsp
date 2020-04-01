@@ -8,7 +8,7 @@
     import="java.util.ArrayList"
 import="java.util.List"  %>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
 <meta charset="UTF-8">
 	<title>DP LIST</title>
@@ -32,22 +32,11 @@ import="java.util.List"  %>
   display: none;
 }
 
-tr:nth-child(even) {background-color: #F9E79F;}
-th, td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-th{
-background-color: #282C34;
-color: white;
-}
-tr:hover {background-color:#f5f5f5;}
+
 </style> 
  </head>
 
 <body>
- <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active" >
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -95,6 +84,7 @@ tr:hover {background-color:#f5f5f5;}
               <h5>Street Light Controller </h5>
          </div>
         </nav>
+      <div class="pad">  
         		<div class=" pull-right" style="margin-top:5px;">
    					<input class="btn btn-outline-primary" type=button onClick="location.href='user_info.jsp'" value='Back'>
 		        </div>
@@ -154,6 +144,7 @@ tr:hover {background-color:#f5f5f5;}
              <th>Details</th>     
             </tr>
         </thead>
+         <tbody>
         <%for (String n : idlist) {
                     
          Connection con=DriverManager.getConnection(Url,Username,password);
@@ -161,21 +152,24 @@ tr:hover {background-color:#f5f5f5;}
          ResultSet rs=ps.executeQuery();
         while(rs.next()){
 	     %>
-         <tbody>
+        
              
                <tr>
                   <td><%=rs.getString("name")%></td>
                   <td><%=rs.getString("dpid")%></td>
                   <td><%= rs.getString("dp_number") %></td>
                   <td><%= rs.getString("address") %></td>
-                  <td><a href="user_dpdetails.jsp?dpid=<%=rs.getString("dpid")%>">Details</a></td>
+                  <td><a href="user_dpdetails.jsp?dpid=<%=rs.getString("dpid")%>"><i class="fa fa-info-circle fa-2x" aria-hidden="true"></i></a></td>
              </tr>
           
-        </tbody>
+        
         
  <%
     }
   }
+        %>
+        </tbody>
+        <%
 }
 connection.close();
 } 
@@ -190,6 +184,7 @@ e.printStackTrace();
 %>
         
       </table>
+    </div>
     </div>
   </div>
 </div>

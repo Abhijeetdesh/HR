@@ -7,23 +7,9 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.*"%>
-   <%
- 
-response.setHeader("Cache-Control", "no-cache");
-    response.setHeader("Cache-Control", "no-store");
-    response.setHeader("Pragma", "no-cache");
-    response.setDateHeader("Expires",300);
-    int timeout = session.getMaxInactiveInterval();
-    response.setHeader("Reload", timeout + "; URL = ../user.jsp");%>
 
-<%String nme=(String) session.getAttribute("user_email");
-    if (nme != null ) {
-    	 
-    }else{
-    	response.sendRedirect("../user.jsp"); 
-    }%>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
 <meta charset="UTF-8">
 	<title>ERROR PAGE</title>
@@ -57,7 +43,7 @@ response.setHeader("Cache-Control", "no-cache");
  </head>
 
 <body>
-		 
+		
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar" class="active" >
 					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
@@ -84,7 +70,7 @@ response.setHeader("Cache-Control", "no-cache");
         </nav>
 		
 	  <div class=" pull-right" style="margin-top:5px;">
-   			<input class="btn btn-outline-primary" type=button onClick="location.href='../homepage.jsp'" value='Back'>
+   			<input class="btn btn-outline-primary" type=button onClick="location.href='../user.jsp'" value='Back'>
 		      </div>
 		      
 		      <center><h3><br>Oop's something wrong...Please try again</h3></center>

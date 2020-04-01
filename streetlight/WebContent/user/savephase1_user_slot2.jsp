@@ -1,23 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="java.sql.*" %>
-    <%
- 
-response.setHeader("Cache-Control", "no-cache");
-    response.setHeader("Cache-Control", "no-store");
-    response.setHeader("Pragma", "no-cache");
-    response.setDateHeader("Expires",300);
-    int timeout = session.getMaxInactiveInterval();
-    response.setHeader("Reload", timeout + "; URL = ../user.jsp");%>
-
-<%String nme=(String) session.getAttribute("user_email");
-    if (nme != null ) {
-    	 
-    }else{
-    	response.sendRedirect("../user.jsp"); 
-    }%>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
   	<title>User DashBoard</title>
     <meta charset="utf-8">
@@ -30,10 +15,9 @@ response.setHeader("Cache-Control", "no-cache");
 		
   </head>
 <body>
-
 <div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar" class="active" >
-				<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" >Aderate Solution</a>
+<nav id="sidebar" class="active" >
+ <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
        <%@include file="db.jsp" %>
 <%
     Connection con1=null;
@@ -58,7 +42,7 @@ response.setHeader("Cache-Control", "no-cache");
       	
       <ul class="list-unstyled components mb-5">
         
-      <li ><a  href="dashboard_user.jsp?admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-info-circle"></span>Dashboard</a>
+      <li ><a  href="dashboard_user.jsp?user_phone=<%=rs1.getString("user_phone")%>" ><span class="fa fa-home"></span>Dashboard</a>
        </li>
       
       <li ><a  href="userdplist_user.jsp?dpid=<%=rs1.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-info-circle"></span>User Details</a>
@@ -94,9 +78,10 @@ response.setHeader("Cache-Control", "no-cache");
               <i class="fa fa-bars"></i>
               <span class="sr-only">Toggle Menu</span>
             </button>
-            
-        </div>
+             <h5>Street Light Controller </h5>
+          </div>
         </nav>
+     <div class="pad">   
  <%
       
     }
@@ -150,7 +135,8 @@ else{
 	   RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
 		rd.include(request, response);
 } 
-%>    
+%>  
+</div>  
 </div>
 </div>
     

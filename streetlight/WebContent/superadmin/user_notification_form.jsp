@@ -10,7 +10,7 @@
     import ="java.time.format.DateTimeFormatter"
     import="java.time.LocalDateTime"  %>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
 <meta charset="UTF-8">
 
@@ -22,7 +22,6 @@
 </head>
 
 <body >
- <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active">
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -69,6 +68,7 @@
              <h5>Street Light Controller </h5>
 		  </div>
 		</nav>
+  <div class="pad">		
   <div class=" pull-right" style="margin-top:5px;">
     <input class="btn btn-outline-primary" type=button onClick="location.href='user_notification_info.jsp'" value='Back'>
     </div>   
@@ -76,35 +76,32 @@
  DateTimeFormatter dtf = DateTimeFormatter.ofPattern(" HH:mm:ss");
  LocalDateTime now = LocalDateTime.now();
 %>
-       <div class="my" >
            			
-				<form name="form1" method="post" action="user_notification_db.jsp">
+	<form name="form1" method="post" action="user_notification_db.jsp">
 						
-				 
-             
-                 <div class="form-group">
-                    <label for="exampleInputPassword1">Notification::</label>
-                    <textarea class="form-control" name="notification" type="text" cols="30" rows="5"></textarea>
-                  </div>
+	   <div class="form-group">
+       <label for="exampleInputPassword1">Notification::</label>
+       <textarea class="form-control" name="notification" type="text" cols="30" rows="5"></textarea>
+       </div>
                   
-                   <div class="form-group">
-                    <label class="col-form-label col-form-label-sm" for="inputSmall">Time::</label>
-                    <input class="form-control" name="time" type="text" value="<%=dtf.format(now)%>">
-                  </div>
+       <div class="form-group">
+       <label class="col-form-label col-form-label-sm" for="inputSmall">Time::</label>
+       <input class="form-control" name="time" type="text" value="<%=dtf.format(now)%>">
+       </div>
                   
-             <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 30%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
-				   <div id = "confirm">
-			         <div class = "message">Do you Want To Register</div>
-			         <button type="submit"  class = "yes">OK</button>
-			         <button type="button" class="yes"  style="background: red">Cancel</button>
-			       </div>             
-		  
-            <div class="tile-footer">
-		<button class="btn btn-secondary" onClick="location.href='user_notification_form.jsp' " ><i class="fa fa-fw fa-lg fa-times-circle"></i>Reset</button>
-            </div>
+      <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 27%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
+	  <div id = "confirm">
+	  <div class = "message">Do you Want To Register</div>
+	  <button type="submit"  class = "yes">OK</button>
+	  <button type="button" class="yes"  style="background: red">Cancel</button>
+	  </div>             
+		<br><br>  
+      <div class="tile-footer">
+	  <button class="btn btn-secondary" style="margin-left: 27.5%" onClick="location.href='user_notification_form.jsp' " ><i class="fa fa-fw fa-lg fa-times-circle"></i>Reset</button>
+      </div>
             
-            </form>
-         </div>
+       </form>
+       </div>
     </div>
 </div>
      <% String message = (String)request.getAttribute("alertMsg");

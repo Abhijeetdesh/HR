@@ -9,20 +9,7 @@
 <%@page import="java.sql.*"%>
 
 <!DOCTYPE html>
-<html oncontextmenu="return false">
-<%response.setHeader("Cache-Control", "no-cache");
-    response.setHeader("Cache-Control", "no-store");
-    response.setHeader("Pragma", "no-cache");
-    response.setDateHeader("Expires",300);
-    int timeout = session.getMaxInactiveInterval();
-    response.setHeader("Refresh", timeout + "; URL = ../admin.jsp");%>
-
-<%String u = (String) request.getSession().getAttribute("admin_email");
-    if (u != null ) {
-        
-    }else{
-        response.sendRedirect("../admin.jsp");
-    }%>
+<html>
 <head>
 <meta charset="UTF-8">
 	<title>ERROR PAGE</title>
@@ -56,7 +43,7 @@
  </head>
 
 <body>
-		 
+		
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar" class="active" >
 					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>

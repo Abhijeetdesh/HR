@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
 <meta charset="UTF-8">
 
@@ -11,9 +11,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/style2.css">
-</head>
+    
+  </head>
 <body>
- <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active">
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -61,17 +61,14 @@
               <h5>Street Light Controller </h5>
            </div>
         </nav>
-		
-			<div class=" pull-right" style="margin-top:5px;">
-   			
-		          <input class="btn btn-outline-primary" type=button onClick="location.href='dptable.jsp'" value='Back'>
-		      </div>
+    <div class="pad">			
+	<div class=" pull-right" style="margin-top:5px;">
+   	  <input class="btn btn-outline-primary" type=button onClick="location.href='dptable.jsp'" value='Back'>
+   </div>
 
 
 <%
 String dpid = request.getParameter("dpid");
-
-
 Connection connection = null;
 Statement statement = null;
 ResultSet resultSet = null;
@@ -86,13 +83,12 @@ String sql ="select * from dp_info where dpid='"+dpid+"'";
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
-<div class="my" >
-       <form name="form1" method="post" action="editTwo.jsp" class="my1">
+
+   <form  method="post" action="editTwo.jsp" >
   <div class="form-group">
     <label for="exampleInputEmail1">Name</label>
     <input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp" value="<%=resultSet.getString("name") %>" required/>
-    
-  </div>
+   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">DP ID</label>
     <input type="text" class="form-control" id="exampleInputPassword1" name="dpid" onkeyup="checkExist()" value="<%=resultSet.getString("dpid") %>" disabled="disabled" >
@@ -112,28 +108,39 @@ while(resultSet.next()){
     <input type="text" class="form-control" id="exampleInputPassword1" name="phone" onkeyup="checkExist1()" value="<%=resultSet.getString("phone") %>">
     <span id=isEF></span>
   </div>
+ <b class="l1">R-Current Tolerance</b><br>
+<div class="col form-inline">
+ 
+   <label >R-Max</label>
+  <input type="text"  name="r_max"  value="<%=resultSet.getString("r_max")%>">
   
-    <div class="form-group">
-                    <label for="exampleInputPassword1">R_Current Tolerance::</label><br>
-                    <label for="exampleInputPassword1">R_Max</label>
-                   <input type="text" class="form-control" name="r_max" value="<%=resultSet.getString("r_max")%>" required />
-                   <label for="exampleInputPassword1">R_Min</label>
-                    <input type="text" class="form-control" name="r_min" value="<%=resultSet.getString("r_min")%>" required />
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Y_Current Tolerance::</label><br>
-                    <label for="exampleInputPassword1">Y_Max</label>
-                    <input type="text" class="form-control" name="y_max" value="<%=resultSet.getString("y_max")%>"required >
-                    <label for="exampleInputPassword1">Y_Min</label>
-                    <input type="text" class="form-control" name="y_min" value="<%=resultSet.getString("y_min")%>" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">B_Current Tolerance::</label><br>
-                    <label for="exampleInputPassword1">B_Max</label>
-                    <input type="text" class="form-control" name="b_max" value="<%=resultSet.getString("b_max")%>" required >
-                    <label for="exampleInputPassword1">B_Min</label>
-                   <input type="text" class="form-control" name="b_min" value="<%=resultSet.getString("b_min")%>"required>
-                  </div>
+
+  <label  id="l2">R-Min</label>
+  <input type="text" name="r_min"  value="<%=resultSet.getString("r_min")%>">
+  </div>
+  
+   <b class="l1">Y-Current Tolerance</b><br>
+<div class="col form-inline">
+ 
+   <label >Y-Max</label>
+  <input type="text"  name="y_max"  value="<%=resultSet.getString("y_max")%>">
+  
+
+  <label  id="l2">Y-Min</label>
+  <input type="text"  name="y_min"  value="<%=resultSet.getString("y_min")%>">
+  </div>
+  
+   <b class="l1">B-Current Tolerance</b><br>
+<div class="col form-inline">
+ 
+   <label>B-Max</label>
+  <input type="text" name="b_max"  value="<%=resultSet.getString("b_max")%>">
+  
+
+  <label id="l2">B-Min</label>
+  <input type="text"  name="b_min"  value="<%=resultSet.getString("b_min")%>">
+  </div>
+  
  
    <button class="btn btn-primary" type="button"  onclick = "functionAlert();" style="margin-left: 30%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
 		   <div id = "confirm">
@@ -156,10 +163,9 @@ else
 	rd.forward(request, response);
 }
 %>
-
- 		</div>      
-	</div>
 </div>
+  </div> 
+ </div>		     
 
      <script>
          function functionAlert(msg, myYes) 
@@ -177,6 +183,7 @@ else
     <script src="../js/popper.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/main.js"></script>
+        
         <%@include file="footer.jsp" %>
 
   </body>

@@ -7,9 +7,8 @@
 <%@ page import="java.sql.*" 
     import="java.util.ArrayList"
 import="java.util.List"  %>
-<%@include file="sessioncacheuser.jsp" %>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
 <meta charset="UTF-8">
 	<title>DP LIST</title>
@@ -26,29 +25,28 @@ import="java.util.List"  %>
  </head>
 
 <body>
- 
 <%@include file="db.jsp" %>
     <div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar" class="active" >
-	<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>     
+ <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
 	   <ul class="list-unstyled components mb-5">
         
-        <li><a  href="dashboard_user.jsp?admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-info-circle"></span>Dashboard</a>
+        <li><a  href="dashboard_user.jsp?user_phone=<%=request.getParameter("user_phone")%>" ><span class="fa fa-home"></span>Dashboard</a>
         </li>
         
-        <li ><a class="active" href="userdplist_user.jsp?dpid=<%=request.getParameter("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-info-circle"></span>User Details</a>
+        <li ><a class="active" href="userdplist_user.jsp?dpid=<%=request.getParameter("dpid")%>&admin_phone=<%=request.getParameter("user_phone")%>&user_phone=<%=request.getParameter("user_phone") %>" ><span class="fa fa-info-circle"></span>User Details</a>
         </li>
         
-        <li ><a  href="onoff_user.jsp?dpid=<%=request.getParameter("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-toggle-on"></span>ON/OFF</a>
+        <li ><a  href="onoff_user.jsp?dpid=<%=request.getParameter("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>&user_phone=<%=request.getParameter("user_phone") %>" ><span class="fa fa-toggle-on"></span>ON/OFF</a>
         </li>
            
-        <li><a  href="timeset_user.jsp?dpid=<%=request.getParameter("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-clock-o"></span>Time Manager</a>
+        <li><a  href="timeset_user.jsp?dpid=<%=request.getParameter("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>&user_phone=<%=request.getParameter("user_phone") %>" ><span class="fa fa-clock-o"></span>Time Manager</a>
         </li>
         
-        <li ><a  href="show_user_notification.jsp?admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-bell"></span>Show Notifications</a>
+        <li ><a  href="show_user_notification.jsp?admin_phone=<%=request.getParameter("admin_phone")%>&user_phone=<%=request.getParameter("user_phone") %>" ><span class="fa fa-bell"></span>Show Notifications</a>
         </li> 
         
-       <li ><a  href="show_myuser_notification.jsp?admin_phone=<%=request.getParameter("admin_phone") %>" ><span class="fa fa-bell"></span>Show My Notifications</a>
+       <li ><a  href="show_myuser_notification.jsp?admin_phone=<%=request.getParameter("admin_phone")%>&user_phone=<%=request.getParameter("user_phone") %>" ><span class="fa fa-bell"></span>Show My Notifications</a>
         </li>      
             
         <li ><a  href="logout.jsp" ><span class="fa fa-power-off"></span>Logout</a>
@@ -66,41 +64,19 @@ import="java.util.List"  %>
               <i class="fa fa-bars"></i>
               <span class="sr-only">Toggle Menu</span>
             </button>
-            
-           
-          </div>
+              <h5>Street Light Controller </h5>
+         </div>
         </nav>
         
      
-   
+   <div class="pad">
   	 <div class=" pull-right" style="margin-top:5px;">
    			<label>Search</label>
-		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp;       
-	</div> 
+		     <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp;  
+   	        <input class="btn btn-outline-primary" type=button onClick="location.href='dashboard_user.jsp?user_phone=<%=request.getParameter("user_phone") %>'" value='Back'>
+   	</div> 
        		
       	
-<%-- <%
-       /***** Post Parameters From The Request *****/
-       String param1 = request.getParameter("dpid");
-       if (param1 != null && !param1.equals("")) {
-
-           int timeout =300;
-           HttpSession sessionObj = request.getSession(true);
-
-          
-           /***** Setting The Updated Session Time Out *****/
-           sessionObj.setMaxInactiveInterval(timeout);
-           
-           /***** Once The Time Out Is Reached. This Line Will Automatically Refresh The Page *****/
-           response.setHeader("Refresh", timeout + "; URL=../homepage.jsp");
-       } else {
-           //out.println("<p id='errMsg' style='color: red; font-size: larger; margin-left: 564px'>Please Enter a Correct Name!</p>");
-           RequestDispatcher rdObj = request.getRequestDispatcher("../homepage.jsp");
-           rdObj.include(request, response);
-       }
- --%>
-       %>
-      
 <%  
 
 Connection connection = null;
@@ -153,15 +129,18 @@ idlist.retainAll(itemList);
               <th>Details</th>     
             </tr>
         </thead>
+         <tbody>
         <%for (String n : idlist)
         {
             Connection con=DriverManager.getConnection(Url,Username,password);
             PreparedStatement ps=con.prepareStatement("select * from dp_info where dpid="+(n));
             ResultSet rs=ps.executeQuery();
+           
+            
            while(rs.next())
            {
 	     %>
-         <tbody>
+        
              
                <tr>
                   <td><%=rs.getString("name")%></td>
@@ -169,14 +148,18 @@ idlist.retainAll(itemList);
                   <td><%= rs.getString("dp_number") %></td>
                   <td><%= rs.getString("address") %></td>
                   <td><%= rs.getString("phone") %></td>
-                  <td><a href="user_dpdetails_user.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>">Details</a></td>
+                  <td><a href="user_dpdetails_user.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>&user_phone=<%=request.getParameter("user_phone")%>"><i class="fa fa-info-circle fa-2x" aria-hidden="true"></i></a></td>
              </tr>
           
-        </tbody>
+      
         
 <%
              }
+          
         }
+        %>
+        </tbody>
+        <%
      }
    connection.close();
 } 
@@ -194,6 +177,7 @@ else
       
       		</table>
 		</div>
+	</div>	
 	</div>
 </div>
       

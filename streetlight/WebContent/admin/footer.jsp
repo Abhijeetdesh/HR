@@ -10,7 +10,7 @@
 
 
   <div class="footer-copyright text-center py-3">All Rights Reserved. &copy; 2020 :
-    <a href="https://aderatesolutions.com/"> AdeRate Tech Solutions</a>
+    <a href="https://aderatesolutions.com/"> Aderate Tech Solutions</a>
   </div>
 
 

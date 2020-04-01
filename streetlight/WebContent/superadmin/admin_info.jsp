@@ -5,7 +5,7 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
 <meta charset="UTF-8">
 	<title>Admin Manager</title>
@@ -18,7 +18,6 @@
 	
  </head>
 <body>
- <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 	<nav id="sidebar" class="active" >
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -68,7 +67,7 @@
                <h5>Street Light Controller </h5>
              </div>
         </nav>
-        
+    <div class="pad">    
             <div class=" pull-right" style="margin-top:5px;">
    			    <label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
@@ -113,9 +112,9 @@
 		          <td><%= rs.getString("category")%></td>
 		          <td><%= rs.getString("status")%></td>
 		          <td><%= rs.getString("reason")%></td>
-		          <td><a href="admin_edit.jsp?admin_phone=<%=rs.getString("admin_phone")%>">Edit</a></td>
-		          <td><a href="admin_delete.jsp?admin_phone=<%=rs.getString("admin_phone")%>">Delete</a></td>
-		          <td><a href="active_block.jsp?admin_phone=<%=rs.getString("admin_phone")%>">Active/Block</a></td>
+		          <td><a href="admin_edit.jsp?admin_phone=<%=rs.getString("admin_phone")%>"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></td>
+		          <td><a href="admin_delete.jsp?admin_phone=<%=rs.getString("admin_phone")%>"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a></td>
+		          <td><a href="active_block.jsp?admin_phone=<%=rs.getString("admin_phone")%>"><i class="fa fa-ban " style="font-size:27px;color:red"></i></a></td>
 		          <td><a href="regdpsuperadmin.jsp?admin_phone=<%=rs.getString("admin_phone")%>">Add DP</a></td>
                  <td><a href="user_registration.jsp?admin_phone=<%=rs.getString("admin_phone")%>">Add User</a></td>
              
@@ -126,6 +125,7 @@
 
         </tbody>
   	  </table>
+  	</div>
   	</div>
    </div>
 </div>

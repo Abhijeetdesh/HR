@@ -8,21 +8,19 @@
 </head>
 <body>
 
-<%
- 
-response.setHeader("Cache-Control", "no-cache");
+<%response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Cache-Control", "no-store");
     response.setHeader("Pragma", "no-cache");
-    response.setDateHeader("Expires",300);
+    response.setDateHeader("Expires",0);
     int timeout = session.getMaxInactiveInterval();
-    response.setHeader("Reload", timeout + "; URL = ../user.jsp");%>
+    response.setHeader("Refresh", timeout + "; URL = ../user.jsp");%>
 
-<%String nme=(String) session.getAttribute("user_email");
-    if (nme != null ) {
-    	 
+<%String u = (String) request.getSession().getAttribute("user_email");
+    if (u != null ) {
+        
     }else{
-    	response.sendRedirect("../user.jsp"); 
+        response.sendRedirect("../user.jsp");
     }%>
-  
+
 </body>
 </html>

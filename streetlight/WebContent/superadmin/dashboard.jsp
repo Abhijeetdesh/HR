@@ -8,7 +8,7 @@
     import="java.util.ArrayList"
     import="java.util.List" %>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
   <head>
   	<title>SuperAdmin DashBoard</title>
     <meta charset="utf-8">
@@ -27,22 +27,16 @@
 	
 	
 	}
-</style>
-<SCRIPT type="text/javascript">
-	window.history.forward();
-	browser.cache.offline.enable = false;
-	function noBack() { window.history.forward(); }
-</SCRIPT>	
+</style>	
 </head>
-<body onload="noBack();" 
-	onpageshow="if (event.persisted) noBack();" onunload="">
- <%@include file="sessioncache.jsp" %>		
+<body>
+		
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active" >
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
        <ul class="list-unstyled components mb-5">
           <li >
-            <a class="active"  href="dashboard.jsp"><span class="fa fa-home "></span>Dashboard</a>
+            <a class="active"  href="dashboard.jsp"><span class="fa fa-home"></span>Dashboard</a>
           </li>
           <li>
               <a  href="dptable.jsp"><span class="fa  fa-sliders "></span>DP List</a>
@@ -83,8 +77,9 @@
              </button>
              <h5>Street Light Controller </h5>
         </div>
-	 </nav>
-      
+	    </nav>
+	 <div class="pad">   
+      <%@include file="sessioncache.jsp" %>
      <%@include file="db.jsp" %>
 <%!String check1=null,check2=null,check3=null,check4=null; %>
 <%!int var1=0,var2=0,offdp=0,var3=0,var4=0; %>   
@@ -209,6 +204,7 @@ try
 <p class="p-3">
 </p>
 </div>
+</div>
  <%
  connection.close();
  } 
@@ -224,7 +220,6 @@ try
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/main.js"></script>
      <script src="../js/chart.js"></script>
-     
      <%@include file="footer.jsp" %>
    </body>
 </html>
