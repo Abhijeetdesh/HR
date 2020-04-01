@@ -4,6 +4,19 @@
     import="java.util.ArrayList"
     import="java.util.List" 
  %>
+ <%response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires",0);
+    int timeout = session.getMaxInactiveInterval();
+    response.setHeader("Refresh", timeout + "; URL = ../admin.jsp");%>
+
+<%String u = (String) request.getSession().getAttribute("admin_email");
+    if (u != null ) {
+        
+    }else{
+        response.sendRedirect("../admin.jsp");
+    }%>
 <%@page import="java.util.Base64"%>
 <%@page import="javax.crypto.Cipher"%>
 <%@page import="java.io.UnsupportedEncodingException"%>
@@ -18,7 +31,7 @@
          %>
     <%@include file="db.jsp" %>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
   	<title></title>
     <meta charset="utf-8">
@@ -29,10 +42,16 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="../css/style2.css">
 	    <link rel="stylesheet" href="../css/chart.css">
-		
+				 <SCRIPT type="text/javascript">
+	window.history.forward();
+	browser.cache.offline.enable = false;
+	function noBack() { window.history.forward(); }
+</SCRIPT>
   </head>
 
-<body>
+<body  onload="noBack();" 
+	onpageshow="if (event.persisted) noBack();" onunload="">
+
 <div class="wrapper d-flex align-items-stretch">
    <nav id="sidebar" class="active">
 	  <a href="index.html" class="logo" ><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br>AdeRate Solution</a>
@@ -65,7 +84,7 @@
           </li>
          
            <li>
-            <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
+            <a href="logout.jsp"><span class="fa fa-power-off"></span>Logout</a>
           </li>
       </ul>  
           </nav>

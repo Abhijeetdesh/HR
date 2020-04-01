@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -67,6 +67,7 @@
    				<input class="btn btn-outline-primary" type=button onClick="location.href='user_info.jsp'" value='Back'>
 		      </div>
      <br><br><br> 
+     <%@include file="sessioncache.jsp" %>
   <%@include file="db.jsp" %>
 <%
 

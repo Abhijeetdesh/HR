@@ -4,8 +4,21 @@
     <%@ page import="java.sql.*" 
     import ="java.time.format.DateTimeFormatter"
     import="java.time.LocalDateTime"  %>
+    <%response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires",300);
+    int timeout = session.getMaxInactiveInterval();
+    response.setHeader("Refresh", timeout + "; URL = ../admin.jsp");%>
+
+<%String u = (String) request.getSession().getAttribute("admin_email");
+    if (u != null ) {
+        
+    }else{
+        response.sendRedirect("../admin.jsp");
+    }%>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -16,6 +29,7 @@
     <link rel="stylesheet" href="../css/style2.css">
 </head>
 <body>
+ 
 	<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar" class="active">
 					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
@@ -45,7 +59,7 @@
           </li>
          
            <li>
-            <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
+            <a href="logout.jsp"><span class="fa fa-power-off"></span>Logout</a>
           </li>
       </ul>  
       </nav>
@@ -62,7 +76,11 @@
             
            
           </div>
-        </nav><%@include file="db.jsp" %>
+        </nav>
+         <div class=" pull-right" style="margin-top:5px;">
+   			     <input class="btn btn-outline-primary" type=button onClick="location.href='newadmin_notification_info.jsp?admin_phone=<%=request.getParameter("admin_phone")%>'" value='Back'>
+		      </div>  
+        <%@include file="db.jsp" %>
         
  <%
  String admin_phone=request.getParameter("admin_phone");

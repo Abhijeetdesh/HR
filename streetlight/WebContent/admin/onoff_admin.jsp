@@ -9,7 +9,7 @@
 <%@page import="java.sql.*"%>
 
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 	<title>ON/OFF Manager</title>
@@ -71,7 +71,7 @@
           </li>
          
            <li>
-            <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
+            <a href="logout.jsp"><span class="fa fa-power-off"></span>Logout</a>
           </li>
                  		            	
        </ul>
@@ -98,28 +98,7 @@
 		      </div>
        		
      	 	
-        <%
-       /***** Post Parameters From The Request *****/
-       String param1 = request.getParameter("admin_phone");
-       if (param1 != null && !param1.equals("")) {
-
-           int timeout = 300;
-           HttpSession sessionObj = request.getSession(true);
-
-          
-           /***** Setting The Updated Session Time Out *****/
-           sessionObj.setMaxInactiveInterval(timeout);
-           
-           /***** Once The Time Out Is Reached. This Line Will Automatically Refresh The Page *****/
-           response.setHeader("Refresh", timeout + "; URL=../homepage.jsp");
-       } else {
-           //out.println("<p id='errMsg' style='color: red; font-size: larger; margin-left: 564px'>Please Enter a Correct Name!</p>");
-           RequestDispatcher rdObj = request.getRequestDispatcher("../homepage.jsp");
-           rdObj.include(request, response);
-       }
-
-       %>
-       
+        <%@include file="sessioncache.jsp" %>       
      <%@include file="db.jsp" %>
   <div class="table " style="overflow:scroll; height: 540px;width:80%; margin-left: 10%; ">
    <table id="example"  class="display" style="table-layout: auto;width:100%;">

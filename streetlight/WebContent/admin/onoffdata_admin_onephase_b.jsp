@@ -5,8 +5,21 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
    <%@ page import="java.sql.*" %>
+   <%response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires",300);
+    int timeout = session.getMaxInactiveInterval();
+    response.setHeader("Refresh", timeout + "; URL = ../admin.jsp");%>
+
+<%String u = (String) request.getSession().getAttribute("admin_email");
+    if (u != null ) {
+        
+    }else{
+        response.sendRedirect("../admin.jsp");
+    }%>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
   <head>
   	<title>Threephase B onoff data send</title>
     <meta charset="utf-8">
@@ -46,7 +59,7 @@
           </li>
          
            <li>
-            <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
+            <a href="logout.jsp"><span class="fa fa-power-off"></span>Logout</a>
           </li>
                  		            	
        </ul>
@@ -67,7 +80,9 @@
            
           </div>
         </nav>
-<div> <%@include file="db.jsp" %>
+<div> 
+
+<%@include file="db.jsp" %>
 <%
 String id = request.getParameter("dpid");
 String data=request.getParameter("data"); 

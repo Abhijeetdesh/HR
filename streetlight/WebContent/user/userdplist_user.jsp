@@ -7,8 +7,9 @@
 <%@ page import="java.sql.*" 
     import="java.util.ArrayList"
 import="java.util.List"  %>
+<%@include file="sessioncacheuser.jsp" %>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 	<title>DP LIST</title>
@@ -25,6 +26,7 @@ import="java.util.List"  %>
  </head>
 
 <body>
+ 
 <%@include file="db.jsp" %>
     <div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar" class="active" >
@@ -49,7 +51,7 @@ import="java.util.List"  %>
        <li ><a  href="show_myuser_notification.jsp?admin_phone=<%=request.getParameter("admin_phone") %>" ><span class="fa fa-bell"></span>Show My Notifications</a>
         </li>      
             
-        <li ><a  href="../homepage.jsp" ><span class="fa fa-power-off"></span>Logout</a>
+        <li ><a  href="logout.jsp" ><span class="fa fa-power-off"></span>Logout</a>
         </li>
         
       </ul>
@@ -77,7 +79,7 @@ import="java.util.List"  %>
 	</div> 
        		
       	
-<%
+<%-- <%
        /***** Post Parameters From The Request *****/
        String param1 = request.getParameter("dpid");
        if (param1 != null && !param1.equals("")) {
@@ -96,7 +98,7 @@ import="java.util.List"  %>
            RequestDispatcher rdObj = request.getRequestDispatcher("../homepage.jsp");
            rdObj.include(request, response);
        }
-
+ --%>
        %>
       
 <%  

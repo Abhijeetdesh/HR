@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.sql.*,java.util.*"%>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
   	<title>SuperAdmin DashBoard</title>
     <meta charset="utf-8">
@@ -16,6 +16,7 @@
 		
   </head>
 <body>
+ <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar" class="active">
 					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>"app-header__logo" href="index.html">Aderate Solution</a>
@@ -60,8 +61,8 @@
            if(rs.next())
            {
         	   request.getSession().setAttribute("email", request.getParameter("email"));
-        	   String u = (String) request.getSession().getAttribute("email");
-        	     if (u != null )
+        	   String uf = (String) request.getSession().getAttribute("email");
+        	     if (uf != null )
         	     {
         	         response.sendRedirect("dashboard.jsp");
         	     }

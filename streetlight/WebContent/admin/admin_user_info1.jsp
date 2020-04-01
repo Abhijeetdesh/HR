@@ -20,7 +20,7 @@ import="java.util.List"
          %>
     
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 	<title>DP LIST</title>
@@ -37,7 +37,7 @@ import="java.util.List"
  </head>
 
 <body>
-
+ <%@include file="sessioncache.jsp" %>
    <div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar" class="active" >
 					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
@@ -69,7 +69,7 @@ import="java.util.List"
           </li>
          
            <li>
-            <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
+            <a href="logout.jsp"><span class="fa fa-power-off"></span>Logout</a>
           </li>
       </ul>  
       </nav>
@@ -112,28 +112,7 @@ import="java.util.List"
            </tr>
         </thead>
        <tbody>
-       <%
-       /***** Post Parameters From The Request *****/
-       String param1 = request.getParameter("admin_phone");
-       if (param1 != null && !param1.equals("")) {
-
-           int timeout = 300;
-           HttpSession sessionObj = request.getSession(true);
-
-          
-           /***** Setting The Updated Session Time Out *****/
-           sessionObj.setMaxInactiveInterval(timeout);
-           
-           /***** Once The Time Out Is Reached. This Line Will Automatically Refresh The Page *****/
-           response.setHeader("Refresh", timeout + "; URL=../homepage.jsp");
-       } else {
-           //out.println("<p id='errMsg' style='color: red; font-size: larger; margin-left: 564px'>Please Enter a Correct Name!</p>");
-           RequestDispatcher rdObj = request.getRequestDispatcher("../homepage.jsp");
-           rdObj.include(request, response);
-       }
-
-       %>
-       <%@include file="db.jsp" %>
+             <%@include file="db.jsp" %>
        
        <%
        

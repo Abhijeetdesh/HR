@@ -4,6 +4,19 @@
     import="java.util.ArrayList"
     import="java.util.List" 
  %>
+ <%response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires",300);
+    int timeout = session.getMaxInactiveInterval();
+    response.setHeader("Refresh", timeout + "; URL = ../admin.jsp");%>
+
+<%String u = (String) request.getSession().getAttribute("admin_email");
+    if (u != null ) {
+        
+    }else{
+        response.sendRedirect("../admin.jsp");
+    }%>
 <%@page import="java.util.Base64"%>
 <%@page import="javax.crypto.Cipher"%>
 <%@page import="java.io.UnsupportedEncodingException"%>
@@ -18,7 +31,7 @@
          %>
     
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
   	<title>Admin DashBoard</title>
     <meta charset="utf-8">
@@ -132,10 +145,17 @@ private static SecretKeySpec secretKey;
     	 System.out.println("***"+aphone);
     	 String check="active";
     	 if(check.equals(status))
-    	 {		 
+    	 {	
+    		 
+    		 request.getSession().setAttribute("admin_email", request.getParameter("admin_email"));
+      	     String store = (String) request.getSession().getAttribute("admin_email");
+      	     System.out.println("admin"+store);
+      	     if (store != null )
+      	     {
     	     RequestDispatcher rd=request.getRequestDispatcher("dashboard_admin.jsp?admin_phone="+aphone);
     		 rd.forward(request, response);
          }
+    	 }
     	 else
     	 {
     	     HttpSession sess = request.getSession();

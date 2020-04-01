@@ -9,7 +9,7 @@
 <%@ page import="java.sql.*"%> 
 
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 	<title>DP LIST</title>
@@ -31,6 +31,7 @@
  </head>
 
 <body>
+ <%@include file="sessioncache.jsp" %>
 <%@include file="db.jsp" %>
 
  <div class="wrapper d-flex align-items-stretch">

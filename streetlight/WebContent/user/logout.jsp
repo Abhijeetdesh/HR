@@ -8,6 +8,6 @@
 </head>
 <body>
 <%request.getSession().setAttribute("user_email", null);%>
-<%  response.sendRedirect("../homepage.jsp"); %>
+<%  response.sendRedirect("../user.jsp"); %>
 </body>
 </html>

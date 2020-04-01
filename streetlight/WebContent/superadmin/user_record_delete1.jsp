@@ -13,7 +13,7 @@
          import="com.grocery.Admin_RegisterController"
          %>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="../css/style2.css">
 </head>
 <body >
+ <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active">
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>

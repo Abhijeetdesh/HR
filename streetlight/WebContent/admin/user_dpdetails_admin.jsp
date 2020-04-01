@@ -6,9 +6,21 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
+<%response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires",300);
+    int timeout = session.getMaxInactiveInterval();
+    response.setHeader("Refresh", timeout + "; URL = ../admin.jsp");%>
 
+<%String u = (String) request.getSession().getAttribute("admin_email");
+    if (u != null ) {
+        
+    }else{
+        response.sendRedirect("../admin.jsp");
+    }%>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 	<title>DP Details</title>
@@ -71,7 +83,7 @@ tr:hover {background-color:#f5f5f5;}
           </li>
          
            <li>
-            <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
+            <a href="logout.jsp"><span class="fa fa-power-off"></span>Logout</a>
           </li>
       </ul>  
           </nav>
@@ -88,7 +100,10 @@ tr:hover {background-color:#f5f5f5;}
             
            
           </div>
-        </nav>      
+        </nav>  
+          <div class=" pull-right" style="margin-top:5px;">
+   			     <input class="btn btn-outline-primary" type=button onClick="location.href='admin_user_info1.jsp'" value='Back'>
+		      </div> 
       		  <%@include file="db.jsp" %>
  <%
 	String dpid = request.getParameter("dpid");
