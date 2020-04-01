@@ -4,7 +4,7 @@
     import ="java.time.format.DateTimeFormatter"
     import="java.time.LocalDateTime"  %>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
 <meta charset="UTF-8">
 
@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
- <%@include file="sessioncache.jsp" %>
+
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active">
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -70,6 +70,7 @@
                <h5>Street Light Controller </h5>
           </div>
         </nav>
+     <div class="pad">   
         	  <div class=" pull-right" style="margin-top:5px;">
    					<input class="btn btn-outline-primary" type=button onClick="location.href='timeset.jsp'" value='Back'>
 		      </div>
@@ -106,7 +107,7 @@ while(resultSet.next())
 	{
 	
 	%>
-    <h2 style="color: red; text-align: center;">Set Time</h2>
+        	<button type="button" class="btn btn-outline-primary" style="position: absolute; top:3px; ">DP ID ::<%=dpid%></button><br><br>
     <div class="row">
     <div class="col-sm-6">
     <form> 
@@ -185,7 +186,7 @@ else{
    	rd.forward(request, response);
 }
 %>
-
+</div>
 </div>
 </div>
     <script src="../js/jquery.min.js"></script>

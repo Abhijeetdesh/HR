@@ -1,21 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="java.sql.*" %>
-    <%response.setHeader("Cache-Control", "no-cache");
-    response.setHeader("Cache-Control", "no-store");
-    response.setHeader("Pragma", "no-cache");
-    response.setDateHeader("Expires",300);
-    int timeout = session.getMaxInactiveInterval();
-    response.setHeader("Refresh", timeout + "; URL = ../admin.jsp");%>
-
-<%String u = (String) request.getSession().getAttribute("admin_email");
-    if (u != null ) {
-        
-    }else{
-        response.sendRedirect("../admin.jsp");
-    }%>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
 <meta charset="UTF-8">
 
@@ -26,15 +13,14 @@
     <link rel="stylesheet" href="../css/style2.css">
 </head>
 <body>
-
 	<div class="wrapper d-flex align-items-stretch">
       <nav id="sidebar" class="active">
-	    <a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
+ <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
           <ul class="list-unstyled components mb-5">
             <% String admin_phone=request.getParameter("admin_phone"); 
      if(admin_phone != null){%>
            <li>
-              <a href="dashboard_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span>Dashboard</a>
+              <a href="dashboard_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-home"></span>Dashboard</a>
           </li>
           <li>
               <a class="active" href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
@@ -78,13 +64,9 @@
               <i class="fa fa-bars"></i>
               <span class="sr-only">Toggle Menu</span>
             </button>
-            
-           
-          </div>
+             <h5>Street Light Controller </h5>
+        </div>
         </nav>
-        <div class=" pull-right" style="margin-top:5px;">
-   		          <input class="btn btn-outline-primary" type=button onClick="location.href='dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>'" value='Back'>
-		      	</div>
         <%@include file="db.jsp" %>
         
 <%
@@ -105,40 +87,37 @@ try
    while(resultSet.next())
    {
 %>
-		<div class="my" >
+    <div class="pad">
            			
-				<form name="form1" method="post" action="DeleteRecord_admin.jsp">
-						
-				   <div class="form-group">
-                    <label for="exampleInputEmail1">Name::</label>
-                    <input class="form-control" name="name" type="text" value="<%=resultSet.getString("name") %>" disabled/>
-                   </div>
+		<form name="form1" method="post" action="DeleteRecord_admin.jsp">
+			<div class="form-group">
+            <label for="exampleInputEmail1">Name::</label>
+            <input class="form-control" name="name" type="text" value="<%=resultSet.getString("name") %>" disabled/>
+            </div>
              
-                 <div class="form-group">
-                    <label for="exampleInputEmail1">DP id::</label>
-                    <input class="form-control" name="dpid1" type="text" value="<%=resultSet.getString("dpid") %>" disabled>
-                    <input class="form-control" name="dpid" type="hidden" value="<%=resultSet.getString("dpid") %>">
-                  </div>
+            <div class="form-group">
+            <label for="exampleInputEmail1">DP id::</label>
+            <input class="form-control" name="dpid1" type="text" value="<%=resultSet.getString("dpid") %>" disabled>
+            <input class="form-control" name="dpid" type="hidden" value="<%=resultSet.getString("dpid") %>">
+           </div>
                   
-                   <div class="form-group">
-                    <label for="exampleInputEmail1">DP_Number::</label>
-                    <input class="form-control" name="dp_number" type="text" value="<%=resultSet.getString("dp_number") %>" disabled>
-                  </div>
+           <div class="form-group">
+           <label for="exampleInputEmail1">DP_Number::</label>
+           <input class="form-control" name="dp_number" type="text" value="<%=resultSet.getString("dp_number") %>" disabled>
+           </div>
                   
-                    <div class="form-group">
-                    <label for="exampleInputEmail1">Address::</label>
-                    <input class="form-control" name="address" type="text" value="<%=resultSet.getString("address") %>" disabled>
-                  </div>
+           <div class="form-group">
+           <label for="exampleInputEmail1">Address::</label>
+           <input class="form-control" name="address" type="text" value="<%=resultSet.getString("address") %>" disabled>
+           </div>
                   
-                    <div class="form-group">
-                    <label for="exampleInputEmail1">Phone::</label>
-                    <input class="form-control" name="phone" type="text" value="<%=resultSet.getString("phone") %>" disabled>
-                  </div>
+          <div class="form-group">
+          <label for="exampleInputEmail1">Phone::</label>
+          <input class="form-control" name="phone" type="text" value="<%=resultSet.getString("phone") %>" disabled>
+          </div>
                 
-                   <input class="form-control" name="admin_phone" type="hidden" value="<%=request.getParameter("admin_phone") %>" >
+         <input class="form-control" name="admin_phone" type="hidden" value="<%=request.getParameter("admin_phone") %>" >
                    
-                  
-            
           <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 30%"><i class="fa fa-trash"></i>Delete</button>
 		   <div id = "confirm">
 	         <div class = "message">Do you Want Delete?</div>

@@ -5,7 +5,7 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
 <meta charset="UTF-8">
 	<title>DP LIST</title>
@@ -15,11 +15,12 @@
 	<script src=https://code.jquery.com/jquery-3.3.1.js></script> 
    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
    <link rel="stylesheet" href="../css/style2.css">
-			
+		<style type="text/css">
+		
+		</style>	
  </head>
 
 <body>
- <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active" >
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -67,9 +68,9 @@
              <h5>Street Light Controller </h5>
         </div>
 	 </nav>
-          
+             <%@include file="sessioncache.jsp" %>
          
-           
+  <div class="pad">
            <div class=" pull-right" style="margin-top:1px;">
    			<label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
@@ -119,6 +120,7 @@
 
         </tbody>
   	  </table>
+  	  </div>
   	  </div>
   </div>
 </div>

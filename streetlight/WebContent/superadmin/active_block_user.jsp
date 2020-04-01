@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
 <meta charset="UTF-8">
 
@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="../css/style2.css">
 </head>
 <body>
- <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active">
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -63,7 +62,7 @@
               <h5>Street Light Controller </h5>
           </div>
         </nav>
-        
+     <div class="pad">   
         	<div class=" pull-right" style="margin-top:5px;">
    				<input class="btn btn-outline-primary" type=button onClick="location.href='user_info.jsp'" value='Back'>
 		      </div>
@@ -86,46 +85,41 @@ resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
 
-		<div class="my" >
-           			
-				<form name="form1" method="post" action="active_block_user2.jsp">
-	             <fieldset disabled="disabled"> 
- 			   <div class="form-group">
-				   <label for="exampleInputPassword1">User_Name::</label>
-                    <input class="form-control" name="user_name" type="text"  value="<%=resultSet.getString("user_name") %>" />
-                   </div>
+        <form name="form1" method="post" action="active_block_user2.jsp">
+	    <fieldset disabled="disabled"> 
+ 	    <div class="form-group">
+		<label for="exampleInputPassword1">User_Name::</label>
+        <input class="form-control" name="user_name" type="text"  value="<%=resultSet.getString("user_name") %>" />
+        </div>
              
-                 <div class="form-group">
-                 <label for="exampleInputPassword1">User_Email::</label>
-                    <input class="form-control" name="user_email" type="text" value="<%=resultSet.getString("user_email") %>">
-                  </div>
+        <div class="form-group">
+        <label for="exampleInputPassword1">User_Email::</label>
+        <input class="form-control" name="user_email" type="text" value="<%=resultSet.getString("user_email") %>">
+        </div>
+        </fieldset> 
                   
-                     </fieldset> 
-                  
-                  
-                   <div class="form-group">
-                   <label for="exampleInputPassword1">User_Phone::</label>
-                    <input class="form-control" name="user_phone" type="text" value="<%=resultSet.getString("user_phone") %>">
-                  </div>
+        <div class="form-group">
+        <label for="exampleInputPassword1">User_Phone::</label>
+        <input class="form-control" name="user_phone" type="text" value="<%=resultSet.getString("user_phone") %>">
+        </div>
                  
-               
-                  <div class="form-group">
-                  <label for="exampleInputPassword1">Status::</label>
-                  <select class="form-control" name="status" type="text" >
-                  <option value="active">active</option>
-                  <option value="block">block</option>
-                  </select>      
-              </div>
+        <div class="form-group">
+        <label for="exampleInputPassword1">Status::</label>
+        <select class="form-control" name="status" type="text" >
+        <option value="active">active</option>
+        <option value="block">block</option>
+        </select>      
+        </div>
             
             
-		 <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 30%"><i class="fa fa-save"></i>Save</button>
-				   <div id = "confirm">
-			         <div class = "message">Do you Want To Save</div>
-			         <button type="submit"  class = "yes">OK</button>
-			         <button type="button" class="yes"  style="background: red">Cancel</button>
-			       </div>           
+		<button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 30%"><i class="fa fa-save"></i>Save</button>
+	    <div id = "confirm">
+			<div class = "message">Do you Want To Save</div>
+			<button type="submit"  class = "yes">OK</button>
+			<button type="button" class="yes"  style="background: red">Cancel</button>
+	   </div>           
 		
-            </form>
+       </form>
               
       </div>
    </div>

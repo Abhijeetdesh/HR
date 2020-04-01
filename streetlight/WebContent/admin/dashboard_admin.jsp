@@ -4,19 +4,6 @@
     import="java.util.ArrayList"
     import="java.util.List" 
  %>
- <%response.setHeader("Cache-Control", "no-cache");
-    response.setHeader("Cache-Control", "no-store");
-    response.setHeader("Pragma", "no-cache");
-    response.setDateHeader("Expires",0);
-    int timeout = session.getMaxInactiveInterval();
-    response.setHeader("Refresh", timeout + "; URL = ../admin.jsp");%>
-
-<%String u = (String) request.getSession().getAttribute("admin_email");
-    if (u != null ) {
-        
-    }else{
-        response.sendRedirect("../admin.jsp");
-    }%>
 <%@page import="java.util.Base64"%>
 <%@page import="javax.crypto.Cipher"%>
 <%@page import="java.io.UnsupportedEncodingException"%>
@@ -31,7 +18,7 @@
          %>
     <%@include file="db.jsp" %>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
   	<title></title>
     <meta charset="utf-8">
@@ -42,25 +29,19 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="../css/style2.css">
 	    <link rel="stylesheet" href="../css/chart.css">
-				 <SCRIPT type="text/javascript">
-	window.history.forward();
-	browser.cache.offline.enable = false;
-	function noBack() { window.history.forward(); }
-</SCRIPT>
+		
   </head>
 
-<body  onload="noBack();" 
-	onpageshow="if (event.persisted) noBack();" onunload="">
-
+<body>
 <div class="wrapper d-flex align-items-stretch">
    <nav id="sidebar" class="active">
-	  <a href="index.html" class="logo" ><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br>AdeRate Solution</a>
+ <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
          <ul class="list-unstyled components mb-5">
          <%!String admin_phone=null; %>
         <% admin_phone=request.getParameter("admin_phone");%>
       
            <li>
-              <a class="active" href="dashboard_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span>Dashboard</a>
+              <a class="active" href="dashboard_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-home"></span>Dashboard</a>
           </li>
           
           <li>
@@ -98,11 +79,10 @@
               <i class="fa fa-bars"></i>
               <span class="sr-only">Toggle Menu</span>
             </button>
-            
-           
-          </div>
+             <h5>Street Light Controller </h5>
+         </div>
         </nav>
- 
+ <div class="pad">
         <%!String c1=null,c3=null,c4=null;%>
  <%!int v1=0,v3=0,v4=0; %>
 <%
@@ -229,6 +209,7 @@ try
   }
 
 %>
+</div>
 </div>
  </div>
           

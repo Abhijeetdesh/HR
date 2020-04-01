@@ -11,7 +11,7 @@
 <%response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Cache-Control", "no-store");
     response.setHeader("Pragma", "no-cache");
-    response.setDateHeader("Expires",300);
+    response.setDateHeader("Expires",0);
     int timeout = session.getMaxInactiveInterval();
     response.setHeader("Refresh", timeout + "; URL = ../superadmin.jsp");%>
 

@@ -6,7 +6,7 @@
 <%@page import="java.sql.Connection"%>
    <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
   <head>
   	<title>Threephase R onoff data send</title>
     <meta charset="utf-8">
@@ -72,7 +72,6 @@
           </div>
         </nav>
 <div> <%@include file="db.jsp" %>
- <%@include file="sessioncache.jsp" %>
 <%
 String id = request.getParameter("dpid");
 String data=request.getParameter("data"); 

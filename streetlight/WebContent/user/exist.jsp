@@ -7,14 +7,13 @@
 <%@page import="java.sql.Connection"%>
 
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
 <%@include file="db.jsp" %>
-
 <%
     try{
     	String dpid=request.getParameter("dpid");

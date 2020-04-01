@@ -5,7 +5,7 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
 <meta charset="UTF-8">
 	<title>Admin Manager</title>
@@ -21,7 +21,6 @@
 	
 </head>
 <body>
- <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active" >
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -71,7 +70,7 @@
                <h5>Street Light Controller </h5>
          </div>
         </nav>
-      
+    <div class="pad">  
      <div class=" pull-right" style="margin-top:5px;">
    			<label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
@@ -115,20 +114,18 @@
             <td><%= rs.getString("user_password")%></td>
             <td><%= rs.getString("dpid")%></td>
             <td><%= rs.getString("status")%></td>
-            <td><a href="user_edit.jsp?user_phone=<%=rs.getString("user_phone")%>">Edit</a></td>
-            <td><a href="user_record_delete1.jsp?user_phone=<%=rs.getString("user_phone")%>">Delete</a></td>
-            <td><a href="active_block_user.jsp?user_phone=<%=rs.getString("user_phone")%>">Active/Block</a></td>
-            <td><a href="userdplist.jsp?dpid=<%=rs.getString("dpid")%>">DP data</a></td>
+            <td><a href="user_edit.jsp?user_phone=<%=rs.getString("user_phone")%>"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></td>
+            <td><a href="user_record_delete1.jsp?user_phone=<%=rs.getString("user_phone")%>"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a></td>
+            <td><a href="active_block_user.jsp?user_phone=<%=rs.getString("user_phone")%>"><i class="fa fa-ban " style="font-size:27px;color:red"></i></a></td>
+            <td><a href="userdplist.jsp?dpid=<%=rs.getString("dpid")%>"><i class="fa fa-info-circle fa-2x" aria-hidden="true"></i></a></td>
           </tr>
          <%
             }
           %>
          </tbody>
-
-       
-      
       </table>
       </div>
+    </div>  
   </div>
 </div>   
 

@@ -7,21 +7,8 @@
 <%@ page import="java.sql.*" 
     import="java.util.ArrayList"
 import="java.util.List"  %>
-<%response.setHeader("Cache-Control", "no-cache");
-    response.setHeader("Cache-Control", "no-store");
-    response.setHeader("Pragma", "no-cache");
-    response.setDateHeader("Expires",300);
-    int timeout = session.getMaxInactiveInterval();
-    response.setHeader("Refresh", timeout + "; URL = ../admin.jsp");%>
-
-<%String u = (String) request.getSession().getAttribute("admin_email");
-    if (u != null ) {
-        
-    }else{
-        response.sendRedirect("../admin.jsp");
-    }%>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
 <meta charset="UTF-8">
 	<title>DP LIST</title>
@@ -29,23 +16,19 @@ import="java.util.List"  %>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src=https://code.jquery.com/jquery-3.3.1.js></script> 
-   
-
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		
-			<link rel="stylesheet" href="../css/style2.css">
+   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/style2.css">
 	  
  </head>
 
 <body >
-
 <div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar" class="active" >
-				<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
+<nav id="sidebar" class="active" >
+ <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
         
         <ul class="list-unstyled components mb-5">
          <li>
-              <a href="dashboard_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span>Dashboard</a>
+              <a href="dashboard_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-home"></span>Dashboard</a>
           </li>
            <li>
               <a href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
@@ -85,18 +68,14 @@ import="java.util.List"  %>
               <i class="fa fa-bars"></i>
               <span class="sr-only">Toggle Menu</span>
             </button>
-            
-           
-          </div>
+             <h5>Street Light Controller </h5>
+        </div>
         </nav>
      
-   
+   <div class="pad">
   	 <div class=" pull-right" style="margin-top:5px;">
    			<label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp;       
-	
-   			     <input class="btn btn-outline-primary" type=button onClick="location.href='admin_user_info1.jsp?admin_phone=<%=request.getParameter("admin_phone")%>'" value='Back'>
-		     
 	</div> 
        		
       <%@include file="db.jsp" %>	
@@ -157,6 +136,7 @@ idlist.retainAll(itemList);
              <th>Details</th>     
             </tr>
         </thead>
+          <tbody>
         <%for (String n : idlist) {
                     
         			Connection con=DriverManager.getConnection(Url,Username,password);
@@ -164,20 +144,23 @@ idlist.retainAll(itemList);
                     ResultSet rs=ps.executeQuery();
                    while(rs.next()){
 	     %>
-         <tbody>
+       
              
                <tr>
                   <td><%=rs.getString("name")%></td>
                   <td><%=rs.getString("dpid")%></td>
                   <td><%= rs.getString("dp_number") %></td>
                   <td><%= rs.getString("address") %></td>
-                  <td><a href="user_dpdetails_admin.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>">Details</a></td>
+                  <td><a href="user_dpdetails_admin.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>"><i class="fa fa-info-circle fa-2x" aria-hidden="true"></i></a></td>
              </tr>
           
-        </tbody>
+      
  <%
         }
      }
+        %>
+          </tbody>
+        <% 
 }
 connection.close();
 } 
@@ -195,6 +178,7 @@ else
 %>
       </table>     
 	 </div>   
+  </div>
    </div>    
 </div>
     

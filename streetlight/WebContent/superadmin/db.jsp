@@ -6,11 +6,10 @@
 <title>Insert title here</title>
 </head>
 <body>
- 
  <%
  String Url="jdbc:mysql://localhost/myproject";
               String Username="root";
-              String password="";
+              String password="root";
               Class.forName("com.mysql.jdbc.Driver");
               %>
 </body>

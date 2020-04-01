@@ -5,7 +5,7 @@
     import ="java.time.format.DateTimeFormatter"
     import="java.time.LocalDateTime"  %>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
 <meta charset="UTF-8">
 
@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="../css/style2.css">
 </head>
 <body>
- <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active" >
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -66,8 +65,9 @@
                 <h5>Street Light Controller </h5>
           </div>
         </nav>
+     <div class="pad">   
   <div class=" pull-right" style="margin-top:5px;">
-    <input class="btn btn-outline-primary" type=button onClick="location.href='admin_notification_info.jsp'" value='Back'>
+    <input class="btn btn-outline-primary" type=button onClick="location.href='user_notification_info.jsp'" value='Back'>
     </div>   
          <%@include file="db.jsp" %>
  <%
@@ -88,35 +88,33 @@ String sql ="select * from user_notification where sr_no="+personID;
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
-			<div class="my" >
            			
-				<form name="form1" method="post" action="user_notification_record_delete.jsp">
-						
-				   <div class="form-group">
-                    <label for="exampleInputEmail1">Sr No::</label>
-                    <input class="form-control form-control-sm" name="sr_no" type="text" value="<%=resultSet.getString("sr_no") %>" disabled="disabled">
-                      <input class="form-control form-control-sm" name="sr_no" type="hidden" value="<%=resultSet.getString("sr_no") %>">
-                   </div>
+	<form name="form1" method="post" action="user_notification_record_delete.jsp">
+					
+    <div class="form-group">
+    <label for="exampleInputEmail1">Sr No::</label>
+    <input class="form-control form-control-sm" name="sr_no" type="text" value="<%=resultSet.getString("sr_no") %>" disabled="disabled">
+    <input class="form-control form-control-sm" name="sr_no" type="hidden" value="<%=resultSet.getString("sr_no") %>">
+    </div>
              
-                 <div class="form-group">
-                    <label for="exampleInputEmail1">Notification::</label>
-                    <input class="form-control form-control-sm" name="notification" type="text" value="<%=resultSet.getString("notification")%>" disabled="disabled">
-                  </div>
+     <div class="form-group">
+     <label for="exampleInputEmail1">Notification::</label>
+     <input class="form-control form-control-sm" name="notification" type="text" value="<%=resultSet.getString("notification")%>" disabled="disabled">
+     </div>
                   
-                   <div class="form-group">
-                    <label for="exampleInputEmail1">Time::</label>
-                    <input class="form-control form-control-sm" name="time" height="20%" type="text" value="<%=resultSet.getString("time")%>" disabled="disabled">
-                  </div>
+     <div class="form-group">
+     <label for="exampleInputEmail1">Time::</label>
+     <input class="form-control form-control-sm" name="time" height="20%" type="text" value="<%=resultSet.getString("time")%>" disabled="disabled">
+     </div>
                   
-                        
-           <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 30%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Delete</button>
-		   <div id = "confirm">
-	         <div class = "message">Do you Want Delete?</div>
-	         <button type="submit"  class = "yes">OK</button>
-	         <button type="button" class="yes"  style="background: red">Cancel</button>
-	       </div>   
+      <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 30%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Delete</button>
+	  <div id = "confirm">
+	  <div class = "message">Do you Want Delete?</div>
+	  <button type="submit"  class = "yes">OK</button>
+	  <button type="button" class="yes"  style="background: red">Cancel</button>
+	  </div>   
              
-        </form>   
+     </form>   
     </div>      
   </div>
 </div>

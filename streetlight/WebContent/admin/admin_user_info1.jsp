@@ -20,7 +20,7 @@ import="java.util.List"
          %>
     
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
 <meta charset="UTF-8">
 	<title>DP LIST</title>
@@ -37,14 +37,14 @@ import="java.util.List"
  </head>
 
 <body>
- <%@include file="sessioncache.jsp" %>
+
    <div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar" class="active" >
-					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
+ <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
         <ul class="list-unstyled components mb-5">
   
           <li>
-              <a href="dashboard_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span>Dashboard</a>
+              <a href="dashboard_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-home"></span>Dashboard</a>
           </li>
        
           <li>
@@ -83,11 +83,10 @@ import="java.util.List"
               <i class="fa fa-bars"></i>
               <span class="sr-only">Toggle Menu</span>
             </button>
-            
-           
-          </div>
+             <h5>Street Light Controller </h5>
+         </div>
         </nav>
-        
+       <div class="pad"> 
       <div class=" pull-right" style="margin-top:5px;">
    			<label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp;
@@ -112,7 +111,7 @@ import="java.util.List"
            </tr>
         </thead>
        <tbody>
-             <%@include file="db.jsp" %>
+              <%@include file="db.jsp" %>
        
        <%
        
@@ -132,10 +131,10 @@ import="java.util.List"
             <td><%= rs.getString("user_password")%></td>
             <td><%= rs.getString("dpid")%></td>
             <td><%= rs.getString("status")%></td>
-            <td><a href="user_edit_admin.jsp?user_phone=<%=rs.getString("user_phone")%>&admin_phone=<%=rs.getString("admin_phone")%>">Edit</a></td>
-            <td><a href="user_admin_record_delete1.jsp?user_phone=<%=rs.getString("user_phone")%>&admin_phone=<%=rs.getString("admin_phone")%>">Delete</a></td>
-            <td><a href="active_block_user_admin.jsp?user_phone=<%=rs.getString("user_phone")%>&admin_phone=<%=rs.getString("admin_phone")%>">Active/Block</a></td>
-            <td><a href="userdplist_admin.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=rs.getString("admin_phone")%>">DP data</a></td>
+            <td><a href="user_edit_admin.jsp?user_phone=<%=rs.getString("user_phone")%>&admin_phone=<%=rs.getString("admin_phone")%>"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></td>
+            <td><a href="user_admin_record_delete1.jsp?user_phone=<%=rs.getString("user_phone")%>&admin_phone=<%=rs.getString("admin_phone")%>"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a></td>
+            <td><a href="active_block_user_admin.jsp?user_phone=<%=rs.getString("user_phone")%>&admin_phone=<%=rs.getString("admin_phone")%>"><i class="fa fa-ban " style="font-size:27px;color:red"></i></a></td>
+            <td><a href="userdplist_admin.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=rs.getString("admin_phone")%>"><i class="fa fa-info-circle fa-2x" aria-hidden="true"></i></a></td>
          </tr>
      <%
          }
@@ -150,6 +149,7 @@ import="java.util.List"
        
    </table>
    </div>
+  </div> 
 </div>
 </div>
     

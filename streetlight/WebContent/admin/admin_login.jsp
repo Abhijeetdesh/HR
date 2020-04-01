@@ -4,19 +4,6 @@
     import="java.util.ArrayList"
     import="java.util.List" 
  %>
- <%response.setHeader("Cache-Control", "no-cache");
-    response.setHeader("Cache-Control", "no-store");
-    response.setHeader("Pragma", "no-cache");
-    response.setDateHeader("Expires",300);
-    int timeout = session.getMaxInactiveInterval();
-    response.setHeader("Refresh", timeout + "; URL = ../admin.jsp");%>
-
-<%String u = (String) request.getSession().getAttribute("admin_email");
-    if (u != null ) {
-        
-    }else{
-        response.sendRedirect("../admin.jsp");
-    }%>
 <%@page import="java.util.Base64"%>
 <%@page import="javax.crypto.Cipher"%>
 <%@page import="java.io.UnsupportedEncodingException"%>
@@ -31,7 +18,7 @@
          %>
     
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
   	<title>Admin DashBoard</title>
     <meta charset="utf-8">
@@ -47,15 +34,13 @@
 
 <body>
 
-    <div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar" class="active">
-				<a href="index.html" class="logo" ><img src="images/logo.jpg" style="width: 25px;height: 25px;" >Aderate Solution</a>
+ <div class="wrapper d-flex align-items-stretch">
+<nav id="sidebar" class="active">
+ <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
     
    </nav>
    <%@include file="db.jsp" %>
      
-    
-
 <%!
 private static SecretKeySpec secretKey;
  private static byte[] key;
@@ -145,28 +130,21 @@ private static SecretKeySpec secretKey;
     	 System.out.println("***"+aphone);
     	 String check="active";
     	 if(check.equals(status))
-    	 {	
-    		 
-    		 request.getSession().setAttribute("admin_email", request.getParameter("admin_email"));
-      	     String store = (String) request.getSession().getAttribute("admin_email");
-      	     System.out.println("admin"+store);
-      	     if (store != null )
-      	     {
+    	 {		 
     	     RequestDispatcher rd=request.getRequestDispatcher("dashboard_admin.jsp?admin_phone="+aphone);
     		 rd.forward(request, response);
          }
-    	 }
     	 else
     	 {
     	     HttpSession sess = request.getSession();
     	     session.setAttribute("This_user_is_blocked", "1");
-    	     response.sendRedirect("../homepage.jsp");
+    	     response.sendRedirect("../admin.jsp");
     	 }
      }
      else{
     	   HttpSession sess = request.getSession();
     	   session.setAttribute("wrong_uname_pass", "1");
-    	   response.sendRedirect("../homepage.jsp");
+    	   response.sendRedirect("../admin.jsp");
     	 }
      }
    

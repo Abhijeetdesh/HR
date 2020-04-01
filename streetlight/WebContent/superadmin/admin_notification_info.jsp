@@ -5,7 +5,7 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
-<html oncontextmenu="return false">
+<html>
 <head>
 <meta charset="UTF-8">
 	<title>Admin Notification</title>
@@ -19,7 +19,6 @@
  </head>
 
 <body>
- <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active" >
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -69,11 +68,11 @@
            </div>
         </nav>
 	
-  
+  <div class="pad">
          <div class=" pull-right" style="margin-top:5px;">
    			<label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
-		          <input class="btn btn-outline-primary p-1 mr-5" type=button onClick="location.href='notification_form.jsp'" value='+ Add Notification'>
+		          <input class="btn btn-outline-primary p-1" type=button onClick="location.href='notification_form.jsp'" value='+ Add Notification'>
 		          <input class="btn btn-outline-primary" type=button onClick="location.href='user_info.jsp'" value='Back'>
 		          
 		</div>
@@ -81,15 +80,15 @@
       
       <div class="table" style="overflow:scroll; height: 350px;width:98%; margin-left: 10px; margin-top: 100px; ">
 		 	<table id="example"  class="display" style="table-layout: auto;width:100%;">
-                       <thead>
-                       <tr>
-                           <th>Notification</th>
-                           <th>Time</th>
-                           <th>Update</th>
-                           <th>Delete</th>         
-                        </tr>           
-                    </thead>
-                         <tbody>  
+                <thead>
+                  <tr>
+                   <th>Notification</th>
+                   <th>Time</th>
+                   <th>Update</th>
+                   <th>Delete</th>         
+                 </tr>           
+              </thead>
+           <tbody>  
          <%@include file="db.jsp" %>
          <%
              Connection con=DriverManager.getConnection(Url,Username,password);
@@ -101,14 +100,15 @@
              <tr>
              <td><%=rs.getString("notification")%></td>
              <td><%= rs.getString("time") %></td>
-             <td><a href="notification_edit.jsp?sr_no=<%=rs.getString("sr_no")%>">edit</a></td>
-             <td><a href="notification_delete.jsp?sr_no=<%=rs.getString("sr_no")%>">delete</a></td>
+             <td><a href="notification_edit.jsp?sr_no=<%=rs.getString("sr_no")%>"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></td>
+             <td><a href="notification_delete.jsp?sr_no=<%=rs.getString("sr_no")%>"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a></td>
             </tr>
          <%
             }
           %>
        </tbody>
         </table>
+     </div>
      </div>
    </div>
 </div>      
