@@ -4,6 +4,22 @@
     import="java.util.ArrayList"
     import="java.util.List" 
  %>
+ <%! String nme=null; %>
+ <%
+ 
+response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires",300);
+    int timeout = session.getMaxInactiveInterval();
+    response.setHeader("Reload", timeout + "; URL = ../user.jsp");%>
+
+<%String nme=(String) session.getAttribute("user_email");
+    if (nme != null ) {
+    	 
+    }else{
+    	response.sendRedirect("../user.jsp"); 
+    }%>
 <%@page import="java.util.Base64"%>
 <%@page import="javax.crypto.Cipher"%>
 <%@page import="java.io.UnsupportedEncodingException"%>
@@ -130,9 +146,14 @@ private static SecretKeySpec secretKey;
     	 System.out.println(status);
     	 String check="active";
     	 if(check.equals(status))
-    	 {		 
+    	 {		  System.out.println("email"+user_email);
+		 HttpSession sess = request.getSession();
+    	   session.setAttribute("user_email", user_email);
+    	  nme=(String) session.getAttribute("user_email");
+    	 if(nme !=null){
     		 RequestDispatcher rd=request.getRequestDispatcher("dashboard_user.jsp?admin_phone="+admin_phone);
     		 rd.forward(request, response);
+    	 }
     	 }
     	 else
     	 {

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.sql.*,java.util.*"%>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -40,7 +40,7 @@
           </li>
          
            <li>
-            <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
+            <a href="logout.jsp"><span class="fa fa-power-off"></span>Logout</a>
           </li>
       </ul>  
       </nav>

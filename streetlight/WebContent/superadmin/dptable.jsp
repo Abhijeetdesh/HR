@@ -5,7 +5,7 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 	<title>DP LIST</title>
@@ -19,6 +19,7 @@
  </head>
 
 <body>
+ <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active" >
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -66,7 +67,7 @@
              <h5>Street Light Controller </h5>
         </div>
 	 </nav>
-             <%@include file="sessioncache.jsp" %>
+          
          
            
            <div class=" pull-right" style="margin-top:1px;">

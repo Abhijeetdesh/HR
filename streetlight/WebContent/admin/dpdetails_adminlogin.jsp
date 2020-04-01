@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires",300);
+    int timeout = session.getMaxInactiveInterval();
+    response.setHeader("Refresh", timeout + "; URL = ../admin.jsp");%>
+
+<%String u = (String) request.getSession().getAttribute("admin_email");
+    if (u != null ) {
+        
+    }else{
+        response.sendRedirect("../admin.jsp");
+    }%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>  
 <%@page import="java.sql.DriverManager"%>
@@ -8,7 +21,7 @@
 <%@page import="java.sql.Connection"%>
 
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -25,7 +38,7 @@
 	}
 	</style>
 <body>
-
+ 
 <div class="wrapper d-flex align-items-stretch">
       <nav id="sidebar" class="active">
 	    <a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
@@ -57,7 +70,7 @@
           </li>
          
            <li>
-            <a href="../homepage.jsp"><span class="fa fa-power-off"></span>Logout</a>
+            <a href="logout.jsp"><span class="fa fa-power-off"></span>Logout</a>
           </li>
           <%}
      else{
@@ -66,7 +79,7 @@
      }%>
       </ul>  
       </nav>
-      
+       
      <div id="content" >
 	        <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	          <div class="container-fluid">
@@ -77,6 +90,9 @@
 	            </button>
              </div>
          </nav>
+          <div class=" pull-right" style="margin-top:5px;">
+   			     <input class="btn btn-outline-primary" type=button onClick="location.href='dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>'" value='Back'>
+		      </div>  
          		
      <%@include file="db.jsp" %>
    <%

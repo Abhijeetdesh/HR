@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="../css/style2.css">
 </head>
 <body>
+
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active">
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -60,7 +61,7 @@
         	</nav>
  <div>
             <%@include file="db.jsp" %>
-			
+			 <%@include file="sessioncache.jsp" %>
 			<%
 			String dpid = request.getParameter("dpid");
 			

@@ -16,9 +16,24 @@
          import="com.grocery.AES"
          import="com.grocery.Admin_RegisterController"
          %>
+            <%
+ 
+response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires",300);
+    int timeout = session.getMaxInactiveInterval();
+    response.setHeader("Reload", timeout + "; URL = ../user.jsp");%>
+
+<%String nme=(String) session.getAttribute("user_email");
+    if (nme != null ) {
+    	 
+    }else{
+    	response.sendRedirect("../user.jsp"); 
+    }%>
     <%@include file="db.jsp" %>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
   	<title>User DashBoard</title>
     <meta charset="utf-8">
@@ -29,11 +44,17 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="../css/style2.css">
 	   <link rel="stylesheet" href="../css/chart.css">
-		
+		 <SCRIPT type="text/javascript">
+	window.history.forward();
+	browser.cache.offline.enable = false;
+	function noBack() { window.history.forward(); }
+</SCRIPT>
   </head>
 
 
-<body >
+<body onload="noBack();" 
+	onpageshow="if (event.persisted) noBack();" onunload="" >
+ 
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar" class="active">
 					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
@@ -73,7 +94,7 @@
        <li ><a class="app-menu__item" href="show_myuser_notification.jsp?admin_phone=<%=admin_phone%>" ><span class="fa fa-bell"></span>Show My Notifications</a>
         </li>  
          
-         <li ><a class="app-menu__item" href="../homepage.jsp" ><span class="fa fa-power-off"></span>Logout</a>
+         <li ><a class="app-menu__item" href="logout.jsp" ><span class="fa fa-power-off"></span>Logout</a>
         </li>
         </ul>
       </nav>

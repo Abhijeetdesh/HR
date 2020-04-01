@@ -4,6 +4,19 @@
     import="java.util.ArrayList"
 import="java.util.List" 
  %>
+ <%response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires",300);
+    int timeout = session.getMaxInactiveInterval();
+    response.setHeader("Refresh", timeout + "; URL = ../admin.jsp");%>
+
+<%String u = (String) request.getSession().getAttribute("admin_email");
+    if (u != null ) {
+        
+    }else{
+        response.sendRedirect("../admin.jsp");
+    }%>
  <%@page import="java.util.Base64"%>
 <%@page import="javax.crypto.Cipher"%>
 <%@page import="java.io.UnsupportedEncodingException"%>
@@ -17,7 +30,7 @@ import="java.util.List"
          import="com.grocery.Admin_RegisterController"
          %>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -51,7 +64,7 @@ import="java.util.List"
          <li ><a class="app-menu__item" href="newadmin_notification_info.jsp?admin_phone=<%=request.getParameter("admin_phone") %>" ><i class="app-menu__icon fa fa-history" ></i><span class="app-menu__label">Notifications</span></a>
        </li>
        
-       <li ><a class="app-menu__item" href="../homepage.jsp" ><i class="app-menu__icon fa fa-history" ></i><span class="app-menu__label">Logout</span></a>
+       <li ><a class="app-menu__item" href="logout.jsp" ><i class="app-menu__icon fa fa-history" ></i><span class="app-menu__label">Logout</span></a>
         </li>
                  		
       </ul>
@@ -71,6 +84,7 @@ import="java.util.List"
           </div>
         </nav>
       <%@include file="db.jsp" %>
+     
       <%!
 private static SecretKeySpec secretKey;
  private static byte[] key;

@@ -8,6 +8,6 @@
 </head>
 <body>
 <%request.getSession().setAttribute("email", null);%>
-<%  response.sendRedirect("../Superadmin.html"); %>
+<%  response.sendRedirect("../superadmin.jsp"); %>
 </body>
 </html>
