@@ -5,7 +5,7 @@
     import ="java.time.format.DateTimeFormatter"
     import="java.time.LocalDateTime"  %>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../css/style2.css">
 </head>
 <body>
+ <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active" >
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -64,7 +65,6 @@
                <h5>Street Light Controller </h5>
         </div>
         </nav>
-     <div class="pad">   
 	<div class=" pull-right" style="margin-top:5px;">
     <input class="btn btn-outline-primary" type=button onClick="location.href='admin_notification_info.jsp'" value='Back'>
     </div>        
@@ -91,6 +91,7 @@ resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
 
+        <div class="my" >   			
 				<form name="form1" method="post" action="notification_edit_two.jsp">
 						
 				   <div class="form-group">

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
         <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../css/style2.css">
 </head>
 <body >
+ <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active">
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -61,11 +62,12 @@
               <h5>Street Light Controller </h5>
           </div>
         </nav>
-      <div class="pad">
+        
               <div class=" pull-right" style="margin-top:5px;">
    			     <input class="btn btn-outline-primary" type=button onClick="location.href='admin_info.jsp'" value='Back'>
 		      </div>    
    
+   <div class="my" >
 				<form name="form1" method="post" action="DataBaseConnection.jsp">
 						
 				   <div class="form-group">
@@ -98,38 +100,27 @@
                     <input class="form-control" name="admin_phone" type="hidden" value="<%=request.getParameter("admin_phone")%>">
                  
                   
-                <b class="l1">R-Current Tolerance</b><br>
-<div class="col form-inline">
- 
-   <label >R-Max</label>
-  <input type="text"  name="r_max" placeholder="R-max" >
-  
-
-  <label  id="l2">R-Min</label>
-  <input type="text" name="r_min"  placeholder="R-min">
-  </div>
-  
-   <b class="l1">Y-Current Tolerance</b><br>
-<div class="col form-inline">
- 
-   <label >Y-Max</label>
-  <input type="text"  name="y_max" placeholder="Y-max">
-  
-
-  <label  id="l2">Y-Min</label>
-  <input type="text"  name="y_min"  placeholder="Y-min">
-  </div>
-  
-   <b class="l1">B-Current Tolerance</b><br>
-<div class="col form-inline">
- 
-   <label>B-Max</label>
-  <input type="text" name="b_max" placeholder="B-max">
-  
-
-  <label id="l2">B-Min</label>
-  <input type="text"  name="b_min" placeholder="B-min">
-  </div>
+               <div class="form-group">
+                    <label for="exampleInputPassword1">R_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">R_Max</label>
+                   <input type="text" class="form-control" name="r_max" required>
+                   <label for="exampleInputPassword1">R_Min</label>
+                    <input type="text" class="form-control" name="r_min" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Y_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">Y_Max</label>
+                    <input type="text" class="form-control" name="y_max"required >
+                    <label for="exampleInputPassword1">Y_Min</label>
+                    <input type="text" class="form-control" name="y_min" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">B_Current Tolerance::</label><br>
+                    <label for="exampleInputPassword1">B_Max</label>
+                    <input type="text" class="form-control" name="b_max" required >
+                    <label for="exampleInputPassword1">B_Min</label>
+                   <input type="text" class="form-control" name="b_min" required>
+                  </div>
               <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 30%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>
 		   <div id = "confirm">
 	         <div class = "message">Do you Want To Register</div>

@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+
 <head>
     
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/user.css">
+<script type="text/javascript">
+function noBack(){window.history.forward()}
+noBack();
+window.onload=noBack;
+window.onpageshow=function(evt){if(evt.persisted)noBack()}
+window.onunload=function(){void(0)}
+</script>
 </head>
 
 <body>

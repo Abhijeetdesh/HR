@@ -9,7 +9,7 @@
 <%@ page import="java.sql.*"%> 
 
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 	<title>DP LIST</title>
@@ -27,15 +27,11 @@
 	
 	margin-left: 5rem;
 	}
-	
-	.card-img-top{
-	margin-top: 66px;
-	margin-left: 54px;
-	}
 	</style>
  </head>
 
 <body>
+ <%@include file="sessioncache.jsp" %>
 <%@include file="db.jsp" %>
 
  <div class="wrapper d-flex align-items-stretch">
@@ -84,9 +80,8 @@
                <h5>Street Light Controller </h5>
              </div>
          </nav>
-     <div class="pad">    
 <div class=" pull-right" style="margin-top:5px;">
-   <input class="btn btn-outline-primary" type=button onClick="location.href='user_info.jsp'" value='Back'>
+   <input class="btn btn-outline-primary" type=button onClick="location.href='userdplist.jsp'" value='Back'>
 </div>
              
      <%
@@ -104,7 +99,7 @@
 	 while(resultSet.next())
 	 {  
       %>
-        	<button type="button" class="btn btn-outline-primary" style="position: absolute; top:3px; margin-left: 20px;">DP ID ::<%=resultSet.getString("dpid") %></button>
+        	<button type="button" class="btn btn-outline-primary" style="position: absolute; top:80px; margin-left: 20px;">DP ID ::<%=resultSet.getString("dpid") %></button>
      <%
     Statement statement1 = null;
     ResultSet resultSet1 =null;
@@ -217,7 +212,7 @@ else{
    	rd.forward(request, response);
 }
    %>     	
-  </div>      	
+        	
    </div>
   </div>
  

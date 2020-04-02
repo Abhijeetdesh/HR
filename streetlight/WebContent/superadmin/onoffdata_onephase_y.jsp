@@ -6,7 +6,7 @@
 <%@page import="java.sql.Connection"%>
    <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
   <head>
   	<title>Threephase Y onoff data send</title>
     <meta charset="utf-8">
@@ -20,6 +20,7 @@
 		
   </head>
   <body>
+   <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active">
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>

@@ -5,7 +5,7 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 	<title>Time Manager</title>
@@ -22,6 +22,7 @@
  </head>
 
 <body>
+ <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active" >
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -72,9 +73,7 @@
               <h5>Street Light Controller </h5>
         </div>
         </nav>
-        
-        
-   <div class="pad"> 
+    
       		<div class=" pull-right" style="margin-top:5px;">
    			<label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
@@ -106,7 +105,7 @@
              <td><%=rs.getString("dpid")%></td>
              <td><%= rs.getString("dp_number") %></td>
              <td><%= rs.getString("address") %></td>
-             <td><a href="settimeone.jsp?dpid=<%=rs.getString("dpid")%>"><i class="fa fa-clock-o fa-2x" aria-hidden="true" style="height:15px;width:15px;"></i></a></td>
+             <td><a href="settimeone.jsp?dpid=<%=rs.getString("dpid")%>">Set</a></td>
           </tr>
        <%
          }
@@ -114,7 +113,6 @@
      </tbody>
 
    </table>
- </div>
  </div>
 </div>   
 </div> 

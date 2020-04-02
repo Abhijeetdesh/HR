@@ -5,7 +5,7 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 	<title>Time Manager</title>
@@ -13,20 +13,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src=https://code.jquery.com/jquery-3.3.1.js></script> 
-   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../css/style2.css">
+   
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		
+			<link rel="stylesheet" href="../css/style2.css">
 
  </head>
 
 
 <body>
-
+ <%@include file="sessioncache.jsp" %>
 	 <div class="wrapper d-flex align-items-stretch">
-	<nav id="sidebar" class="active" >
-     <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
+			<nav id="sidebar" class="active" >
+					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
         <ul class="list-unstyled components mb-5">
           <li>
-              <a href="dashboard_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-home"></span>Dashboard</a>
+              <a href="dashboard_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span>Dashboard</a>
           </li>
            <li>
               <a href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
@@ -64,10 +67,11 @@
               <i class="fa fa-bars"></i>
               <span class="sr-only">Toggle Menu</span>
             </button>
-              <h5>Street Light Controller </h5>
+            
+           
           </div>
         </nav>
-   <div class="pad">   
+      
  			<div class=" pull-right" style="margin-top:5px;">
    			<label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
@@ -106,7 +110,7 @@
          <td><%= rs.getString("dp_number") %></td>
          <td><%= rs.getString("address") %></td>
          <td><%= rs.getString("phone") %></td>
-         <td><a href="settimeone_admin.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=rs.getString("admin_phone")%>"><i class="fa fa-clock-o fa-2x" aria-hidden="true" style="height:15px;width:15px;"></i></a></td>
+         <td><a href="settimeone_admin.jsp?dpid=<%=rs.getString("dpid")%>&admin_phone=<%=rs.getString("admin_phone")%>">Set</a></td>
      </tr>
       <%
           }
@@ -116,8 +120,7 @@
         </table>
       
       </div>
-    </div>
- </div>
+	</div>
 </div>
 
     

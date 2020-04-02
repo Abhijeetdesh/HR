@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 	<title>Admin Notification</title>
@@ -16,6 +16,7 @@
  </head>
 
 <body>
+ <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active" >
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -163,7 +164,7 @@ else
 %>
 
  </div>
-</div> 
+</div> <script src="../js/main.js"></script>
      <%@include file="footer.jsp" %>
     
   </body>

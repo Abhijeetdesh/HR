@@ -5,7 +5,7 @@
     import ="java.time.format.DateTimeFormatter"
     import="java.time.LocalDateTime"  %>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../css/style2.css">
 </head>
 <body>
+ <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active" >
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -63,8 +64,7 @@
             </button>
               <h5>Street Light Controller </h5>
       </div>
-     </nav>
-   <div class="pad">  
+        </nav>
 <div class=" pull-right" style="margin-top:5px;">
     <input class="btn btn-outline-primary" type=button onClick="location.href='user_notification_info.jsp'" value='Back'>
     </div>         
@@ -91,33 +91,36 @@ String sql ="select * from user_notification where sr_no="+personID;
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
+		  <div class="my" >   	
            			
-	<form name="form1" method="post" action="user_notification_edit_two.jsp">
+				<form name="form1" method="post" action="user_notification_edit_two.jsp">
 						
-	   <div class="form-group">
-       <label for="exampleInputEmail1">Sr No::</label>
-       <input class="form-control form-control-sm" name="sr_no" type="text" value="<%=resultSet.getString("sr_no") %>" required disabled/>
-       <input class="form-control form-control-sm" name="sr_no" type="hidden" value="<%=resultSet.getString("sr_no") %>" required/>
-       </div>
+				   <div class="form-group">
+                    <label for="exampleInputEmail1">Sr No::</label>
+                    <input class="form-control form-control-sm" name="sr_no" type="text" value="<%=resultSet.getString("sr_no") %>" required disabled/>
+                    <input class="form-control form-control-sm" name="sr_no" type="hidden" value="<%=resultSet.getString("sr_no") %>" required/>
+                   </div>
              
-       <div class="form-group">
-       <label for="exampleInputEmail1">Notification::</label>
-       <input class="form-control form-control-sm" name="notification" type="text" value="<%=resultSet.getString("notification")%>"/>
-       </div>
+                 <div class="form-group">
+                    <label for="exampleInputEmail1">Notification::</label>
+                <input class="form-control form-control-sm" name="notification" type="text" value="<%=resultSet.getString("notification")%>"/>
+                  </div>
                   
-       <div class="form-group">
-       <label for="exampleInputEmail1">Time::</label>
-       <input class="form-control form-control-sm" name="time" height="20%" type="text" value="<%=dtf.format(now)%>" >
-       </div>
+                   <div class="form-group">
+                    <label for="exampleInputEmail1">Time::</label>
+                    <input class="form-control form-control-sm" name="time" height="20%" type="text" value="<%=dtf.format(now)%>" >
+                  </div>
                   
-       <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 30%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save</button>
-	   <div id = "confirm">
-	   <div class = "message">Do you Want To Save</div>
-	   <button type="submit"  class = "yes">OK</button>
-	   <button type="button" class="yes"  style="background: red">Cancel</button>
-	   </div>
+                        
+              <button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 30%"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save</button>
+		   <div id = "confirm">
+	         <div class = "message">Do you Want To Save</div>
+	         <button type="submit"  class = "yes">OK</button>
+	         <button type="button" class="yes"  style="background: red">Cancel</button>
+	       </div>
              
-       </form>
+             
+          </form>
        </div>
     </div>
 </div>

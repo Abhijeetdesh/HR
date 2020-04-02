@@ -5,7 +5,7 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 	<title>User Notification</title>
@@ -18,7 +18,7 @@
 </head>
 
 <body>
-		
+	 <%@include file="sessioncache.jsp" %>	
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active" >
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -68,11 +68,11 @@
         </div>
         </nav>
          
-   <div class="pad">        
+           
            <div class=" pull-right" style="margin-top:5px;">
    			<label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
-		          <input class="btn btn-outline-primary p-1 " type=button onClick="location.href='user_notification_form.jsp'" value='+ Add Notification'>
+		          <input class="btn btn-outline-primary p-1 mr-5" type=button onClick="location.href='user_notification_form.jsp'" value='+ Add Notification'>
                   <input class="btn btn-outline-primary" type=button onClick="location.href='admin_notification_info.jsp'" value='Back'>
 		      </div>
       
@@ -99,8 +99,8 @@
                   <tr>
                      <td><%=rs.getString("notification")%></td>
                      <td><%= rs.getString("time") %></td>
-                     <td><a href="user_notification_edit.jsp?sr_no=<%=rs.getString("sr_no")%>"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></td>
-                     <td><a href="user_notification_delete.jsp?sr_no=<%=rs.getString("sr_no")%>"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a></td>
+                     <td><a href="user_notification_edit.jsp?sr_no=<%=rs.getString("sr_no")%>">edit</a></td>
+                     <td><a href="user_notification_delete.jsp?sr_no=<%=rs.getString("sr_no")%>">delete</a></td>
                   </tr>
               <%
                    }
@@ -110,7 +110,6 @@
         </tbody>
       </table>
      </div>
-   </div>  
    </div> 
 </div>
 

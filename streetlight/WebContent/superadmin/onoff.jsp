@@ -9,7 +9,7 @@
 <%@page import="java.sql.*"%>
 
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 	<title>ON/OFF Manager</title>
@@ -23,14 +23,55 @@
     <link rel="stylesheet" href="../css/style2.css">
 <style type="text/css">
 	
-	.f{
- margin-left: 75px; 
+	.bb{
+	width: 30%;
+	}
+	
+	.b1{
+	
+	font-weight: bold;
+	}
+	
+	.b2{
+	
+	font-weight: bold;
+	color: red;
+	}
+	 
+	.a{
+	width: 5rem;
+	float: left;
+
+	
+	}
+	.b{
+	width: 5rem;
+	margin-left: 30px;
+	}
+	.c{
+	width: 5rem;
+	margin-left: 30px;
+	}
+.f{
+ margin-left: 45px; 
 
 }
- </style>	
+.d{
+margin-left: 66px;
+}
+	.e{
+	margin-left: 70px;
+	}
+	.im{
+	display: flex;
+ 	margin-left: -3rem;
+ 
+	}
+</style>	
  </head>
 
 <body>
+ <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active" >
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -79,13 +120,13 @@
                <h5>Street Light Controller </h5>
          </div>
         </nav>
-	<div class="pad">
+	
 	 <div class=" pull-right" style="margin-top:5px;">
    			<label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
 		          <input class="btn btn-outline-primary" type=button onClick="location.href='dptable.jsp'" value='Back'>
 	</div>	
-	   <div class="table " style="overflow:scroll; height: 540px;width:98%; margin-left: 1%; ">
+	   <div class="table " style="overflow:scroll; height: 540px;width:80%; margin-left: 10%; ">
 		 	<table id="example"  class="display" style="table-layout: auto;width:100%;">
 	        <thead>
 		            <tr>
@@ -109,7 +150,7 @@
     <tr>
 		<td><a class="btn btn-outline-primary b1"><%=rs.getString("dpid")%></a></td>
 	    <td><a class="btn btn-outline-primary b2" ><%=rs.getString("dp_number") %></a></td>
- 	    <td id="line" style="display:flex;">
+ 	    <td>
  		<%if(dpid !=null){
  		  Statement statement1 = null;
  		  ResultSet resultSet1 =null;
@@ -236,7 +277,7 @@
 		</table>
 		
       </div> 
- </div>       	    
+        	    
 </div>
 </div>
  

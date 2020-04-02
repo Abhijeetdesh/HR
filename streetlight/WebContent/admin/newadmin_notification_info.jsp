@@ -5,7 +5,7 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 	<title>Admin Notification</title>
@@ -13,21 +13,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src=https://code.jquery.com/jquery-3.3.1.js></script> 
+   
+
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../css/style2.css">
+		
+			<link rel="stylesheet" href="../css/style2.css">
 	  
  </head>
 
 <body>
+ <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar" class="active" >
- <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
+					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
         <ul class="list-unstyled components mb-5">
         <%  String aphone=request.getParameter("admin_phone");
          if(aphone !=null){
          %>
           <li>
-              <a href="dashboard_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-home"></span>Dashboard</a>
+              <a href="dashboard_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span>Dashboard</a>
           </li>
           <li>
               <a href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
@@ -67,10 +71,11 @@
               <i class="fa fa-bars"></i>
               <span class="sr-only">Toggle Menu</span>
             </button>
-             <h5>Street Light Controller </h5>
-        </div>
+            
+           
+          </div>
         </nav>
-      <div class="pad">  
+        
       <div class=" pull-right" style="margin-top:5px;">
    			<label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
@@ -89,7 +94,8 @@
            </tr>           
          </thead>
          <tbody>
-            <%@include file="db.jsp" %>
+       
+       <%@include file="db.jsp" %>
          <%
            String admin_phone=request.getParameter("admin_phone");
            Connection con=DriverManager.getConnection(Url,Username,password);
@@ -101,8 +107,8 @@
            <tr>
              <td><%=rs.getString("notification")%></td>
              <td><%= rs.getString("time") %></td>
-             <td><a href="newadmin_notification_edit.jsp?sr_no=<%=rs.getString("sr_no")%>&admin_phone=<%=request.getParameter("admin_phone")%>"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></td>
-             <td><a href="newadmin_notification_delete.jsp?sr_no=<%=rs.getString("sr_no")%>&admin_phone=<%=request.getParameter("admin_phone")%>"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a></td>
+             <td><a href="newadmin_notification_edit.jsp?sr_no=<%=rs.getString("sr_no")%>&admin_phone=<%=request.getParameter("admin_phone")%>">Edit</a></td>
+             <td><a href="newadmin_notification_delete.jsp?sr_no=<%=rs.getString("sr_no")%>&admin_phone=<%=request.getParameter("admin_phone")%>">Delete</a></td>
                                  
           </tr>
            <%
@@ -119,7 +125,6 @@
       </table>
       
       </div>
-	</div>
 	</div>
 </div>
     
