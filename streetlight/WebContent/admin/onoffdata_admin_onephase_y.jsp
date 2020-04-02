@@ -5,8 +5,21 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
    <%@ page import="java.sql.*" %>
+   <%response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires",300);
+    int timeout = session.getMaxInactiveInterval();
+    response.setHeader("Refresh", timeout + "; URL = ../admin.jsp");%>
+
+<%String u = (String) request.getSession().getAttribute("admin_email");
+    if (u != null ) {
+        
+    }else{
+        response.sendRedirect("../admin.jsp");
+    }%>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
   <head>
   	<title>Threephase Y onoff data send</title>
     <meta charset="utf-8">
@@ -23,23 +36,20 @@
 		
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar" class="active">
- <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
-       <ul class="list-unstyled components mb-5">
-           <li>
-              <a href="dashboard_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-home"></span>Dashboard</a>
-          </li>
-           <li>
+					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
+         <ul class="list-unstyled components mb-5">
+       <li>
               <a href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
           </li>
-          <li>
-            <a class="active" href="onoff_admin.jsp?admin_phone=<%=request.getParameter("admin_phone") %>" ><span class="fa fa-toggle-on"></span> ON/OFF</a>
-          </li>
-         <li>
+           <li>
               <a  href="timeset_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-clock-o"></span> Time Manager</a>
           </li>
           <li>
           <li>
             <a href="admin_user_info1.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-users"></span> User Manager</a>
+          </li>
+          <li>
+            <a class="active" href="onoff_admin.jsp?admin_phone=<%=request.getParameter("admin_phone") %>" ><span class="fa fa-toggle-on"></span> ON/OFF</a>
           </li>
           <li>
             <a href="show_admin_notification.jsp?admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-bell"></span> Show Notifications</a>
@@ -53,7 +63,7 @@
           </li>
                  		            	
        </ul>
-              
+       
     	</nav>
 
         <!-- Page Content  -->
@@ -66,11 +76,13 @@
               <i class="fa fa-bars"></i>
               <span class="sr-only">Toggle Menu</span>
             </button>
-             <h5>Street Light Controller </h5>
-       </div>
+            
+           
+          </div>
         </nav>
 <div> 
-<%@include file="db.jsp" %>
+ 
+ <%@include file="db.jsp" %>
 <%
 String id = request.getParameter("dpid");
 String data=request.getParameter("data"); 

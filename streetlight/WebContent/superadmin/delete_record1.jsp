@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../css/style2.css">
 </head>
 <body>
+
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active">
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -61,12 +62,13 @@
              <h5>Street Light Controller </h5>
          </div>
         </nav>
-    <div class="pad">
+
 				<div class=" pull-right" style="margin-top:5px;">
    		          <input class="btn btn-outline-primary" type=button onClick="location.href='dptable.jsp'" value='Back'>
 		      	</div>
 		          
-         <%@include file="db.jsp" %>   
+         <%@include file="db.jsp" %>  
+          <%@include file="sessioncache.jsp" %> 
 <%
 String dpid = request.getParameter("dpid");
 
@@ -84,6 +86,7 @@ String sql ="select * from dp_info where dpid="+dpid;
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
+<div class="my" >
        <form name="form1" method="post" action="DeleteRecord.jsp" class="my1">
   <div class="form-group">
     <label for="exampleInputEmail1">Name</label>
@@ -130,8 +133,8 @@ else{
 }
 %>      
 
- </div>
  </div>      
+</div>
 </div>
 
      <script>

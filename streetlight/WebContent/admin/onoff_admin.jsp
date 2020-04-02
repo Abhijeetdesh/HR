@@ -9,7 +9,7 @@
 <%@page import="java.sql.*"%>
 
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 	<title>ON/OFF Manager</title>
@@ -17,25 +17,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src=https://code.jquery.com/jquery-3.3.1.js></script> 
-   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		
 			<link rel="stylesheet" href="../css/style2.css">
- <style type="text/css">
-		
-	.f{
- margin-left: 75px; 
-
-}
- </style>	
+<style type="text/css">
+	th,td{
+	width: 20%;
+	text-align: center;
+	
+	}
+	
+	.b1{
+	width: 9rem;
+	font-weight: bold;
+	}
+	
+	.b2{
+	width: 9rem;
+	font-weight: bold;
+	color: red;
+	}
+	</style>	
  </head>
 
 <body>
 <div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar" class="active" >
- <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
+					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
         <ul class="list-unstyled components mb-5">
            <li>
-              <a href="dashboard_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-home"></span>Dashboard</a>
+              <a href="dashboard_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span>Dashboard</a>
           </li>
            <li>
               <a href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
@@ -73,18 +86,21 @@
               <i class="fa fa-bars"></i>
               <span class="sr-only">Toggle Menu</span>
             </button>
-              <h5>Street Light Controller </h5>
-         </div>
+            
+           
+          </div>
         </nav>
-           <div class="pad">	 	
         
         	<div class=" pull-right" style="margin-top:5px;">
    			<label>Search</label>
 		          <input type='text' id='txt_searchall' placeholder='Search here...' >&nbsp; 
-		     </div>
+		         
+		      </div>
        		
-       <%@include file="db.jsp" %>
-  <div class="table " style="overflow:scroll; height: 540px;width:98%; margin-left: 1%; ">
+     	 	
+        <%@include file="sessioncache.jsp" %>       
+     <%@include file="db.jsp" %>
+  <div class="table " style="overflow:scroll; height: 540px;width:80%; margin-left: 10%; ">
    <table id="example"  class="display" style="table-layout: auto;width:100%;">
 	   <thead>
 		   <tr>
@@ -108,7 +124,7 @@
      <tr>
      <td><a class="btn btn-outline-primary b1"><%=rs.getString("dpid")%></a></td>
 	 <td><a class="btn btn-outline-primary b2" ><%=rs.getString("dp_number") %></a></td>
-    <td  id="line" style="display:flex;">
+    <td>
     <%
  	Statement statement1 = null;
     ResultSet resultSet1 =null;
@@ -131,7 +147,7 @@
  		 <img class="card-img-top a" src="../images/ONbulb.jpg" alt="Card image cap"><br>
  		 </div>
  		   <form action="onoffdata_admin_onephase_r.jsp" method="post">
- 		   <button type="submit"class="btn btn-primary f">OFF</button>
+ 		   <button type="submit"class="btn btn-primary f">TURN OFF</button>
  		   <input type="hidden" name="dpid" value="<%=resultSet1.getString("dpid")%>">
            <input type="hidden" name="data" value="@R0" >
            <input type="hidden" name="admin_phone" value="<%=aphone%>">
@@ -145,7 +161,7 @@
  		 <img class="card-img-top a" src="../images/OFFbulb.jpg" alt="Card image cap"><br>
  		 </div>
            <form action="onoffdata_admin_onephase_r.jsp" method="post">
- 		   <button type="submit"class="btn btn-primary f">ON</button>
+ 		   <button type="submit"class="btn btn-primary f">TURN ON</button>
  		   <input type="hidden" name="dpid" value="<%=resultSet1.getString("dpid")%>">
            <input type="hidden" name="data" value="@R1" >
            <input type="hidden" name="admin_phone" value="<%=aphone%>">
@@ -165,7 +181,7 @@
  		    <img class="card-img-top a" src="../images/ONbulb.jpg" alt="Card image cap"><br>
  		    </div>
  		    <form action="onoffdata_admin_onephase_y.jsp" method="post">
- 		    <button type="submit"class="btn btn-primary f">OFF</button>
+ 		    <button type="submit"class="btn btn-primary f">TURN OFF</button>
  		    <input type="hidden" name="dpid" value="<%=resultSet1.getString("dpid")%>">
             <input type="hidden" name="data" value="Y0" >
             <input type="hidden" name="admin_phone" value="<%=aphone%>">
@@ -179,7 +195,7 @@
  		     <img class="card-img-top a" src="../images/OFFbulb.jpg" alt="Card image cap"><br>
  		     </div>
  		     <form action="onoffdata_admin_onephase_y.jsp" method="post">
- 		     <button type="submit"class="btn btn-primary f">ON</button>
+ 		     <button type="submit"class="btn btn-primary f">TURN ON</button>
  		      <input type="hidden" name="dpid" value="<%=resultSet1.getString("dpid")%>">
              <input type="hidden" name="data" value="Y1" >
               <input type="hidden" name="admin_phone" value="<%=aphone%>">
@@ -199,7 +215,7 @@
  		      <img class="card-img-top a" src="../images/ONbulb.jpg" alt="Card image cap"><br>
  		      </div>
  		      <form action="onoffdata_admin_onephase_b.jsp" method="post">
- 		      <button type="submit"class="btn btn-primary f">OFF</button>
+ 		      <button type="submit"class="btn btn-primary f">TURN OFF</button>
  		      <input type="hidden" name="dpid" value="<%=resultSet1.getString("dpid")%>">
              <input type="hidden" name="data" value="B0" >
               <input type="hidden" name="admin_phone" value="<%=aphone%>">
@@ -213,7 +229,7 @@
  		      <img class="card-img-top a" src="../images/OFFbulb.jpg" alt="Card image cap"><br>
  		      </div>
  		      <form action="onoffdata_admin_onephase_b.jsp" method="post">
- 		      <button type="submit"class="btn btn-primary f">ON</button>
+ 		      <button type="submit"class="btn btn-primary f">TURN ON</button>
  		      <input type="hidden" name="dpid" value="<%=resultSet1.getString("dpid")%>">
                <input type="hidden" name="data" value="B1" >
              <input type="hidden" name="admin_phone" value="<%=aphone%>">
@@ -240,7 +256,7 @@
 		</table>
 		
       </div> 
- </div>       	    
+        	    
 </div>
 </div>
  

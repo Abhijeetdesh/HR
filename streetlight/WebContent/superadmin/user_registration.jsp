@@ -6,7 +6,7 @@
 <%@page import="java.util.*"%>
   
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -27,7 +27,7 @@
        <link rel="stylesheet" href="../css1/chosen.css">
 </head>
 <body >
-
+ <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active">
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -73,65 +73,69 @@
              <h5>Street Light Controller </h5>
        </div>
    </nav>
-    <div class="pad">
-    <div class=" pull-right" style="margin-top:5px;">
-   	  <input class="btn btn-outline-primary" type=button onClick="location.href='admin_info.jsp'" value='Back'>
-   </div>
     
-    <form  name="form1" action="user_registration_two.jsp" method="post" onsubmit="return validation()">
+    <div class=" pull-right" style="margin-top:5px;">
+   			
+		          <input class="btn btn-outline-primary" type=button onClick="location.href='admin_info.jsp'" value='Back'>
+		      </div>
+    
+    <div class="my" style="margin-top: -32px;">
+          <form  name="form1" action="user_registration_two.jsp" method="post" onsubmit="return validation()">
           
-       <div class="form-group" style="line-height: -10px;">
-       <label for="exampleInputPassword1">Name::</label>
-       <input class="form-control" id="u_name" name="user_name" type="text" required placeholder="Name"/>
-	  </div>
+                    <div class="form-group" style="line-height: -10px;">
+                    <label for="exampleInputPassword1">Name::</label>
+                    <input class="form-control" id="u_name" name="user_name" type="text" required placeholder="Name"/>
+					</div>
 					
-	   <div class="form-group">
-       <label for="exampleInputPassword1">Email::</label>
-       <input class="form-control" id="e_mail" name="user_email" type="text" onkeyup="checkExist5()" required placeholder="Email"/>
-       <span id=isE4></span>
-       </div>
+					<div class="form-group">
+                    <label for="exampleInputPassword1">Email::</label>
+                    <input class="form-control" id="e_mail" name="user_email" type="text" onkeyup="checkExist5()" required placeholder="Email"/>
+                   
+                    <span id=isE4></span>
+                	</div>
                 	
-       <div class="form-group">
-       <label for="exampleInputPassword1">Mobile::</label>
-       <input class="form-control" id="p_phone" name="user_phone" type="text" onkeyup="checkExist4()" required placeholder="Mobile"/>
-       <span id=isE3></span>
-       </div>
+                	<div class="form-group">
+                    <label for="exampleInputPassword1">Mobile::</label>
+                    <input class="form-control" id="p_phone" name="user_phone" type="text" onkeyup="checkExist4()" required placeholder="Mobile"/>
+                    <span id=isE3></span>
+           			</div>
            			
-      <input class="form-control" id="p_phone" name="admin_phone" type="hidden" value="<%=request.getParameter("admin_phone")%>" required/>
-      <div class="form-group">
-	  <label for="exampleInputPassword1">Password::</label>
-	   <input class="form-control" id="p_assword" name="user_password" type="password" required placeholder="Password"/>
-	  </div>
+                   <input class="form-control" id="p_phone" name="admin_phone" type="hidden" value="<%=request.getParameter("admin_phone")%>" required/>
+                    
+	               <div class="form-group">
+	               <label for="exampleInputPassword1">Password::</label>
+	               <input class="form-control" id="p_assword" name="user_password" type="password" required placeholder="Password"/>
+	       		   </div>
 	       		   
-	  <div class="form-group">
-	  <label for="exampleInputPassword1"> Confirm Password::</label>
-	  <input class="form-control" id="c_password" name="user_password" type="password" required placeholder="Confirm Password"/>
-      <input type="checkbox" onclick="myFunction()"><b>Show Password</b>
-      </div>
+	     		   <div class="form-group">
+		           <label for="exampleInputPassword1"> Confirm Password::</label>
+		           <input class="form-control" id="c_password" name="user_password" type="password" required placeholder="Confirm Password"/>
+		           <input type="checkbox" onclick="myFunction()"><b>Show Password</b>
+		           </div>
+		            <%@include file="db.jsp" %>
 		            
-	 <%@include file="db.jsp" %>
-		            
-     <div class="form-group">
-		  <label for="exampleInputPassword1">Dp Id::</label>
-         <%
-          ResultSet rs=null;
-          try
-         {
-            Connection con=DriverManager.getConnection(Url,Username,password);
-		    PreparedStatement ps=con.prepareStatement("select dpid from dp_info");
-			rs=ps.executeQuery();
-         %>
+		            <div class="form-group">
+		              <label for="exampleInputPassword1">Dp Id::</label><br>
+                 <%
+                   ResultSet rs=null;
+                   try
+                   {
+                   Connection con=DriverManager.getConnection(Url,Username,password);
+		           PreparedStatement ps=con.prepareStatement("select dpid from dp_info");
+			       rs=ps.executeQuery();
+                 %>
 
-        <select data-placeholder="Choose DP ID" class="chosen-select"  multiple tabindex="10"  name="id[]">
+                 <select data-placeholder="Choose DP ID" class="chosen-select"  multiple tabindex="10"  name="id[]">
             
-     <% while(rs.next())
-     {
-      %>
-        <option   value="<%=rs.getString("dpid")%>"><%=rs.getString("dpid") %></option>
-     <% 
-      }
-     %>
+<% while(rs.next())
+{
+%>
+<option   value="<%=rs.getString("dpid")%>"><%=rs.getString("dpid") %></option>
+<% 
+}
+%>
 </select>
+
 </div>
  <script src="../js1/chosen.jquery.min.js"></script>
   <script src="../js1/init.js"></script>
@@ -154,7 +158,7 @@
 		 </form>
       </div>
    </div>
-   </div>
+</div>
  <% String message = (String)request.getAttribute("alertMsg");
      String message1 = (String)request.getAttribute("alertmsg");
        if(message !=null ){

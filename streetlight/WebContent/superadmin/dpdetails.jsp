@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -16,14 +16,10 @@
 	
 	margin-left: 5rem;
 	}
-	
-	.card-img-top{
-	margin-top: 66px;
-	margin-left: 54px;
-	}
 	</style>
 </head>
 <body>
+ <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active">
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -69,7 +65,6 @@
              <h5>Street Light Controller </h5>
 	      </div>
 	       </nav>
-	    <div class="pad">   
         	<div class=" pull-right" style="margin-top:5px;">
    			
 		          <input class="btn btn-outline-primary" type=button onClick="location.href='dptable.jsp'" value='Back'>
@@ -92,7 +87,7 @@
 	 while(resultSet.next())
 	 {  
       %>
-        	<button type="button" class="btn btn-outline-primary" style="position: absolute; top:3px; margin-left: 20px;">DP ID ::<%=resultSet.getString("dpid") %></button>
+        	<button type="button" class="btn btn-outline-primary" style="position: absolute; top:80px; margin-left: 20px;">DP ID ::<%=resultSet.getString("dpid") %></button>
      <%
     Statement statement1 = null;
     ResultSet resultSet1 =null;
@@ -203,7 +198,7 @@ catch (Exception e)
 	    	rd.forward(request, response);
     }
    %>     	
-  </div>      	
+        	
    </div>
   </div>
         

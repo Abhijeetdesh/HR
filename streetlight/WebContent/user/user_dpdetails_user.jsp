@@ -7,9 +7,23 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@ page import="java.sql.*"%> 
+<%
+ 
+response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires",300);
+    int timeout = session.getMaxInactiveInterval();
+    response.setHeader("Reload", timeout + "; URL = ../user.jsp");%>
 
+<%String nme=(String) session.getAttribute("user_email");
+    if (nme != null ) {
+    	 
+    }else{
+    	response.sendRedirect("../user.jsp"); 
+    }%>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 	<title>DP LIST</title>
@@ -27,28 +41,23 @@
 	
 	margin-left: 5rem;
 	}
-	
-	.card-img-top{
-	margin-top: 66px;
-	margin-left: 54px;
-	}
 	</style>
  </head>
 
 <body>
+
 <%@include file="db.jsp" %>
     <div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar" class="active" >
- <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
+	<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>       
 	 <ul class="list-unstyled components mb-5">
-<%!String user_phone,dpid; %>
+
 <%
     Connection con1=null;
 	PreparedStatement ps1=null;
 	ResultSet rs1=null;
     String aphone=request.getParameter("admin_phone");
-    String user_phone=request.getParameter("user_phone");
- %>
+  %>
   <% 
    try
    {
@@ -56,29 +65,28 @@
      con1=DriverManager.getConnection(Url,Username,password);
      ps1=con1.prepareStatement("select * from user");
      
-      String sql = "Select * from user Where user_phone=" +user_phone;
+      String sql = "Select * from user Where admin_phone=" + aphone;
       rs1 = ps1.executeQuery(sql);
       if(rs1.next())
       {
-        user_phone=rs1.getString("user_phone");
-        dpid=rs1.getString("dpid");
+        
 %>
-    <li ><a href="dashboard_user.jsp?user_phone=<%=rs1.getString("user_phone")%>" ><span class="fa fa-home"></span>Dashboard</a>
+    <li ><a href="dashboard_user.jsp?admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-info-circle"></span>Dashboard</a>
       </li>
       
-      <li ><a class="active"  href="userdplist_user.jsp?dpid=<%=rs1.getString("dpid")%>&admin_phone=<%=aphone%>&user_phone=<%=user_phone %>" ><span class="fa fa-info-circle"></span>User Details</a>
+      <li ><a class="active"  href="userdplist_user.jsp?dpid=<%=rs1.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-info-circle"></span>User Details</a>
       </li>
            
-        <li ><a  href="onoff_user.jsp?dpid=<%=rs1.getString("dpid")%>&admin_phone=<%=aphone%>&user_phone=<%=user_phone %>" ><span class="fa fa-toggle-on"></span>ON/OFF</a>
+        <li ><a  href="onoff_user.jsp?dpid=<%=rs1.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-toggle-on"></span>ON/OFF</a>
         </li>
        
-       <li ><a  href="timeset_user.jsp?dpid=<%=rs1.getString("dpid")%>&admin_phone=<%=aphone%>&user_phone=<%=user_phone %>" ><span class="fa fa-clock-o"></span>Time Manager</a>
+       <li ><a  href="timeset_user.jsp?dpid=<%=rs1.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-clock-o"></span>Time Manager</a>
         </li>
         
-        <li ><a  href="show_user_notification.jsp?admin_phone=<%=aphone%>&user_phone=<%=user_phone%>" ><span class="fa fa-bell"></span>Show Notifications</a>
+        <li ><a  href="show_user_notification.jsp?admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-bell"></span>Show Notifications</a>
         </li> 
         
-       <li ><a  href="show_myuser_notification.jsp?admin_phone=<%=aphone%>&user_phone=<%=user_phone%>" ><span class="fa fa-bell"></span>Show My Notifications</a>
+       <li ><a  href="show_myuser_notification.jsp?admin_phone=<%=request.getParameter("admin_phone") %>" ><span class="fa fa-bell"></span>Show My Notifications</a>
         </li>      
             
         <li ><a  href="logout.jsp" ><span class="fa fa-power-off"></span>Logout</a>
@@ -105,14 +113,9 @@ e.printStackTrace();
 	              <i class="fa fa-bars"></i>
 	              <span class="sr-only">Toggle Menu</span>
 	            </button>
-              <h5>Street Light Controller </h5>
              </div>
          </nav>
-     <div class="pad">
-      <div class=" pull-right" style="margin-top:5px;">
-   	  <input class="btn btn-outline-primary" type=button onClick="location.href='userdplist_user.jsp?user_phone=<%=user_phone %>&admin_phone=<%=aphone%>&dpid=<%=dpid %>'" value='Back'>
-   </div>
-   
+      
   <%
 	String dpid = request.getParameter("dpid");
     Connection connection = null;
@@ -128,7 +131,7 @@ e.printStackTrace();
 	 while(resultSet.next())
 	 {  
       %>
-        	<button type="button" class="btn btn-outline-primary" style="position: absolute;  margin-left: 3px;">DP ID ::<%=resultSet.getString("dpid") %></button>
+        	<button type="button" class="btn btn-outline-primary" style="position: absolute; top:80px; margin-left: 20px;">DP ID ::<%=resultSet.getString("dpid") %></button>
      <%
     Statement statement1 = null;
     ResultSet resultSet1 =null;
@@ -239,7 +242,7 @@ catch (Exception e)
 			rd.include(request, response);
 	}
    %>     	
-    </div>    	
+        	
    </div>
   </div>
     

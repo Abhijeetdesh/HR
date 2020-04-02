@@ -4,6 +4,22 @@
     import="java.util.ArrayList"
     import="java.util.List" 
  %>
+ <%! String nme=null; %>
+ <%
+ 
+response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires",300);
+    int timeout = session.getMaxInactiveInterval();
+    response.setHeader("Reload", timeout + "; URL = ../user.jsp");%>
+
+<%String nme=(String) session.getAttribute("user_email");
+    if (nme != null ) {
+    	 
+    }else{
+    	response.sendRedirect("../user.jsp"); 
+    }%>
 <%@page import="java.util.Base64"%>
 <%@page import="javax.crypto.Cipher"%>
 <%@page import="java.io.UnsupportedEncodingException"%>
@@ -34,8 +50,8 @@
 <body class="app sidebar-mini">
 
     <div class="wrapper d-flex align-items-stretch">
-<nav id="sidebar" class="active">
- <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
+			<nav id="sidebar" class="active">
+				<a href="index.html" class="logo" ><img src="images/logo.jpg" style="width: 25px;height: 25px;" >Aderate Solution</a>
     
    			</nav>
 
@@ -109,6 +125,7 @@ private static SecretKeySpec secretKey;
 <% 
   try
   {
+   
     con=DriverManager.getConnection(Url,Username,password);
     ps=con.prepareStatement("select * from user");
     final String secretKey = "ssshhhhhhhhhhh!!!!";
@@ -121,7 +138,7 @@ private static SecretKeySpec secretKey;
      rs = ps.executeQuery(sql);
      if(rs.next())
      {      
-    	 String user_phone=rs.getString("user_phone");
+    	 String admin_phone=rs.getString("admin_phone");
     	 String user_email=rs.getString("user_email");
     	 String user_password=rs.getString("user_password");
     	 String dpid=rs.getString("dpid");
@@ -129,21 +146,26 @@ private static SecretKeySpec secretKey;
     	 System.out.println(status);
     	 String check="active";
     	 if(check.equals(status))
-    	 {		 
-    		 RequestDispatcher rd=request.getRequestDispatcher("dashboard_user.jsp?user_phone="+user_phone);
+    	 {		  System.out.println("email"+user_email);
+		 HttpSession sess = request.getSession();
+    	   session.setAttribute("user_email", user_email);
+    	  nme=(String) session.getAttribute("user_email");
+    	 if(nme !=null){
+    		 RequestDispatcher rd=request.getRequestDispatcher("dashboard_user.jsp?admin_phone="+admin_phone);
     		 rd.forward(request, response);
+    	 }
     	 }
     	 else
     	 {
     	     HttpSession sess = request.getSession();
     	     session.setAttribute("This_user_is_blocked", "1");
-    	     response.sendRedirect("../user.jsp");
+    	     response.sendRedirect("../homepage.jsp");
     	 }
      }
      else{
     	   HttpSession sess = request.getSession();
     	   session.setAttribute("wrong_uname_pass", "1");
-    	   response.sendRedirect("../user.jsp");
+    	   response.sendRedirect("../homepage.jsp");
     	 }
      }
    

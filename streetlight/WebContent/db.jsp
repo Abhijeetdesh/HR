@@ -7,7 +7,6 @@
 </head>
 <body>
  <%
- 
  String Url="jdbc:mysql://localhost/myproject";
               String Username="root";
               String password="";

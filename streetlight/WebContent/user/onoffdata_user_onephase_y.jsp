@@ -5,8 +5,23 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
    <%@ page import="java.sql.*" %>
+   <%
+ 
+response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires",300);
+    int timeout = session.getMaxInactiveInterval();
+    response.setHeader("Reload", timeout + "; URL = ../homepage.jsp");%>
+
+<%String nme=(String) session.getAttribute("user_email");
+    if (nme != null ) {
+    	 
+    }else{
+    	response.sendRedirect("../homepage.jsp"); 
+    }%>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
   <head>
   	<title>Y onoff data send</title>
     <meta charset="utf-8">
@@ -21,33 +36,32 @@
   </head>
   <body>
 		
-<div class="wrapper d-flex align-items-stretch">
-<nav id="sidebar" class="active" >
- <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar" class="active" >
+					<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
         <ul class="list-unstyled components mb-5">
            
-            <li ><a class="app-menu__item" href="dashboard_user.jsp?user_phone=<%=request.getParameter("user_phone")%>" ><span class="fa fa-home"></span>Dashboard</a>
+           <li ><a class="app-menu__item" href="dashboard_user.jsp?admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-info-circle"></span>Dashboard</a>
            </li>
           
-           <li ><a class="app-menu__item" href="userdplist_user.jsp?dpid=<%=request.getParameter("dpid1")%>&admin_phone=<%=request.getParameter("admin_phone")%>&user_phone=<%=request.getParameter("user_phone")%>" ><span class="fa fa-info-circle"></span> User Details</a>
+           <li ><a class="app-menu__item" href="userdplist_user.jsp?dpid=<%=request.getParameter("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-info-circle"></span> User Details</a>
            </li>
             
-          <li ><a class="active" class="app-menu__item" href="onoff_user.jsp?dpid=<%=request.getParameter("dpid1")%>&admin_phone=<%=request.getParameter("admin_phone")%>&user_phone=<%=request.getParameter("user_phone")%>" ><span class="fa fa-toggle-on"></span>ON/OFF</a>
+          <li ><a class="active" class="app-menu__item" href="onoff_user.jsp?dpid=<%=request.getParameter("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-toggle-on"></span>ON/OFF</a>
           </li>
        
-         <li ><a class="app-menu__item" href="timeset_user.jsp?dpid=<%=request.getParameter("dpid1")%>&admin_phone=<%=request.getParameter("admin_phone")%>&user_phone=<%=request.getParameter("user_phone")%>" ><span class="fa fa-clock-o"></span>Time Manager</a>
+         <li ><a class="app-menu__item" href="timeset_user.jsp?dpid=<%=request.getParameter("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-clock-o"></span>Time Manager</a>
          </li>
         
-        <li ><a class="app-menu__item" href="show_user_notification.jsp?admin_phone=<%=request.getParameter("admin_phone")%>&user_phone=<%=request.getParameter("user_phone")%>" ><span class="fa fa-bell"></span>Show Notifications</a>
+        <li ><a class="app-menu__item" href="show_user_notification.jsp?admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-bell"></span>Show Notifications</a>
         </li> 
         
-       <li ><a class="app-menu__item" href="show_myuser_notification.jsp?admin_phone=<%=request.getParameter("admin_phone")%>&user_phone=<%=request.getParameter("user_phone")%>" ><span class="fa fa-bell"></span>Show My Notifications</a>
+       <li ><a class="app-menu__item" href="show_myuser_notification.jsp?admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-bell"></span>Show My Notifications</a>
         </li>  
          
          <li ><a class="app-menu__item" href="logout.jsp" ><span class="fa fa-power-off"></span>Logout</a>
         </li>
        
-
       </ul>
       </nav>
         <!-- Page Content  -->
@@ -60,10 +74,11 @@
               <i class="fa fa-bars"></i>
               <span class="sr-only">Toggle Menu</span>
             </button>
-            <h5>Street Light Controller </h5>
+            
+           
           </div>
         </nav>
-<div class="pad"> <%@include file="db.jsp" %>
+<div> <%@include file="db.jsp" %>
 <%
 String id = request.getParameter("dpid");
 String dpid1=request.getParameter("dpid1");

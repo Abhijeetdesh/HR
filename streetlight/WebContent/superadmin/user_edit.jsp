@@ -14,7 +14,7 @@
          import="com.grocery.Admin_RegisterController"
          %>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -32,7 +32,7 @@
      
 </head>
 <body>
-	
+	 <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active">
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -80,7 +80,7 @@
               <h5>Street Light Controller </h5>
           </div>
         </nav>
-	<div class="pad">	
+		
 		   <div class=" pull-right" style="margin-top:5px;">
    			    <input class="btn btn-outline-primary" type=button onClick="location.href='user_info.jsp'" value='Back'>
 		   </div>
@@ -166,6 +166,7 @@ while(resultSet.next()){
 %>
 
 
+	<div class="my" >
 		<form  name="form1" action="user_edit_two.jsp" method="post" onsubmit="return validation()">
       
 		   <div class="form-group">
@@ -196,7 +197,7 @@ while(resultSet.next()){
 		     <input class="form-control" id="p_assword" name="dpid" type="text" value="<%=resultSet.getString("dpid")%>" disabled>
 		   </div>
 		    <div class="form-group">
-		     <label for="exampleInputPassword1">Dp Id::</label>
+		     <label for="exampleInputPassword1">Dp Id::</label><br>
  <%
 ResultSet rs=null;
    try{
@@ -237,12 +238,12 @@ ResultSet rs=null;
             out.println("wrong entry"+e);
        }
 %> 
-		<br><button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 20%"><i class="fa fa-save"></i>Save</button>
-	    <div id = "confirm">
-		<div class = "message">Do you Want To Save</div>
-	    <button type="submit"  class = "yes">OK</button>
-	    <button type="button" class="yes"  style="background: red">Cancel</button>
-	   </div>
+		   <br><button class="btn btn-primary" type="button" onclick = "functionAlert();" style="margin-left: 20%"><i class="fa fa-save"></i>Save</button>
+				   <div id = "confirm">
+			         <div class = "message">Do you Want To Save</div>
+			         <button type="submit"  class = "yes">OK</button>
+			         <button type="button" class="yes"  style="background: red">Cancel</button>
+			       </div>
 
 		  
     </form>

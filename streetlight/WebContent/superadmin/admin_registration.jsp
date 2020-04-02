@@ -3,7 +3,7 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>  
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../css/style2.css">
 </head>
 <body >
+ <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active">
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -48,10 +49,12 @@
           </li>
         </ul>
 
-		</nav>
+		       
+		    	</nav>
 		    	
-	<div id="content" >
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		    	<div id="content" >
+		
+		        <nav class="navbar navbar-expand-lg navbar-light bg-light">
 		          <div class="container-fluid">
 		
 		            <button type="button" id="sidebarCollapse" class="btn btn-primary">
@@ -60,12 +63,12 @@
 		            </button>
 		             <h5>Street Light Controller </h5>
 		          </div>
-		 </nav>
-   <div class="pad">		 
+		        </nav>
    	<div class=" pull-right" style="margin-top:5px;">
     <input class="btn btn-outline-primary" type=button onClick="location.href='admin_info.jsp'" value='Back'>
     </div> 
     
+      <div class="my" >
           <form  name="form1" action="admin_registration_two.jsp" method="post" onsubmit="return validation()">
           
               <div class="form-group">
@@ -105,8 +108,8 @@
 		  
    		</form>
       </div>
-      </div>
    </div>
+</div>
 
     
     
@@ -148,12 +151,24 @@
  		 var cpass= document.getElementById('c_password').value;
  			 
  		 
+ 		/*  if(user ==""){
+ 			document.getElementById('name').innerHTML=" Name can not be empty";
+ 			return false;
+ 		 } */
+ 		 
+ 		 
+ 		
+ 		 
  		 if(!isNaN(user)){
  			document.getElementById('name').innerHTML="Only Alphabets allowed" ;
  			return false;
  		 }
  		 
- 			if(email.indexOf('@')<= 0){
+ 		/* if(email ==""){
+	 			document.getElementById('Email').innerHTML="Email_ID can not be empty";
+	 			return false;
+				 } */
+	 		if(email.indexOf('@')<= 0){
 	 		document.getElementById('Email').innerHTML="Invalid Email-Id";
 	 			return false;
 	 		}
@@ -163,6 +178,10 @@
 			return false;
 	 		}
 	 		
+	 		/* if(phone ==""){
+	 	 			document.getElementById('number').innerHTML="Mobile Number can not be empty";
+	 	 			return false;
+	 	 			} */
 	 			if(isNaN(phone)){
 	 				document.getElementById('Phone').innerHTML="Only Number allowed";
 	 	 			return false;
@@ -174,6 +193,10 @@
 	 			}
 	 			
  		 
+ 			/* if(pass ==""){
+ 	 			document.getElementById('password').innerHTML="Password can not be empty";
+ 	 			return false;
+ 			 } */
  			
  			 if((pass.length <= 5) || (pass.length > 20))
  			 {

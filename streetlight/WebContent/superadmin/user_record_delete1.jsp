@@ -13,7 +13,7 @@
          import="com.grocery.Admin_RegisterController"
          %>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="../css/style2.css">
 </head>
 <body >
+ <%@include file="sessioncache.jsp" %>
 <div class="wrapper d-flex align-items-stretch">
 <nav id="sidebar" class="active">
  <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
@@ -70,7 +71,7 @@
                <h5>Street Light Controller </h5>
           </div>
         </nav>
-    <div class="pad">
+    
          		<div class=" pull-right" style="margin-top:5px;">
    					<input class="btn btn-outline-primary" type=button onClick="location.href='user_info.jsp'" value='Back'>
 		      </div>
@@ -154,6 +155,7 @@ while(resultSet.next()){
 	String encryptedString = one;
 	String decryptedString = AES.decrypt(encryptedString, secretKey) ;
 %>
+		<div class="my" >
              
              <form name="form1" method="post" action="user_record_delete.jsp">
 						

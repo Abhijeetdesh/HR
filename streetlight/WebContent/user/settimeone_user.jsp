@@ -9,9 +9,23 @@
 <%@ page import="java.sql.*"%> 
 <%@ page import ="java.time.format.DateTimeFormatter"
     import="java.time.LocalDateTime"  %>
+<%
+ 
+response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires",300);
+    int timeout = session.getMaxInactiveInterval();
+    response.setHeader("Reload", timeout + "; URL = ../user.jsp");%>
 
+<%String nme=(String) session.getAttribute("user_email");
+    if (nme != null ) {
+    	 
+    }else{
+    	response.sendRedirect("../user.jsp"); 
+    }%>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 	<title>DP LIST</title>
@@ -35,23 +49,33 @@
   display: none;
 }
 
-
+tr:nth-child(even) {background-color: #F9E79F;}
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+th{
+background-color: #282C34;
+color: white;
+}
+tr:hover {background-color:#f5f5f5;}
 </style> 
  </head>
 
 <body>
+
 <%@include file="db.jsp" %>
- <div class="wrapper d-flex align-items-stretch">
-<nav id="sidebar" class="active" >
- <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
+    <div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar" class="active" >
+	<a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>       
 	 <ul class="list-unstyled components mb-5">
-<%!String user_phone,dpid1; %>
+
 <%
     Connection con1=null;
 	PreparedStatement ps1=null;
 	ResultSet rs1=null;
     String aphone=request.getParameter("admin_phone");
-    user_phone=request.getParameter("user_phone");
   %>
   <% 
    try
@@ -60,28 +84,28 @@
      con1=DriverManager.getConnection(Url,Username,password);
      ps1=con1.prepareStatement("select * from user");
      
-    String sql = "Select * from user Where user_phone=" +user_phone;
+    String sql = "Select * from user Where admin_phone=" + aphone;
       rs1 = ps1.executeQuery(sql);
       if(rs1.next())
       {
-        dpid1=rs1.getString("dpid");
+        
 %>
-     <li ><a  href="dashboard_user.jsp?user_phone=<%=rs1.getString("user_phone")%>"><span class="fa fa-home"></span>Dashboard</a>
+     <li ><a  href="dashboard_user.jsp?admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-info-circle"></span>Dashboard</a>
        </li>
       
-      <li ><a  href="userdplist_user.jsp?dpid=<%=rs1.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>&user_phone=<%=rs1.getString("user_phone") %>" ><span class="fa fa-info-circle"></span>User Details</a>
+      <li ><a  href="userdplist_user.jsp?dpid=<%=rs1.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-info-circle"></span>User Details</a>
        </li>
            
-       <li ><a  href="onoff_user.jsp?dpid=<%=rs1.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>&user_phone=<%=rs1.getString("user_phone") %>" ><span class="fa fa-toggle-on"></span>ON/OFF</a>
+       <li ><a  href="onoff_user.jsp?dpid=<%=rs1.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-toggle-on"></span>ON/OFF</a>
         </li>
          
-          <li ><a class="active" href="timeset_user.jsp?dpid=<%=rs1.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>&user_phone=<%=rs1.getString("user_phone") %>" ><span class="fa fa-clock-o"></span>Time Manager</a>
+          <li ><a class="active" href="timeset_user.jsp?dpid=<%=rs1.getString("dpid")%>&admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-clock-o"></span>Time Manager</a>
         </li>
         
-        <li ><a  href="show_user_notification.jsp?admin_phone=<%=request.getParameter("admin_phone")%>&user_phone=<%=rs1.getString("user_phone") %>" ><span class="fa fa-bell"></span>Show Notifications</a>
+        <li ><a  href="show_user_notification.jsp?admin_phone=<%=request.getParameter("admin_phone")%>" ><span class="fa fa-bell"></span>Show Notifications</a>
         </li> 
         
-       <li ><a  href="show_myuser_notification.jsp?admin_phone=<%=request.getParameter("admin_phone") %>&user_phone=<%=rs1.getString("user_phone") %>" ><span class="fa fa-bell"></span>Show My Notifications</a>
+       <li ><a  href="show_myuser_notification.jsp?admin_phone=<%=request.getParameter("admin_phone") %>" ><span class="fa fa-bell"></span>Show My Notifications</a>
         </li>      
             
         <li ><a  href="logout.jsp" ><span class="fa fa-power-off"></span>Logout</a>
@@ -106,14 +130,9 @@ e.printStackTrace();
 	              <i class="fa fa-bars"></i>
 	              <span class="sr-only">Toggle Menu</span>
 	            </button>
-               <h5>Street Light Controller </h5>
          		</div>
          		</nav>
-   <div class="pad">    
-    <div class=" pull-right" style="margin-top:5px;">
-   	  <input class="btn btn-outline-primary" type=button onClick="location.href='timeset_user.jsp?user_phone=<%=user_phone %>&admin_phone=<%=request.getParameter("admin_phone")%>&dpid=<%=dpid1%>'" value='Back'>
-   </div>
-                    
+                        
  <%
  DateTimeFormatter dtf = DateTimeFormatter.ofPattern(" HH:mm:ss");
  LocalDateTime now = LocalDateTime.now();
@@ -145,6 +164,7 @@ while(resultSet.next()){
     	while(resultSet1.next())
     	{
     	%>
+    <h2 style="color: red; text-align: center;">Set Time</h2>
 		      <div class="row">
     <div class="col-sm-6">
     <form> 
@@ -228,7 +248,6 @@ else
 		rd.include(request, response);
 }		
 %>
-</div>
 </div>
 </div>
 

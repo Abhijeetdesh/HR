@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires",300);
+    int timeout = session.getMaxInactiveInterval();
+    response.setHeader("Refresh", timeout + "; URL = ../admin.jsp");%>
+
+<%String u = (String) request.getSession().getAttribute("admin_email");
+    if (u != null ) {
+        
+    }else{
+        response.sendRedirect("../admin.jsp");
+    }%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>  
 <%@page import="java.sql.DriverManager"%>
@@ -8,7 +21,7 @@
 <%@page import="java.sql.Connection"%>
 
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -23,22 +36,17 @@
 	
 	margin-left: 5rem;
 	}
-	
-	.card-img-top{
-	margin-top: 66px;
-	margin-left: 54px;
-	}
 	</style>
 <body>
-
+ 
 <div class="wrapper d-flex align-items-stretch">
       <nav id="sidebar" class="active">
- <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
+	    <a href="index.html" class="logo"><img src="images/logo.jpg" style="width: 25px;height: 25px;" ><br> AdeRate Solution</a>
           <ul class="list-unstyled components mb-5">
            <%String aphone=request.getParameter("admin_phone");
      if(aphone !=null){%>
            <li>
-              <a href="dashboard_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-home"></span>Dashboard</a>
+              <a href="dashboard_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span>Dashboard</a>
           </li>
           <li>
               <a class="active" href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
@@ -71,7 +79,7 @@
      }%>
       </ul>  
       </nav>
-      
+       
      <div id="content" >
 	        <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	          <div class="container-fluid">
@@ -80,10 +88,11 @@
 	              <i class="fa fa-bars"></i>
 	              <span class="sr-only">Toggle Menu</span>
 	            </button>
-               <h5>Street Light Controller </h5>
              </div>
          </nav>
-    <div class="pad">  	
+          <div class=" pull-right" style="margin-top:5px;">
+   			     <input class="btn btn-outline-primary" type=button onClick="location.href='dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>'" value='Back'>
+		      </div>  
          		
      <%@include file="db.jsp" %>
    <%
@@ -102,7 +111,7 @@
 	 while(resultSet.next())
 	 {  
       %>
-        	<button type="button" class="btn btn-outline-primary" style="position: absolute;margin-left: 3px;">DP ID ::<%=resultSet.getString("dpid") %></button>
+        	<button type="button" class="btn btn-outline-primary" style="position: absolute; top:80px; margin-left: 20px;">DP ID ::<%=resultSet.getString("dpid") %></button>
      <%
     Statement statement1 = null;
     ResultSet resultSet1 =null;
@@ -115,7 +124,7 @@
 	   while(resultSet1.next())
 	  {			
 	           
-	 %> 
+	 %>   	
      <div class="card" style="width: 17rem;">
        <div class="card-body">
          <h5 class="card-title">R</h5>
@@ -214,7 +223,7 @@ catch (Exception e)
     }
    
    %>     	
-  </div>      	
+        	
    </div>
   </div>
      <script src="../js/jquery.min.js"></script>

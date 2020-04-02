@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.sql.*,java.util.*"%>
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="UTF-8">
 
@@ -14,11 +14,13 @@
 </head>
 <body >
     <div class="wrapper d-flex align-items-stretch">
-<nav id="sidebar" class="active">
- <a href="aderatesolutions.com" class="logo"> Aderate Tech Solutions</a>
-        <ul class="list-unstyled components mb-5">
-         <li>
-              <a href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-home"></span> DP List</a>
+			<nav id="sidebar" class="active">
+				<a href="index.html" class="logo" >AdeRate Solution</a>
+                <ul class="list-unstyled components mb-5">
+      
+  
+          <li>
+              <a href="dptable_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-sliders"></span> DP List</a>
           </li>
            <li>
               <a  href="timeset_admin.jsp?admin_phone=<%=request.getParameter("admin_phone")%>"><span class="fa fa-clock-o"></span> Time Manager</a>
@@ -52,8 +54,9 @@
               <i class="fa fa-bars"></i>
               <span class="sr-only">Toggle Menu</span>
             </button>
-              <h5>Street Light Controller </h5>
-        </div>
+            
+           
+          </div>
         </nav>
         <%@include file="db.jsp" %>
         

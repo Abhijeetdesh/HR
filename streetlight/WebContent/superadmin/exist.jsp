@@ -7,12 +7,13 @@
 <%@page import="java.sql.Connection"%>
 
 <!DOCTYPE html>
-<html>
+<html oncontextmenu="return false">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
+ <%@include file="sessioncache.jsp" %>
  <%@include file="db.jsp" %>
 <%
     try{
